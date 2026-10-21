@@ -1,4 +1,4 @@
-#Offline Guru 🎓
+Offline Guru 🎓
 
 An Offline-First AI Classroom Learning Assistant
 
@@ -12,7 +12,7 @@ The teacher's laptop acts as the local server and, where supported, the Wi-Fi ho
 
 ---
 
-#📌 Table of Contents
+📌 Table of Contents
 
 - "Problem Statement" (#-problem-statement)
 - "Our Solution" (#-our-solution)
