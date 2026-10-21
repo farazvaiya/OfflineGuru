@@ -1,4 +1,4 @@
-Offline Guru 🎓
+#Offline Guru 🎓
 
 An Offline-First AI Classroom Learning Assistant
 
