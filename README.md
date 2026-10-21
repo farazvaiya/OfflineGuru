@@ -1,4 +1,4 @@
-Offline Guru 🎓
+#Offline Guru 🎓
 
 An Offline-First AI Classroom Learning Assistant
 
@@ -12,7 +12,7 @@ The teacher's laptop acts as the local server and, where supported, the Wi-Fi ho
 
 ---
 
-📌 Table of Contents
+#📌 Table of Contents
 
 - "Problem Statement" (#-problem-statement)
 - "Our Solution" (#-our-solution)
@@ -32,7 +32,7 @@ The teacher's laptop acts as the local server and, where supported, the Wi-Fi ho
 - "Contributing" (#-contributing)
 - "License" (#-license)
 
-🎯 Problem Statement
+#🎯 Problem Statement
 
 Students can struggle to understand lectures when the teacher speaks a language they do not understand well. In rural schools and resource-constrained classrooms, reliable Internet access may also be unavailable.
 
