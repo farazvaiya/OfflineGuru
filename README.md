@@ -169,7 +169,6 @@ guru/
 config/default.toml runtime configuration (env overrides: GURU_*)
 scripts/            model prep, demo audio, eval, latency/contention/load benchmarks,
                     browser QA, offline verify, hotspot
-tests/              239 unit + integration tests
 docs/               architecture, model selection, evaluation, roadmap, networking,
                     setup, troubleshooting, demo script, measurement artifacts
 data/               SQLite DB, audio cache, demo/eval artifacts (gitignored)

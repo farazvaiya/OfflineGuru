@@ -12,7 +12,6 @@ license = { text = "GPL-3.0-or-later" }
 include = ["guru*"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "reports/tests"]
 # Real-LLM tests are opt-in only: they need the network, cost money, and are not
 # part of ordinary verification. Run them with `pytest -m real`.
 addopts = "-q -m 'not real'"

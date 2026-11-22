@@ -65,7 +65,6 @@ Offline lecture tool for a teacher laptop with no internet dependency. Teacher s
 │       └── transcript_utils.py
 ├── models/
 ├── scripts/
-├── tests/
 └── reports/
 ```
 
