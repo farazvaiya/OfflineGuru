@@ -186,9 +186,6 @@ make loadtest        # 30 WebSocket students against a running server
 make demo            # regenerate the demo lecture
 ``` 
 
-Improvement harness: `python3 -m engineering_team status` drives the human-gated
-engineering workflow described in [engineering_team/README.md](engineering_team/README.md).
-
 Diagnostics: `curl -s localhost:8000/api/health | python3 -m json.tool`.
 Guides: [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md),
 [TEACHER_GUIDE.md](TEACHER_GUIDE.md), [STUDENT_GUIDE.md](STUDENT_GUIDE.md).
