@@ -1,0 +1,69 @@
+{
+  "encoder_available": false,
+  "lexical_index_ms_en": 0.0,
+  "lexical_query_ms_en": 0.5,
+  "lexical_index_ms_bn": 0.0,
+  "lexical_query_ms_bn": 0.5,
+  "bilingual_index_translate_ms": 3645.8,
+  "bilingual_query_ms": 1.0,
+  "rows": [
+    {
+      "pair": "en->en",
+      "lexical": {
+        "n": 6,
+        "top1": 0.833,
+        "mrr": 0.917
+      }
+    },
+    {
+      "pair": "bn->en",
+      "lexical": {
+        "n": 6,
+        "top1": 0.167,
+        "mrr": 0.25
+      }
+    },
+    {
+      "pair": "en->bn",
+      "lexical": {
+        "n": 6,
+        "top1": 0.167,
+        "mrr": 0.222
+      }
+    },
+    {
+      "pair": "bn->bn",
+      "lexical": {
+        "n": 6,
+        "top1": 1.0,
+        "mrr": 1.0
+      }
+    },
+    {
+      "pair": "bn->en",
+      "lexical": {
+        "n": 6,
+        "top1": 0.167,
+        "mrr": 0.25
+      },
+      "bilingual": {
+        "n": 6,
+        "top1": 0.667,
+        "mrr": 0.806
+      }
+    },
+    {
+      "pair": "en->en",
+      "lexical": {
+        "n": 6,
+        "top1": 0.833,
+        "mrr": 0.917
+      },
+      "bilingual": {
+        "n": 6,
+        "top1": 0.833,
+        "mrr": 0.917
+      }
+    }
+  ]
+}

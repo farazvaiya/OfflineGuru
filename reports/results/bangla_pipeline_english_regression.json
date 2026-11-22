@@ -1,0 +1,68 @@
+{
+  "mode": "stream",
+  "language": "en",
+  "asr_model": "/home/faraz/project/offline_guru/models/whisper-base",
+  "bn_model_dir": "/home/faraz/project/offline_guru/models/whisper-base-bn-ct2",
+  "clips_in": 1,
+  "audio_s": 25.0,
+  "transcripts": 10,
+  "stored_segments": 5,
+  "captions": 5,
+  "bengali_script_ratio": 0.0,
+  "captions_with_english": 5,
+  "untranslated_echoes": 5,
+  "first_caption_ms": 1795.4,
+  "stats": {
+    "segments_finalized": 5,
+    "segments_translated": 5,
+    "segments_empty": 0,
+    "asr_queue_drops": 0,
+    "enrichment_queue_drops": 0,
+    "tts_queue_drops": 0,
+    "partials_emitted": 0,
+    "stream_decodes": 20,
+    "stream_commits": 24,
+    "stream_phrases": 5,
+    "stream_partials": 6,
+    "stream_backlog": 3,
+    "audio_carried_s": 5.96,
+    "tts_failures": 5,
+    "language_turn_switches": 0,
+    "finalized_segment_drops": 0,
+    "playback_order_errors": 0,
+    "queue_backlog_peak": 0,
+    "translate_failures": 0,
+    "first_caption_ms": 1795.4,
+    "first_audio_ms": null,
+    "last_error": null
+  },
+  "samples": [
+    {
+      "source": "I",
+      "bn": "আমি",
+      "en": "I"
+    },
+    {
+      "source": "I was appointed six months ago.",
+      "bn": "আমাকে ছয় মাস আগে নিযুক্ত করা হয়েছিল।",
+      "en": "I was appointed six months ago."
+    },
+    {
+      "source": "And the more I've spoken about feminism.",
+      "bn": "আর নারীবাদ সম্পর্কে আমি যত বেশি কথা বলেছি.",
+      "en": "And the more I've spoken about feminism."
+    },
+    {
+      "source": "The more I have...",
+      "bn": "আমার যত বেশি...",
+      "en": "The more I have..."
+    },
+    {
+      "source": "realised that fighting for women's rights too much of a",
+      "bn": "নারী অধিকারের জন্য লড়াই করা খুব বেশি।",
+      "en": "realised that fighting for women's rights too much of a"
+    }
+  ],
+  "wall_s": 39.1,
+  "db": "/home/faraz/project/offline_guru/reports/results/_bench/bench_stream_en_1794857302.db"
+}

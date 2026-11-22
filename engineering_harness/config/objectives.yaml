@@ -1,0 +1,50 @@
+# What the engagement is trying to change, in priority order.
+# Objectives are qualitative; the measurable form of each lives in
+# acceptance_criteria.yaml. Nothing here may be reworded between phases to make a
+# gate easier to pass.
+
+primary:
+  - id: O1
+    name: eliminate_missing_speech
+    statement: >
+      Speech present in the capture stream must reach the student transcript.
+      The defect class covers dropped samples, VAD false rejection, un-decoded
+      tails, and capture stalls.
+    phase1_basis: "Student-reported missing words in a live lecture; F-01..F-05"
+
+  - id: O2
+    name: trustworthy_accuracy_measurement
+    statement: >
+      Accuracy claims must be reproducible. A metric that cannot be reproduced
+      from a stored reference and a stored command is treated as no evidence.
+    phase1_basis: "95.6% cross-speaker WER was not reproducible; F-06"
+
+  - id: O3
+    name: reduce_end_to_end_latency
+    statement: >
+      Speech-to-caption latency p50/p95 must fall without losing accuracy.
+    phase1_basis: "Historical file-replay p50 2.95 s / p95 16.02 s"
+
+  - id: O4
+    name: classroom_reliability
+    statement: >
+      30 concurrent students, zero published-segment drops, bounded queues,
+      and survival of a capture-device failure without silent data loss.
+    phase1_basis: "Load test baseline; F-02 capture restart"
+
+secondary:
+  - id: O5
+    name: translation_quality
+    statement: English->Bangla meaning preservation against a human-verified reference.
+  - id: O6
+    name: tts_playback_integrity
+    statement: Bangla audio is synthesised for every translated segment and arrives in order.
+  - id: O7
+    name: resource_envelope
+    statement: Peak RSS and mean CPU stay inside the measured 2.3 GB headroom.
+
+explicitly_out_of_scope:
+  - Model fine-tuning (no GPU, no labelled classroom corpus).
+  - Replacing the WebSocket/REST contract.
+  - Cloud inference of any kind.
+  - Rewriting the student or teacher front end.

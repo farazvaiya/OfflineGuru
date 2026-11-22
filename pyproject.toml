@@ -1,0 +1,29 @@
+[project]
+name = "offline-guru"
+version = "0.1.0"
+description = "Offline, privacy-preserving classroom AI for rural schools"
+requires-python = ">=3.11"
+readme = "README.md"
+# GPL-3.0-or-later: required by the Piper TTS runtime (GPL-3.0). Everything
+# else in the tree is Apache-2.0/MIT/BSD compatible. See LICENSES.md.
+license = { text = "GPL-3.0-or-later" }
+
+[tool.setuptools.packages.find]
+include = ["guru*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "reports/tests"]
+# Real-LLM tests are opt-in only: they need the network, cost money, and are not
+# part of ordinary verification. Run them with `pytest -m real`.
+addopts = "-q -m 'not real'"
+markers = [
+    "real: invokes a real, billed LLM CLI (network + cost); excluded by default",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

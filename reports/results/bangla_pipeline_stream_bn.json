@@ -1,0 +1,78 @@
+{
+  "mode": "stream",
+  "language": "bn",
+  "asr_model": "/home/faraz/project/offline_guru/models/whisper-base",
+  "bn_model_dir": "/home/faraz/project/offline_guru/models/whisper-base-bn-ct2",
+  "clips_in": 6,
+  "audio_s": 34.5,
+  "transcripts": 14,
+  "stored_segments": 7,
+  "captions": 7,
+  "bengali_script_ratio": 1.0,
+  "captions_with_english": 7,
+  "untranslated_echoes": 0,
+  "first_caption_ms": 2644.5,
+  "stats": {
+    "segments_finalized": 7,
+    "segments_translated": 7,
+    "segments_empty": 0,
+    "asr_queue_drops": 0,
+    "enrichment_queue_drops": 0,
+    "tts_queue_drops": 0,
+    "partials_emitted": 0,
+    "stream_decodes": 11,
+    "stream_commits": 17,
+    "stream_phrases": 7,
+    "stream_partials": 4,
+    "stream_backlog": 6,
+    "audio_carried_s": 10.64,
+    "tts_failures": 7,
+    "language_turn_switches": 0,
+    "finalized_segment_drops": 0,
+    "playback_order_errors": 0,
+    "queue_backlog_peak": 0,
+    "translate_failures": 0,
+    "first_caption_ms": 2644.5,
+    "first_audio_ms": null,
+    "last_error": null
+  },
+  "samples": [
+    {
+      "source": "সবাই আলক শং করান্তি হলো এই প্রকরুয়ে জামাধুমে",
+      "bn": "সবাই আলক শং করান্তি হলো এই প্রকরুয়ে জামাধুমে",
+      "en": "All Alk Shanc is the bride-in-law."
+    },
+    {
+      "source": "এই দুমে।",
+      "bn": "এই দুমে।",
+      "en": "There's this sister."
+    },
+    {
+      "source": "অনুগ্রফ করে এই সম্গাটি আপার নটাবই লিখুন।",
+      "bn": "অনুগ্রফ করে এই সম্গাটি আপার নটাবই লিখুন।",
+      "en": "If you would like to write the next book, you'd better write it."
+    },
+    {
+      "source": "ছবি, ছবি, যার অর্থহাওয়াকা।",
+      "bn": "ছবি, ছবি, যার অর্থহাওয়াকা।",
+      "en": "Photo by moneywaqa."
+    },
+    {
+      "source": "যার আলো জ্জালানি",
+      "bn": "যার আলো জ্জালানি",
+      "en": "The lights of the sun."
+    },
+    {
+      "source": "ব্রহহূরের চ্চন্ন করূড়র ত্লনামে এটি সবুঝর ব্যদ্র।",
+      "bn": "ব্রহহূরের চ্চন্ন করূড়র ত্লনামে এটি সবুঝর ব্যদ্র।",
+      "en": "It's all too hard in the background."
+    },
+    {
+      "source": "ক্রোর ফ্রেহ ছোট কাঠে মেটে পালা যায় যাকে ক্রো পড়াস্ট বলা হয়।",
+      "bn": "ক্রোর ফ্রেহ ছোট কাঠে মেটে পালা যায় যাকে ক্রো পড়াস্ট বলা হয়।",
+      "en": "The short wooden wood in Crawe is made to run through the mante, called Crawest."
+    }
+  ],
+  "wall_s": 47.2,
+  "db": "/home/faraz/project/offline_guru/reports/results/_bench/bench_stream_bn_1794857109.db"
+}

@@ -1,0 +1,190 @@
+{
+  "phase": "phase3",
+  "name": "OPTIMIZATION_AND_VALIDATION",
+  "evaluated_at": "2026-11-11T19:54:08+00:00",
+  "source_digest": "61097712830c018a",
+  "status": "FAIL",
+  "criteria": [
+    {
+      "id": "P3G1",
+      "check": "p3_asr_quality",
+      "description": "ASR WER measured on independent audio and not regressed beyond tolerance.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/asr_wer_final.json"
+      ]
+    },
+    {
+      "id": "P3G2",
+      "check": "p3_translation_quality",
+      "description": "Translation quality measured against a human-verified reference.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/translation_quality_final.json"
+      ]
+    },
+    {
+      "id": "P3G3",
+      "check": "p3_latency",
+      "description": "End-to-end latency measured; improvement threshold met.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/latency_final.json"
+      ]
+    },
+    {
+      "id": "P3G4",
+      "check": "p3_resources",
+      "description": "Peak RSS and mean CPU inside the measured hardware budget.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/latency_final.json"
+      ]
+    },
+    {
+      "id": "P3G5",
+      "check": "p3_load_test",
+      "description": "30 simulated students, zero published-segment drops.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/loadtest_30_final.json"
+      ]
+    },
+    {
+      "id": "P3G6",
+      "check": "p3_no_regression",
+      "description": "Full suite still passes after optimisation changes.",
+      "status": "PASS",
+      "measured": {
+        "exit_code": 0,
+        "tests": 250,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "threshold": {
+        "exit_code": 0,
+        "min_tests": 150
+      },
+      "evidence": [
+        "artifacts/pytest_final.json",
+        "artifacts/pytest_final.xml"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P3G7",
+      "check": "p3_reproducible",
+      "description": "Key benchmarks repeated; spread within tolerance.",
+      "status": "BLOCKED",
+      "measured": null,
+      "threshold": null,
+      "evidence": [],
+      "notes": [
+        "missing artifacts/reproducibility.json"
+      ]
+    },
+    {
+      "id": "P3G8",
+      "check": "p3_qa_signoff",
+      "description": "QA verified the final numbers.",
+      "status": "FAIL",
+      "measured": {
+        "report_lines": 0,
+        "signed_at": null,
+        "signoff_digest": null,
+        "current_digest": "61097712830c018a",
+        "substantive_criteria": 7,
+        "substantive_not_pass": [
+          "P3G1",
+          "P3G2",
+          "P3G3",
+          "P3G4",
+          "P3G5",
+          "P3G6",
+          "P3G7"
+        ]
+      },
+      "threshold": {
+        "min_report_lines": 25,
+        "signoff_matches_current_tree": true
+      },
+      "evidence": [
+        "reports/QA_PHASE3.md",
+        "state/signoffs.json"
+      ],
+      "notes": [
+        "no approved signoff from qa-agent for phase 3",
+        "reports/QA_PHASE3.md missing or too short (0 lines)",
+        "signed off while substantive criteria were not PASS: ['P3G1', 'P3G2', 'P3G3', 'P3G4', 'P3G5', 'P3G6', 'P3G7']"
+      ]
+    },
+    {
+      "id": "P3G9",
+      "check": "p3_evaluator_approval",
+      "description": "Evaluator approved the final result.",
+      "status": "FAIL",
+      "measured": {
+        "report_lines": 0,
+        "signed_at": null,
+        "signoff_digest": null,
+        "current_digest": "61097712830c018a",
+        "substantive_criteria": 7,
+        "substantive_not_pass": [
+          "P3G1",
+          "P3G2",
+          "P3G3",
+          "P3G4",
+          "P3G5",
+          "P3G6",
+          "P3G7"
+        ]
+      },
+      "threshold": {
+        "min_report_lines": 25,
+        "signoff_matches_current_tree": true
+      },
+      "evidence": [
+        "reports/EVALUATOR_PHASE3.md",
+        "state/signoffs.json"
+      ],
+      "notes": [
+        "no approved signoff from evaluator-agent for phase 3",
+        "reports/EVALUATOR_PHASE3.md missing or too short (0 lines)",
+        "signed off while substantive criteria were not PASS: ['P3G1', 'P3G2', 'P3G3', 'P3G4', 'P3G5', 'P3G6', 'P3G7']"
+      ]
+    }
+  ],
+  "not_testable_locally": [
+    {
+      "id": "N1",
+      "item": "physical_30_phone_classroom_over_hotspot",
+      "reason": "Requires 30 physical devices and an RF environment; loopback clients only simulate sockets."
+    },
+    {
+      "id": "N2",
+      "item": "thermal_sustained_45min_on_target_laptop",
+      "reason": "Target i5-7300U hardware is not this host; long runs here do not reproduce its thermals."
+    },
+    {
+      "id": "N3",
+      "item": "live_microphone_acoustic_accuracy",
+      "reason": "No microphone in this container; capture path is exercised with a shimmed arecord and file replay."
+    }
+  ]
+}

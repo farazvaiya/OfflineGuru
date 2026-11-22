@@ -1,0 +1,45 @@
+{
+  "audio": "data/demo/lecture_45s.wav",
+  "audio_s": 45.0,
+  "slides": 150,
+  "model_load_s": 0.97,
+  "extraction_alone_ms": {
+    "n": 5,
+    "mean": 21.3,
+    "p50": 21.6,
+    "p95": 24.3,
+    "min": 16.9,
+    "max": 24.3
+  },
+  "extraction_under_asr_ms": {
+    "n": 3,
+    "mean": 33.7,
+    "p50": 27.8,
+    "p95": 51.6,
+    "min": 21.8,
+    "max": 51.6
+  },
+  "asr_alone_ms": {
+    "n": 3,
+    "mean": 2024.3,
+    "p50": 1872.9,
+    "p95": 2588.5,
+    "min": 1611.6,
+    "max": 2588.5
+  },
+  "asr_with_extraction_ms": {
+    "n": 3,
+    "mean": 1880.2,
+    "p50": 1847.9,
+    "p95": 2051.1,
+    "min": 1741.4,
+    "max": 2051.1
+  },
+  "asr_slowdown_pct": -7.1,
+  "rss_mb": [
+    261.4,
+    271.1
+  ],
+  "chunks": 150,
+  "note": "Real Whisper inference; the deck is extracted on a worker thread in the same process, which is how the upload endpoint runs it."
+}

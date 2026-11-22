@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Runtime data: sessions, audio cache, demo/eval artifacts
+data/
+models/
+
+# Local config overrides
+config/local.toml
+.env
+
+# Engineering-team harness runtime state (DB, demo workspaces, logs, snapshots)
+engineering_team/state/
+engineering_team/logs/
+engineering_team/checkpoints/
+engineering_team/benchmarks/
+engineering_team/evaluations/
+engineering_team/experiments/worktrees/
+engineering_harness/state/
+engineering_harness/logs/
+
+# Large local assets and generated benchmark output (not part of the source repo)
+benchmark/
+artifacts/
+.tmp/
+*.wav
+
+# Separate project with its own repository
+OptiLearn/
+
+# Agent scratch state
+.autopilot/
+.claude/
+
+# OS noise
+.DS_Store
+*.swp

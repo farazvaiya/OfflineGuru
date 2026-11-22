@@ -1,0 +1,43 @@
+{
+  "wav": "/home/faraz/project/offline_guru/data/demo/lecture.wav",
+  "reference_words": 390,
+  "segments": 37,
+  "results": {
+    "tiny": {
+      "wer": 0.059,
+      "segments": 37,
+      "speech_s": 144.0,
+      "load_s": 0.58,
+      "rss_mb_after_load": 182,
+      "asr_ms_mean": 697,
+      "asr_ms_p50": 673,
+      "asr_ms_p95": 842,
+      "rtf_mean": 0.19,
+      "words": 391
+    },
+    "base": {
+      "wer": 0.038,
+      "segments": 37,
+      "speech_s": 144.0,
+      "load_s": 0.86,
+      "rss_mb_after_load": 330,
+      "asr_ms_mean": 1295,
+      "asr_ms_p50": 1276,
+      "asr_ms_p95": 1541,
+      "rtf_mean": 0.36,
+      "words": 390
+    },
+    "small": {
+      "wer": 0.031,
+      "segments": 37,
+      "speech_s": 144.0,
+      "load_s": 1.46,
+      "rss_mb_after_load": 885,
+      "asr_ms_mean": 3997,
+      "asr_ms_p50": 3915,
+      "asr_ms_p95": 4456,
+      "rtf_mean": 1.09,
+      "words": 389
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-11-08T19:16:02",
+  "wav": "/home/faraz/project/offline_guru/data/demo/lecture.wav",
+  "audio_s": 20.0,
+  "asr_model": "models/whisper-base",
+  "compute_type": "int8",
+  "cpu_threads": 3,
+  "translate_backend": "marian",
+  "tts_enabled": true,
+  "results": [
+    {
+      "chunk_s": 1.0,
+      "audio_s": 20.0,
+      "wall_s": 24.3,
+      "segments": 7,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 3010.2,
+      "first_audio_ms": 3010.2,
+      "caption_latency_ms": {
+        "n": 7,
+        "mean": 10783.8,
+        "p50": 10029.4,
+        "p95": 23333.3,
+        "max": 23333.3
+      },
+      "audio_latency_ms": {
+        "n": 7,
+        "mean": 10927.1,
+        "p50": 10029.4,
+        "p95": 23333.3,
+        "max": 23333.3
+      },
+      "asr_ms": {
+        "n": 14,
+        "p50": 1345.9,
+        "p95": 2461.0,
+        "max": 3235.4
+      },
+      "asr_rtf": {
+        "n": 14,
+        "p50": 0.6,
+        "p95": 2.9,
+        "max": 2.9
+      },
+      "translate_ms": {
+        "n": 7,
+        "p50": 138.4,
+        "p95": 198.0,
+        "max": 198.0
+      },
+      "tts_ms": {
+        "n": 7,
+        "p50": 225.5,
+        "p95": 406.7,
+        "max": 406.7
+      },
+      "e2e_ms": {
+        "n": 7,
+        "p50": 162.9,
+        "p95": 2199.4,
+        "max": 2199.4
+      },
+      "stream_decodes": 14,
+      "stream_backlog": 3,
+      "stream_phrases": 7,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 694.7,
+      "audio_ready": 7
+    }
+  ]
+}

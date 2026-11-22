@@ -1,0 +1,48 @@
+{
+  "run_id": "be0961292192",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "executable": "/tmp/et_full_verify_j40uygs2/fakebin/claude",
+  "workspace": "/tmp/et_full_verify_j40uygs2/engineering_team_state/state/agent_workspaces/shared/be0961292192",
+  "digest_before": "096b3f9ab27f51ec",
+  "digest_after": "da7a1402a195600d",
+  "elapsed_s": 0.18,
+  "timeout_s": 300.0,
+  "max_turns": 8,
+  "agent": "qa-regression",
+  "task_id": "608d30febf1b",
+  "problem_id": "9b5b57f72f61",
+  "role_source": "/home/faraz/project/offline_guru/engineering_team/agents/AGENTS.md",
+  "stdout_tail": "{\"type\": \"result\", \"result\": \"simulated agent output\"}\n",
+  "stderr_tail": "",
+  "artifacts": [
+    "/tmp/et_full_verify_j40uygs2/engineering_team_state/state/agent_workspaces/shared/be0961292192/artifacts/agent_note.txt"
+  ],
+  "source_changes": [],
+  "workspace_mode": "edit",
+  "source_snapshot": {
+    "source_dir": "/tmp/et_full_verify_j40uygs2/engineering_team_state/state/agent_workspaces/shared/be0961292192/source",
+    "source_digest": "e226c14e3236ce404c1c17462c9904d7",
+    "file_count": 196,
+    "artifacts_dir": "/tmp/et_full_verify_j40uygs2/engineering_team_state/state/agent_workspaces/shared/be0961292192/artifacts"
+  },
+  "permissions": {
+    "tools": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Edit",
+      "Write",
+      "Bash(.venv/bin/python -m pytest:*)"
+    ],
+    "permission_mode": "acceptEdits",
+    "can_edit": true
+  },
+  "sandbox": {
+    "enabled": false,
+    "mode": "off",
+    "reason": "disabled by TEAM_AGENT_SANDBOX=off",
+    "filesystem": "none"
+  },
+  "error": null
+}

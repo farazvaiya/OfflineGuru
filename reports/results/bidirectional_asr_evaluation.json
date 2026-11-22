@@ -1,0 +1,87 @@
+{
+  "created_at": "2026-11-12T01:35:54",
+  "host": {
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+    "logical_cpu_count": 4,
+    "total_ram_mb": 7623,
+    "available_ram_mb": 2079,
+    "swap_used_mb": 2185
+  },
+  "dataset_assets": {
+    "english_audio": "data/demo/lecture.wav",
+    "english_transcript": "data/demo/lecture.txt",
+    "english_reference_status": "existing project transcript; no independent human verification in this task",
+    "bengali_human_audio": null,
+    "bengali_human_reference": null,
+    "mixed_code_switch_audio": null,
+    "mixed_code_switch_reference": null
+  },
+  "english_historical_baseline": {
+    "configuration": "faster-whisper Base CPU int8, VAD segment path",
+    "reference": "data/demo/lecture.txt",
+    "wer": 0.0564,
+    "segments": 37,
+    "speech_s": 144.4,
+    "rtf_mean": 0.28,
+    "asr_ms": {
+      "p50": 1089.8,
+      "p95": 1156.1
+    },
+    "baseline_created_at": "2026-11-09T21:56:18+00:00",
+    "note": "Historical existing baseline; not produced by the current bidirectional streaming integration and hardware not verified to declared target."
+  },
+  "independent_audio_agreement_historical": {
+    "mode": "inter_model_word_agreement",
+    "wav": "/tmp/og/emma16k.wav",
+    "audio_s": 234.2,
+    "segments": 23,
+    "models": {
+      "base": {
+        "words": 353,
+        "load_s": 0.53,
+        "decode_s": 26.7,
+        "empty_segments": 1
+      },
+      "small": {
+        "words": 355,
+        "load_s": 2.06,
+        "decode_s": 81.2,
+        "empty_segments": 1
+      }
+    },
+    "agreement": {
+      "base_vs_small": 0.975
+    },
+    "note": "Agreement between independent model sizes is a lower bound on shared speech content. It is NOT a WER substitute: two models can agree on the same error. Used only for audio that has no human-verified reference transcript.",
+    "_evidence": {
+      "created_at": "2026-11-09T22:17:30+00:00",
+      "source_digest": "431a054bc78d8dc9",
+      "source_mtime": 1794260231.6634338,
+      "command": "engineering_harness/run_asr_eval.py --mode agreement --wav /tmp/og/emma16k.wav --label independent_baseline",
+      "host": "faraz",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+      "python": "3.14.7"
+    }
+  },
+  "base_small_evaluation": {
+    "status": "not completed during this run",
+    "reason": "Target-class large real-time evaluation would compete with active local server and available memory is constrained; do not infer Base and Small equivalence."
+  },
+  "bengali_human_speech": {
+    "status": "BLOCKED",
+    "reason": "No Bengali recorded speech paired with a separately human-verified transcript/translation exists in the local evaluation assets."
+  },
+  "mixed_code_switch_human_speech": {
+    "status": "BLOCKED",
+    "reason": "No mixed English/Bengali audio/reference dataset exists locally."
+  },
+  "synthetic_proxy": {
+    "status": "not run",
+    "reason": "Only a Piper-generated proxy would be available; a prior attempt loading ASR under host contention was cancelled and produced no benchmark artifact."
+  },
+  "acceptance": {
+    "wer_max": 0.2,
+    "status": "NOT ESTABLISHED",
+    "note": "A Bengali human-speech WER and an independently verified evaluation split are mandatory to claim either direction acceptance."
+  }
+}

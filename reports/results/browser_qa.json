@@ -1,0 +1,174 @@
+{
+  "checks": [
+    {
+      "check": "teacher page loads",
+      "status": "PASS",
+      "detail": "setup view rendered",
+      "screenshot": "reports/screenshots/teacher-desktop-1366-setup.png"
+    },
+    {
+      "check": "teacher creates a session in the browser",
+      "status": "PASS",
+      "detail": "room view visible after clicking create",
+      "screenshot": null
+    },
+    {
+      "check": "join code is displayed",
+      "status": "PASS",
+      "detail": "code='J77S3Y'",
+      "screenshot": null
+    },
+    {
+      "check": "QR image is generated locally",
+      "status": "PASS",
+      "detail": "http://127.0.0.1:8011/qr.svg?data=http%3A%2F%2F192.168.0.114%3A8000%2F",
+      "screenshot": null
+    },
+    {
+      "check": "teacher token stays client-side",
+      "status": "PASS",
+      "detail": "keys=['guru.teacher.session', 'guru.teacher.token']",
+      "screenshot": null
+    },
+    {
+      "check": "document upload from the console API",
+      "status": "PASS",
+      "detail": "chunks=1 bilingual=1 index_ms=1085.0",
+      "screenshot": null
+    },
+    {
+      "check": "summary generation",
+      "status": "PASS",
+      "detail": "status=draft",
+      "screenshot": null
+    },
+    {
+      "check": "quiz generation",
+      "status": "PASS",
+      "detail": "3 questions",
+      "screenshot": null
+    },
+    {
+      "check": "teacher console renders the generated quiz",
+      "status": "PASS",
+      "detail": "quizBox has content",
+      "screenshot": "reports/screenshots/teacher-desktop-1366-room.png"
+    },
+    {
+      "check": "teacher fits tablet-768",
+      "status": "PASS",
+      "detail": "css viewport 768x938, scrollWidth=768",
+      "screenshot": "reports/screenshots/teacher-tablet-768.png"
+    },
+    {
+      "check": "teacher renders at 390px CSS width",
+      "status": "PASS",
+      "detail": "viewport=390 scrollWidth=390 chars=406",
+      "screenshot": "reports/screenshots/teacher-phone-390.png"
+    },
+    {
+      "check": "teacher renders at 360px CSS width",
+      "status": "PASS",
+      "detail": "viewport=360 scrollWidth=360 chars=406",
+      "screenshot": "reports/screenshots/teacher-phone-360.png"
+    },
+    {
+      "check": "student page loads at phone width",
+      "status": "PASS",
+      "detail": "css viewport 768x938",
+      "screenshot": "reports/screenshots/student-phone-390-join.png"
+    },
+    {
+      "check": "student joins with the code on a phone viewport",
+      "status": "PASS",
+      "detail": "class view visible",
+      "screenshot": null
+    },
+    {
+      "check": "student sees the session title",
+      "status": "PASS",
+      "detail": "title='QA lecture'",
+      "screenshot": null
+    },
+    {
+      "check": "approved quiz renders for the student",
+      "status": "PASS",
+      "detail": "958 chars",
+      "screenshot": "reports/screenshots/student-phone-390-quiz.png"
+    },
+    {
+      "check": "approved summary renders for the student",
+      "status": "PASS",
+      "detail": "161 chars",
+      "screenshot": null
+    },
+    {
+      "check": "caption updates are announced to assistive tech",
+      "status": "PASS",
+      "detail": "aria-live=polite controls=21 unlabeled=9",
+      "screenshot": null
+    },
+    {
+      "check": "student page fits the tablet viewport",
+      "status": "PASS",
+      "detail": "css viewport 768, scrollWidth=768",
+      "screenshot": "reports/screenshots/student-tablet-768-class.png"
+    },
+    {
+      "check": "student join screen renders at 390px CSS width",
+      "status": "PASS",
+      "detail": "viewport=390 scrollWidth=390 chars=134",
+      "screenshot": "reports/screenshots/student-phone-390.png"
+    },
+    {
+      "check": "student join screen renders at 360px CSS width",
+      "status": "PASS",
+      "detail": "viewport=360 scrollWidth=360 chars=134",
+      "screenshot": "reports/screenshots/student-phone-360.png"
+    },
+    {
+      "check": "student fits desktop-1366",
+      "status": "PASS",
+      "detail": "css viewport 1366, scrollWidth=1366",
+      "screenshot": "reports/screenshots/student-desktop-1366.png"
+    }
+  ],
+  "passed": 22,
+  "failed": 0,
+  "skipped": 0,
+  "browser": "Firefox (geckodriver, headless)",
+  "viewports": [
+    {
+      "label": "desktop-1366",
+      "css": [
+        1366,
+        768
+      ],
+      "dpr": 1.0
+    },
+    {
+      "label": "tablet-768",
+      "css": [
+        768,
+        1024
+      ],
+      "dpr": 1.0
+    },
+    {
+      "label": "phone-390",
+      "css": [
+        390,
+        844
+      ],
+      "dpr": 2.0
+    },
+    {
+      "label": "phone-360",
+      "css": [
+        360,
+        800
+      ],
+      "dpr": 2.0
+    }
+  ]
+}

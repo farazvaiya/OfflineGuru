@@ -1,0 +1,127 @@
+# Offline Guru runtime configuration.
+# Overridable with environment variables: GURU_SERVER__PORT=8080 etc.
+
+[asr]
+# Relative paths resolve against the repository root.
+# base = 3.8% WER @ RTF 0.36; small = 3.1% @ RTF 1.09 (too slow for 1-3 s target).
+model_dir = "models/whisper-base"
+# Bengali fine-tune: stock whisper-base cannot write Bengali script at all, so
+# Bengali decodes use this model instead. Remove/point elsewhere to fall back
+# to model_dir (English unaffected). Provenance: models/whisper-base-bn-ct2/.
+bn_model_dir = "models/whisper-base-bn-ct2"
+compute_type = "int8"
+cpu_threads = 3
+beam_size = 2
+language = "en"
+# In language="auto" sessions, how often to re-probe the language (~1.2 s CPU
+# each). The answer is cached between probes.
+auto_probe_interval_s = 20.0
+# Domain vocabulary bias (teacher can also set this per lesson in the console).
+# Measured: adding "glucose" fixed a base-model misrecognition ("Bluecoast").
+hotwords = ""
+min_segment_s = 0.8
+max_segment_s = 10.0
+silence_ms = 600
+# Provisional captions cost ~70% of a core on 4-core laptops; off by default.
+partial_enabled = false
+partial_interval_s = 2.5
+partial_min_s = 1.2
+partial_max_audio_s = 5.0
+vad_threshold = 0.006
+preroll_ms = 300
+enabled = true
+
+# -- real-time streaming -----------------------------------------------------
+# true  = decode a rolling window continuously; translate stable phrases while
+#         the teacher is still speaking (default).
+# false = original behaviour: one decode per VAD segment after a pause.
+streaming = true
+# Minimum new audio before another decode. The decode itself (~1.8 s for base
+# on this CPU) is the real cadence limiter, not this value.
+stream_step_s = 0.5
+stream_min_audio_s = 0.6
+# Whisper pads to 30 s internally, so a larger window costs almost nothing and
+# improves accuracy. 15 s bounds memory and keeps a long monologue responsive.
+stream_max_window_s = 15.0
+stream_context_s = 1.0
+stream_beam_size = 1
+# Commit a word immediately when the model is this confident instead of waiting
+# for a second agreeing hypothesis. 0.0 = strict LocalAgreement-2 (one extra
+# decode of latency); 0.9 keeps first-caption latency at one decode.
+commit_confidence = 0.9
+
+[translate]
+# "marian" = ~0.22 s/sentence (meets 1-3 s target)
+# "nllb"   = ~2.15 s/sentence, better Bangla, needs models/nllb-600m-ct2-int8
+backend = "marian"
+model_dir = "models/marian-en-bn-ct2"
+nllb_model_dir = "models/nllb-600m-ct2-int8"
+nllb_tokenizer_dir = "models/nllb-tokenizer"
+nllb_src_lang = "eng_Latn"
+nllb_tgt_lang = "ben_Beng"
+compute_type = "int8"
+intra_threads = 2
+beam_size = 4
+max_input_chars = 1200
+target_language = "bn"
+# Reverse direction model (Helsinki-NLP/opus-mt-bn-en), local CT2 int8.
+bn_en_model_dir = "models/opus-bn-en-ct2"
+bn_en_tokenizer_dir = "models/opus-bn-en-src"
+enabled = true
+
+# -- incremental translation -------------------------------------------------
+# A phrase closes (and is translated) when it ends with sentence punctuation,
+# reaches phrase_max_chars, spans phrase_max_s seconds, or has been open for
+# phrase_flush_age_s with at least phrase_min_chars. The last rule is what makes
+# translation start mid-sentence instead of after the pause.
+phrase_max_chars = 160
+phrase_max_s = 8.0
+phrase_min_chars = 12
+phrase_flush_age_s = 1.5
+
+[tts]
+voice_onnx = "models/piper/bn_BD-google-medium.onnx"
+voice_config = "models/piper/bn_BD-google-medium.onnx.json"
+english_voice_onnx = "models/piper/en_US-lessac-medium.onnx"
+english_voice_config = "models/piper/en_US-lessac-medium.onnx.json"
+enabled = true
+length_scale = 1.0
+
+[education]
+# Deterministic, extractive, evidence-linked. No LLM: see docs/MODEL_SELECTION.md
+# for why a local LLM was rejected on this hardware class.
+summary_max_sentences = 7
+quiz_default_count = 5
+auto_refresh_every_n_finals = 8
+# Document uploads during a running lecture compete with live ASR for the GIL.
+# Default false: the teacher pauses or uploads before class. Set true to allow.
+allow_upload_while_live = false
+max_documents_per_session = 20
+# Index the Bangla side of each uploaded chunk (the model is en->bn only), so a
+# Bangla search reaches English slides. Set false to skip the upload-time cost.
+bilingual_index = true
+
+[server]
+host = "0.0.0.0"
+port = 8000
+max_students = 40
+ws_queue_size = 64
+heartbeat_s = 20.0
+# Cache interface/hotspot discovery (shells out to ip/nmcli). The console polls
+# the session and health endpoints every 5 s.
+network_cache_s = 30.0
+require_teacher_token = true
+
+[storage]
+data_dir = "data"
+db_path = "data/guru.db"
+keep_audio = true
+keep_recordings = false
+retention_days = 90
+# Seconds between retention sweeps (0 = startup only).
+retention_interval_s = 3600.0
+
+[audio]
+device = "default"
+sample_rate = 16000
+channels = 1

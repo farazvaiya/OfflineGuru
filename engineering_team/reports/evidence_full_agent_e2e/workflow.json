@@ -1,0 +1,67 @@
+{
+  "state": "WAITING_FOR_HUMAN_DECISION",
+  "previous_state": "INDEPENDENT_EVALUATION",
+  "problem_id": "9b5b57f72f61",
+  "selected_candidate": null,
+  "retry_count": 0,
+  "updated_at": "2026-11-17T13:36:11+00:00",
+  "history": [
+    {
+      "ts": "2026-11-17T13:36:10+00:00",
+      "from": "IDLE",
+      "to": "PROBLEM_DISCOVERED",
+      "reason": "problem discovered: 9b5b57f72f61",
+      "actor": "problem-discovery",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:10+00:00",
+      "from": "PROBLEM_DISCOVERED",
+      "to": "ROOT_CAUSE_ANALYSIS",
+      "reason": "root cause recorded",
+      "actor": "root-cause-analysis",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:10+00:00",
+      "from": "ROOT_CAUSE_ANALYSIS",
+      "to": "BASELINE_CREATED",
+      "reason": "baseline recorded",
+      "actor": "benchmark-engineer",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:11+00:00",
+      "from": "BASELINE_CREATED",
+      "to": "DUAL_TRACK_RUNNING",
+      "reason": "Track A and Track B start from the same baseline",
+      "actor": "chief-orchestrator",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:11+00:00",
+      "from": "DUAL_TRACK_RUNNING",
+      "to": "BENCHMARKING",
+      "reason": "benchmarks recorded for ['A', 'B']",
+      "actor": "benchmark-engineer",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:11+00:00",
+      "from": "BENCHMARKING",
+      "to": "INDEPENDENT_EVALUATION",
+      "reason": "independent evaluation recorded",
+      "actor": "independent-evaluator",
+      "evidence": []
+    },
+    {
+      "ts": "2026-11-17T13:36:11+00:00",
+      "from": "INDEPENDENT_EVALUATION",
+      "to": "WAITING_FOR_HUMAN_DECISION",
+      "reason": "decision report prepared",
+      "actor": "independent-evaluator",
+      "evidence": []
+    }
+  ],
+  "meta": {}
+}

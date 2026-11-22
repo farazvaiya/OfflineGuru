@@ -1,0 +1,73 @@
+{
+  "mode": "segment",
+  "language": "bn",
+  "asr_model": "/home/faraz/project/offline_guru/models/whisper-base",
+  "bn_model_dir": "",
+  "clips_in": 6,
+  "audio_s": 34.5,
+  "transcripts": 6,
+  "stored_segments": 6,
+  "captions": 5,
+  "bengali_script_ratio": 0.0,
+  "captions_with_english": 5,
+  "untranslated_echoes": 1,
+  "first_caption_ms": null,
+  "stats": {
+    "segments_finalized": 6,
+    "segments_translated": 5,
+    "segments_empty": 0,
+    "asr_queue_drops": 0,
+    "enrichment_queue_drops": 0,
+    "tts_queue_drops": 0,
+    "partials_emitted": 0,
+    "stream_decodes": 0,
+    "stream_commits": 0,
+    "stream_phrases": 0,
+    "stream_partials": 0,
+    "stream_backlog": 0,
+    "audio_carried_s": 0.0,
+    "tts_failures": 5,
+    "language_turn_switches": 0,
+    "finalized_segment_drops": 0,
+    "playback_order_errors": 0,
+    "queue_backlog_peak": 0,
+    "translate_failures": 0,
+    "first_caption_ms": null,
+    "first_audio_ms": null,
+    "last_error": "'missing_numbers'"
+  },
+  "samples": [
+    {
+      "source": "شبائشو شاکل آت کے آمر چھو بھی سنیتی شامпور کے جانتے جاتھے",
+      "bn": "شبائشو شاکل آت کے آمر چھو بھی سنیتی شامпور کے جانتے جاتھے",
+      "en": "شبائشو شاکل آت کے آمر چھو بھی سنیتی شامпور کے جانتے جاتھے"
+    },
+    {
+      "source": "alokshon kranti hulu ehi prokrie jarmatume shabuji udhit shushastr madhumi nijedel khadotorikare",
+      "bn": "alokshon kranti hulu ehi prokrie jarmatume shabuji udhit shushastr madhumi nijedel khadotorikare",
+      "en": "Mankshron kunti houary girmeushi"
+    },
+    {
+      "source": "Onu grufa kure eisham gati, apla notabu ilikun.",
+      "bn": "Onu grufa kure eisham gati, apla notabu ilikun.",
+      "en": "Apa grufa kryam gheti, apa naucun."
+    },
+    {
+      "source": "Chobi, Chobi, Jar-Otho-Halqa, Erumshin-Resh, Jar-Otho-Ekti-Tokara",
+      "bn": "Chobi, Chobi, Jar-Otho-Halqa, Erumshin-Resh, Jar-Otho-Ekti-Tokara",
+      "en": "Cheb, Cheb, Jath-o-Halqa, Isumin-Rose, Joshua-Otho-Ec-Charya"
+    },
+    {
+      "source": "Alojalani, Bruhanechonu, Clourfield, Clourfield, Namie, Etish Shobhu, Ramdab, Harkaray",
+      "bn": "Alojalani, Bruhanechonu, Clourfield, Clourfield, Namie, Etish Shobhu, Ramdab, Harkaray",
+      "en": "Alojalani, Baranchau, Colfield, Coolfield, Namie, Etish Sebhu, Radab, Hokkare"
+    },
+    {
+      "source": "Croto 5-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-",
+      "bn": "Croto 5-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-",
+      "en": "Coto-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4"
+    }
+  ],
+  "wall_s": 52.3,
+  "db": "/home/faraz/project/offline_guru/reports/results/_bench/bench_segment_bn_1794857040.db"
+}

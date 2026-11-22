@@ -1,0 +1,69 @@
+{
+  "benchmark": "file-replay (not a physical microphone lecture)",
+  "wav": "data/demo/lecture_45s.wav",
+  "wall_s": 48.2,
+  "speech_s": 17.9,
+  "segments": 9,
+  "asr_drops": 0,
+  "resources": {
+    "cpu_pct_mean": 80.6,
+    "cpu_pct_max": 100.0,
+    "rss_mb_start": 44.9,
+    "rss_mb_end": 724.9,
+    "rss_mb_peak": 818.5,
+    "samples": 95
+  },
+  "stages": {
+    "asr_ms": {
+      "n": 9,
+      "mean": 0.0,
+      "min": 0.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+    },
+    "translate_ms": {
+      "n": 9,
+      "mean": 277.2,
+      "min": 34.2,
+      "p50": 224.9,
+      "p95": 727.3,
+      "p99": 727.3,
+      "max": 727.3
+    },
+    "tts_ms": {
+      "n": 9,
+      "mean": 410.8,
+      "min": 0.0,
+      "p50": 341.2,
+      "p95": 1102.8,
+      "p99": 1102.8,
+      "max": 1102.8
+    },
+    "e2e_text_ms": {
+      "n": 9,
+      "mean": 5066.5,
+      "min": 765.6,
+      "p50": 2945.8,
+      "p95": 16021.9,
+      "p99": 16021.9,
+      "max": 16021.9
+    }
+  },
+  "tts_audio_available_ms": {
+    "n": 9,
+    "mean": 5066.5,
+    "min": 765.6,
+    "p50": 2945.8,
+    "p95": 16021.9,
+    "p99": 16021.9,
+    "max": 16021.9
+  },
+  "note": "e2e_text_ms is speech-end -> translated caption published, measured by the pipeline. TTS is disk-cached per text, so tts_ms is near zero on a repeat run.",
+  "models": {
+    "asr": "models/whisper-base",
+    "translate": "marian",
+    "tts": "models/piper/bn_BD-google-medium.onnx"
+  }
+}

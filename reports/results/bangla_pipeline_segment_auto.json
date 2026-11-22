@@ -1,0 +1,73 @@
+{
+  "mode": "segment",
+  "language": "auto",
+  "asr_model": "/home/faraz/project/offline_guru/models/whisper-base",
+  "bn_model_dir": "/home/faraz/project/offline_guru/models/whisper-base-bn-ct2",
+  "clips_in": 6,
+  "audio_s": 34.5,
+  "transcripts": 6,
+  "stored_segments": 6,
+  "captions": 6,
+  "bengali_script_ratio": 1.0,
+  "captions_with_english": 6,
+  "untranslated_echoes": 0,
+  "first_caption_ms": null,
+  "stats": {
+    "segments_finalized": 6,
+    "segments_translated": 6,
+    "segments_empty": 0,
+    "asr_queue_drops": 0,
+    "enrichment_queue_drops": 0,
+    "tts_queue_drops": 0,
+    "partials_emitted": 0,
+    "stream_decodes": 0,
+    "stream_commits": 0,
+    "stream_phrases": 0,
+    "stream_partials": 0,
+    "stream_backlog": 0,
+    "audio_carried_s": 0.0,
+    "tts_failures": 6,
+    "language_turn_switches": 1,
+    "finalized_segment_drops": 0,
+    "playback_order_errors": 0,
+    "queue_backlog_peak": 0,
+    "translate_failures": 0,
+    "first_caption_ms": null,
+    "first_audio_ms": null,
+    "last_error": null
+  },
+  "samples": [
+    {
+      "source": "সবাই শুক সকাল। আজকে আমরার ছবি সেন থেনে থ্পরকে জানটে য়াচ্ছে।",
+      "bn": "সবাই শুক সকাল। আজকে আমরার ছবি সেন থেনে থ্পরকে জানটে য়াচ্ছে।",
+      "en": "We're all dry this morning, and today we're photographing Sen Thein."
+    },
+    {
+      "source": "আলোকসং করানটি হলো এই প্রকরীয়ে যার মাধুমে শবুঝ উধিট সুশস্ত্বের মাধুমে নিজ্যেদের খাঁধ্য তড়ি করে",
+      "bn": "আলোকসং করানটি হলো এই প্রকরীয়ে যার মাধুমে শবুঝ উধিট সুশস্ত্বের মাধুমে নিজ্যেদের খাঁধ্য তড়ি করে",
+      "en": "The light lamp is in this chamber where the wiring wiring of self-demons in the form of a supthesis."
+    },
+    {
+      "source": "অনুক্রোখ করে এই সমগাটি আপার নটাবই লিখুন।",
+      "bn": "অনুক্রোখ করে এই সমগাটি আপার নটাবই লিখুন।",
+      "en": "Write this same hunk of sister-in-law's Nota Book."
+    },
+    {
+      "source": "ছবই সবই যার অর্থাহল্কা এবনশীন্ত্রেশীষ যার অ্থ একতি তো করা।",
+      "bn": "ছবই সবই যার অর্থাহল্কা এবনশীন্ত্রেশীষ যার অ্থ একতি তো করা।",
+      "en": "The patience is all that means to make sense of the existence of a god."
+    },
+    {
+      "source": "আলোজ্জালানি ব্রহণে চন্য ক্ররৌফেহ ক্রৌরফোন নামি এটি শবুজ রং দেবহার করে",
+      "bn": "আলোজ্জালানি ব্রহণে চন্য ক্ররৌফেহ ক্রৌরফোন নামি এটি শবুজ রং দেবহার করে",
+      "en": "Uzzalani Brewh Crufah Crufrephone name is used as a silent color"
+    },
+    {
+      "source": "ক্রড়ট্ফীর ছোট কাঠে মোল বিটে ওড়ে পালা জায়। যাকে ক্রড় পড় আষ্ট বলা হয়।",
+      "bn": "ক্রড়ট্ফীর ছোট কাঠে মোল বিটে ওড়ে পালা জায়। যাকে ক্রড় পড় আষ্ট বলা হয়।",
+      "en": "Moul Bet ran away in the hole of the Shrike, which is known to be a crash."
+    }
+  ],
+  "wall_s": 46.9,
+  "db": "/home/faraz/project/offline_guru/reports/results/_bench/bench_segment_auto_1794857230.db"
+}

@@ -1,0 +1,1512 @@
+{
+  "created_at": "2026-11-12T01:34:04",
+  "benchmark_profile": {
+    "device": "current host; not confirmed to be target i5-7300U",
+    "inference": "CPU int8",
+    "repeats": 1,
+    "warmup": "one per phrase",
+    "models": "one backend/model loaded at a time; direction instances reused within pass"
+  },
+  "translation": {
+    "en_bn": {
+      "source_language": "en",
+      "target_language": "bn",
+      "model": "/home/faraz/project/offline_guru/models/marian-en-bn-ct2",
+      "model_license": "Apache-2.0",
+      "dataset": "data/eval/en_bn_quality.json",
+      "dataset_entries": 26,
+      "dataset_reference": "author-written; no independent native-speaker verification; not a held-out test set",
+      "warmup_runs_per_entry": 1,
+      "repeat_runs_per_entry": 1,
+      "load_ms": 9206.2,
+      "latency_ms": {
+        "p50": 335.73,
+        "p95": 1047.04,
+        "n": 26
+      },
+      "chrF2_mean": 0.5923,
+      "human_rating": null,
+      "human_rating_status": "not run",
+      "resources": [
+        {
+          "rss_mb": 237.1,
+          "swap_used_mb": 2095.1,
+          "cpu_pct": 62.5
+        },
+        {
+          "rss_mb": 239.0,
+          "swap_used_mb": 2095.1,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 242.9,
+          "swap_used_mb": 2094.8,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 242.9,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 242.9,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 66.7
+        },
+        {
+          "rss_mb": 243.0,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 243.0,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.0,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.0,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.2,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.2,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.5,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 243.5,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.6,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 243.9,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.9,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 243.9,
+          "swap_used_mb": 2094.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 241.0,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 241.0,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 83.3
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 243.5,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 243.5,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 242.5,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 80.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.5,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 240.2,
+          "swap_used_mb": 2094.5,
+          "cpu_pct": 90.0
+        },
+        {
+          "rss_mb": 243.8,
+          "swap_used_mb": 2094.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.8,
+          "swap_used_mb": 2094.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 243.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.0,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 244.0,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 244.1,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        }
+      ],
+      "rows": [
+        {
+          "id": "n01",
+          "source": "Good morning students, please open your books.",
+          "reference": "শুভ সকাল শিক্ষার্থীরা, অনুগ্রহ করে তোমাদের বই খুলো।",
+          "hypothesis": "শুভ সকালের ছাত্ররা, দয়া করে আপনার বই খুলুন।",
+          "chrF2": 0.3715
+        },
+        {
+          "id": "n02",
+          "source": "Today we will learn about the water cycle.",
+          "reference": "আজ আমরা জলচক্র সম্পর্কে শিখব।",
+          "hypothesis": "আজকে আমরা পানির চক্র সম্পর্কে জানতে পারব।",
+          "chrF2": 0.5622
+        },
+        {
+          "id": "n03",
+          "source": "Raise your hand if you have a question.",
+          "reference": "প্রশ্ন থাকলে হাত তোলো।",
+          "hypothesis": "যদি কোন প্রশ্ন থাকে, তাহলে হাত উঠুন।",
+          "chrF2": 0.5568
+        },
+        {
+          "id": "n04",
+          "source": "Please write this down in your notebook.",
+          "reference": "অনুগ্রহ করে এটি তোমার খাতায় লিখে রাখো।",
+          "hypothesis": "দয়া করে আপনার নোটবুকে লিখুন।",
+          "chrF2": 0.1939
+        },
+        {
+          "id": "n05",
+          "source": "Listen carefully, this part is important for the exam.",
+          "reference": "মনোযোগ দিয়ে শোনো, এই অংশটি পরীক্ষার জন্য গুরুত্বপূর্ণ।",
+          "hypothesis": "সাবধানে শোনো, এই অংশটা পরীক্ষার জন্য গুরুত্বপূর্ণ।",
+          "chrF2": 0.7396
+        },
+        {
+          "id": "a01",
+          "source": "Photosynthesis is the process by which green plants make food using sunlight.",
+          "reference": "সালোকসংশ্লেষণ হলো সেই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যালোক ব্যবহার করে খাদ্য তৈরি করে।",
+          "hypothesis": "ফটোসিনথেসিস হল প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যালোকের সাহায্যে খাদ্য তৈরি করে।",
+          "chrF2": 0.677
+        },
+        {
+          "id": "a02",
+          "source": "The mitochondria is the powerhouse of the cell.",
+          "reference": "মাইটোকন্ড্রিয়া হলো কোষের শক্তিকেন্দ্র।",
+          "hypothesis": "মাইটোকোন্ড্রিয়া হচ্ছে কোষের বিদ্যুৎহাউজ।",
+          "chrF2": 0.4756
+        },
+        {
+          "id": "a03",
+          "source": "Evaporation happens when water changes from liquid to gas.",
+          "reference": "বাষ্পীভবন ঘটে যখন জল তরল থেকে গ্যাসে পরিণত হয়।",
+          "hypothesis": "জল থেকে গ্যাস পর্যন্ত পানির পরিবর্তন ঘটে।",
+          "chrF2": 0.3702
+        },
+        {
+          "id": "a04",
+          "source": "The teacher explained the difference between speed and velocity.",
+          "reference": "শিক্ষক গতি ও বেগের মধ্যে পার্থক্য ব্যাখ্যা করেছিলেন।",
+          "hypothesis": "শিক্ষক গতি ও গতির মধ্যে পার্থক্য ব্যাখ্যা করেন।",
+          "chrF2": 0.7845
+        },
+        {
+          "id": "a05",
+          "source": "Plants release oxygen during the day and carbon dioxide at night.",
+          "reference": "উদ্ভিদ দিনের বেলা অক্সিজেন এবং রাতে কার্বন ডাই অক্সাইড নির্গত করে।",
+          "hypothesis": "উদ্ভিদগুলো দিন ও রাতে কার্বন ডাই অক্সাইড থেকে অক্সিজেন বের করে।",
+          "chrF2": 0.6291
+        },
+        {
+          "id": "t01",
+          "source": "Artificial intelligence is changing the way students learn.",
+          "reference": "কৃত্রিম বুদ্ধিমত্তা শিক্ষার্থীদের শেখার পদ্ধতি পরিবর্তন করছে।",
+          "hypothesis": "শিক্ষার্থীরা যেভাবে শিক্ষা লাভ করে, তা পরিবর্তন করছে কৌশলগত বুদ্ধিমত্তা।",
+          "chrF2": 0.5263
+        },
+        {
+          "id": "t02",
+          "source": "Newton's second law states that force equals mass times acceleration.",
+          "reference": "নিউটনের দ্বিতীয় সূত্র বলে যে বল ভর ও ত্বরণের গুণফলের সমান।",
+          "hypothesis": "নিউটনের দ্বিতীয় আইনে বলা হয়েছে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+          "chrF2": 0.4254
+        },
+        {
+          "id": "t03",
+          "source": "Chlorophyll absorbs light energy during photosynthesis.",
+          "reference": "সালোকসংশ্লেষণের সময় ক্লোরোফিল আলোকশক্তি শোষণ করে।",
+          "hypothesis": "ক্লোরফিল ফটোসিনের সময় আলো জ্বালানি শোষণ করে।",
+          "chrF2": 0.4378
+        },
+        {
+          "id": "t04",
+          "source": "The chemical formula for water is H2O.",
+          "reference": "জলের রাসায়নিক সংকেত H2O।",
+          "hypothesis": "পানির রাসায়নিক সূত্র হলো এইচ২ও।",
+          "chrF2": 0.4617
+        },
+        {
+          "id": "l01",
+          "source": "Although the experiment failed the first time, the students repeated it carefully and recorded every observation in their laboratory notebook.",
+          "reference": "যদিও পরীক্ষাটি প্রথমবার ব্যর্থ হয়েছিল, শিক্ষার্থীরা সাবধানে এটি পুনরাবৃত্তি করেছিল এবং তাদের পরীক্ষাগারের খাতায় প্রতিটি পর্যবেক্ষণ লিপিবদ্ধ করেছিল।",
+          "hypothesis": "যদিও পরীক্ষাটি প্রথমবার ব্যর্থ হয়েছিল, ছাত্ররা এটিকে সতর্কতার সাথে পুনরাবৃত্তি করে এবং তাদের পরীক্ষামূলক নোটবুকের প্রতিটি পর্যবেক্ষণ রেকর্ড করে।",
+          "chrF2": 0.645
+        },
+        {
+          "id": "l02",
+          "source": "If we continue to burn fossil fuels at the current rate, the average temperature of the earth will rise significantly within the next fifty years.",
+          "reference": "যদি আমরা বর্তমান হারে জীবাশ্ম জ্বালানি পোড়াতে থাকি, তবে আগামী পঞ্চাশ বছরের মধ্যে পৃথিবীর গড় তাপমাত্রা উল্লেখযোগ্যভাবে বৃদ্ধি পাবে।",
+          "hypothesis": "আমরা যদি বর্তমান হারে জীবাশ্ম জ্বালানি পোড়ানো অব্যাহত রাখি, তা হলে পরের পঞ্চাশ বছরের মধ্যে পৃথিবীর গড় তাপমাত্রা উল্লেখযোগ্যভাবে বৃদ্ধি পাবে।",
+          "chrF2": 0.8217
+        },
+        {
+          "id": "l03",
+          "source": "The teacher explained that the heart pumps blood through the body, supplying oxygen and nutrients to every cell and carrying away waste products.",
+          "reference": "শিক্ষক ব্যাখ্যা করেছিলেন যে হৃদয় সারা শরীরে রক্ত পাম্প করে, প্রতিটি কোষে অক্সিজেন ও পুষ্টি সরবরাহ করে এবং বর্জ্য পদার্থ বহন করে নিয়ে যায়।",
+          "hypothesis": "শিক্ষক ব্যাখ্যা করেছিলেন যে হৃদপিণ্ড শরীরের মাধ্যমে রক্ত পাম্প করে, প্রত্যেক কোষে অক্সিজেন ও পুষ্টি সরবরাহ করে এবং বর্জ্য পণ্য বহন করে।",
+          "chrF2": 0.7537
+        },
+        {
+          "id": "d01",
+          "source": "There are 206 bones in the adult human body.",
+          "reference": "প্রাপ্তবয়স্ক মানুষের শরীরে ২০৬টি হাড় থাকে।",
+          "hypothesis": "প্রাপ্তবয়স্ক মানুষের দেহে ২০৬টি হাড় রয়েছে।",
+          "chrF2": 0.7324
+        },
+        {
+          "id": "d02",
+          "source": "The exam will be held on 15 December at 10 am.",
+          "reference": "পরীক্ষাটি ১৫ ডিসেম্বর সকাল ১০টায় অনুষ্ঠিত হবে।",
+          "hypothesis": "১৫ ডিসেম্বর ১০ তারিখে পরীক্ষা অনুষ্ঠিত হবে।",
+          "chrF2": 0.6126
+        },
+        {
+          "id": "d03",
+          "source": "About 71 percent of the Earth's surface is covered with water.",
+          "reference": "পৃথিবীর প্রায় ৭১ শতাংশ পৃষ্ঠ জল দ্বারা আবৃত।",
+          "hypothesis": "পৃথিবীর পৃষ্ঠের প্রায় ৭১% পানি দ্বারা আচ্ছাদিত।",
+          "chrF2": 0.5708
+        },
+        {
+          "id": "p01",
+          "source": "Rabindranath Tagore wrote the national anthem of Bangladesh.",
+          "reference": "রবীন্দ্রনাথ ঠাকুর বাংলাদেশের জাতীয় সংগীত লিখেছেন।",
+          "hypothesis": "রবীন্দ্রনাথ ঠাকুর বাংলাদেশের জাতীয় সঙ্গীত রচনা করেন।",
+          "chrF2": 0.7705
+        },
+        {
+          "id": "p02",
+          "source": "The Sundarbans is the largest mangrove forest in the world.",
+          "reference": "সুন্দরবন বিশ্বের বৃহত্তম ম্যানগ্রোভ বন।",
+          "hypothesis": "সুন্দরবন বিশ্বের সবচেয়ে বড় ম্যানগ্রোভ বন।",
+          "chrF2": 0.7297
+        },
+        {
+          "id": "f01",
+          "source": "Artificial intelligence is changing the way",
+          "reference": "কৃত্রিম বুদ্ধিমত্তা পরিবর্তন করছে",
+          "hypothesis": "কৃত্রিম বুদ্ধিমত্তা পথ পরিবর্তন করছে",
+          "chrF2": 0.9465
+        },
+        {
+          "id": "f02",
+          "source": "students learn",
+          "reference": "শিক্ষার্থীরা যেভাবে শেখে",
+          "hypothesis": "শিক্ষার্থী",
+          "chrF2": 0.3967
+        },
+        {
+          "id": "f03",
+          "source": "the process by which green plants",
+          "reference": "যে প্রক্রিয়ার মাধ্যমে সবুজ উদ্ভিদ",
+          "hypothesis": "যে পদ্ধতিতে সবুজ উদ্ভিদ",
+          "chrF2": 0.4261
+        },
+        {
+          "id": "f04",
+          "source": "make food using sunlight",
+          "reference": "সূর্যালোক ব্যবহার করে খাদ্য তৈরি করে",
+          "hypothesis": "সূর্যোদয় ব্যবহার করে খাদ্য তৈরি করা",
+          "chrF2": 0.7822
+        }
+      ]
+    },
+    "bn_en": {
+      "source_language": "bn",
+      "target_language": "en",
+      "model": "/home/faraz/project/offline_guru/models/opus-bn-en-ct2",
+      "model_license": "Apache-2.0",
+      "dataset": "data/eval/en_bn_quality.json",
+      "dataset_entries": 26,
+      "dataset_reference": "author-written; no independent native-speaker verification; not a held-out test set",
+      "warmup_runs_per_entry": 1,
+      "repeat_runs_per_entry": 1,
+      "load_ms": 832.7,
+      "latency_ms": {
+        "p50": 239.74,
+        "p95": 495.19,
+        "n": 26
+      },
+      "chrF2_mean": 0.6377,
+      "human_rating": null,
+      "human_rating_status": "not run",
+      "resources": [
+        {
+          "rss_mb": 243.7,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.8,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.9,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 246.9,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 246.9,
+          "swap_used_mb": 2094.4,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.1,
+          "swap_used_mb": 2094.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2094.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2094.3,
+          "cpu_pct": 71.4
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2094.3,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 71.4
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.3,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.4,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 249.4,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 71.4
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 66.7
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 70.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.6,
+          "cpu_pct": 90.0
+        },
+        {
+          "rss_mb": 249.9,
+          "swap_used_mb": 2093.6,
+          "cpu_pct": 100.0
+        }
+      ],
+      "rows": [
+        {
+          "id": "n01",
+          "source": "শুভ সকাল শিক্ষার্থীরা, অনুগ্রহ করে তোমাদের বই খুলো।",
+          "reference": "Good morning students, please open your books.",
+          "hypothesis": "Good morning students, please open your books.",
+          "chrF2": 1.0
+        },
+        {
+          "id": "n02",
+          "source": "আজ আমরা জলচক্র সম্পর্কে শিখব।",
+          "reference": "Today we will learn about the water cycle.",
+          "hypothesis": "Today we'll learn about the water cycle.",
+          "chrF2": 0.8674
+        },
+        {
+          "id": "n03",
+          "source": "প্রশ্ন থাকলে হাত তোলো।",
+          "reference": "Raise your hand if you have a question.",
+          "hypothesis": "Put your hands up if it's a question.",
+          "chrF2": 0.5291
+        },
+        {
+          "id": "n04",
+          "source": "অনুগ্রহ করে এটি তোমার খাতায় লিখে রাখো।",
+          "reference": "Please write this down in your notebook.",
+          "hypothesis": "Please write it in your book.",
+          "chrF2": 0.5555
+        },
+        {
+          "id": "n05",
+          "source": "মনোযোগ দিয়ে শোনো, এই অংশটি পরীক্ষার জন্য গুরুত্বপূর্ণ।",
+          "reference": "Listen carefully, this part is important for the exam.",
+          "hypothesis": "Listen carefully, this part is important for testing.",
+          "chrF2": 0.854
+        },
+        {
+          "id": "a01",
+          "source": "সালোকসংশ্লেষণ হলো সেই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যালোক ব্যবহার করে খাদ্য তৈরি করে।",
+          "reference": "Photosynthesis is the process by which green plants make food using sunlight.",
+          "hypothesis": "The rest of the world is the process of a process that allows green plants to grow foody.",
+          "chrF2": 0.4258
+        },
+        {
+          "id": "a02",
+          "source": "মাইটোকন্ড্রিয়া হলো কোষের শক্তিকেন্দ্র।",
+          "reference": "The mitochondria is the powerhouse of the cell.",
+          "hypothesis": "Mytokondoria is the power center of cells.",
+          "chrF2": 0.4607
+        },
+        {
+          "id": "a03",
+          "source": "বাষ্পীভবন ঘটে যখন জল তরল থেকে গ্যাসে পরিণত হয়।",
+          "reference": "Evaporation happens when water changes from liquid to gas.",
+          "hypothesis": "Vaporousness comes when the water becomes from the liquid.",
+          "chrF2": 0.4085
+        },
+        {
+          "id": "a04",
+          "source": "শিক্ষক গতি ও বেগের মধ্যে পার্থক্য ব্যাখ্যা করেছিলেন।",
+          "reference": "The teacher explained the difference between speed and velocity.",
+          "hypothesis": "The teacher explained the difference between speed and speed.",
+          "chrF2": 0.8672
+        },
+        {
+          "id": "a05",
+          "source": "উদ্ভিদ দিনের বেলা অক্সিজেন এবং রাতে কার্বন ডাই অক্সাইড নির্গত করে।",
+          "reference": "Plants release oxygen during the day and carbon dioxide at night.",
+          "hypothesis": "Plants produce oxygen during the day and carbon emissions at night.",
+          "chrF2": 0.7262
+        },
+        {
+          "id": "t01",
+          "source": "কৃত্রিম বুদ্ধিমত্তা শিক্ষার্থীদের শেখার পদ্ধতি পরিবর্তন করছে।",
+          "reference": "Artificial intelligence is changing the way students learn.",
+          "hypothesis": "The artificial intelligence is changing how to learn.",
+          "chrF2": 0.6998
+        },
+        {
+          "id": "t02",
+          "source": "নিউটনের দ্বিতীয় সূত্র বলে যে বল ভর ও ত্বরণের গুণফলের সমান।",
+          "reference": "Newton's second law states that force equals mass times acceleration.",
+          "hypothesis": "The second source of Newton says that ball is the equivalent of mass and speed.",
+          "chrF2": 0.3786
+        },
+        {
+          "id": "t03",
+          "source": "সালোকসংশ্লেষণের সময় ক্লোরোফিল আলোকশক্তি শোষণ করে।",
+          "reference": "Chlorophyll absorbs light energy during photosynthesis.",
+          "hypothesis": "Clofill uses the power of light in the daytime during the seasonal analysis.",
+          "chrF2": 0.3196
+        },
+        {
+          "id": "t04",
+          "source": "জলের রাসায়নিক সংকেত H2O।",
+          "reference": "The chemical formula for water is H2O.",
+          "hypothesis": "Water chemical signal H2O.",
+          "chrF2": 0.3847
+        },
+        {
+          "id": "l01",
+          "source": "যদিও পরীক্ষাটি প্রথমবার ব্যর্থ হয়েছিল, শিক্ষার্থীরা সাবধানে এটি পুনরাবৃত্তি করেছিল এবং তাদের পরীক্ষাগারের খাতায় প্রতিটি পর্যবেক্ষণ লিপিবদ্ধ করেছিল।",
+          "reference": "Although the experiment failed the first time, the students repeated it carefully and recorded every observation in their laboratory notebook.",
+          "hypothesis": "Although the test failed for the first time, students carefully repeated it and recorded each of their experiments.",
+          "chrF2": 0.6323
+        },
+        {
+          "id": "l02",
+          "source": "যদি আমরা বর্তমান হারে জীবাশ্ম জ্বালানি পোড়াতে থাকি, তবে আগামী পঞ্চাশ বছরের মধ্যে পৃথিবীর গড় তাপমাত্রা উল্লেখযোগ্যভাবে বৃদ্ধি পাবে।",
+          "reference": "If we continue to burn fossil fuels at the current rate, the average temperature of the earth will rise significantly within the next fifty years.",
+          "hypothesis": "If we continue to burn fossil fuel at the current rate, the average temperature of the world will be significantly increased by the next 50 years.",
+          "chrF2": 0.7888
+        },
+        {
+          "id": "l03",
+          "source": "শিক্ষক ব্যাখ্যা করেছিলেন যে হৃদয় সারা শরীরে রক্ত পাম্প করে, প্রতিটি কোষে অক্সিজেন ও পুষ্টি সরবরাহ করে এবং বর্জ্য পদার্থ বহন করে নিয়ে যায়।",
+          "reference": "The teacher explained that the heart pumps blood through the body, supplying oxygen and nutrients to every cell and carrying away waste products.",
+          "hypothesis": "The teacher explained that the heart pumps blood, provides oxygen and nutrition to each of the cells and carries waste.",
+          "chrF2": 0.6029
+        },
+        {
+          "id": "d01",
+          "source": "প্রাপ্তবয়স্ক মানুষের শরীরে ২০৬টি হাড় থাকে।",
+          "reference": "There are 206 bones in the adult human body.",
+          "hypothesis": "There are 206 bones in an adult body.",
+          "chrF2": 0.7226
+        },
+        {
+          "id": "d02",
+          "source": "পরীক্ষাটি ১৫ ডিসেম্বর সকাল ১০টায় অনুষ্ঠিত হবে।",
+          "reference": "The exam will be held on 15 December at 10 am.",
+          "hypothesis": "The test will take place at 10am on December 15.",
+          "chrF2": 0.4615
+        },
+        {
+          "id": "d03",
+          "source": "পৃথিবীর প্রায় ৭১ শতাংশ পৃষ্ঠ জল দ্বারা আবৃত।",
+          "reference": "About 71 percent of the Earth's surface is covered with water.",
+          "hypothesis": "Nearly 71 percent of the world is covered with water on its surface.",
+          "chrF2": 0.7142
+        },
+        {
+          "id": "p01",
+          "source": "রবীন্দ্রনাথ ঠাকুর বাংলাদেশের জাতীয় সংগীত লিখেছেন।",
+          "reference": "Rabindranath Tagore wrote the national anthem of Bangladesh.",
+          "hypothesis": "Rabindnath Thaani writes Bangladesh National Anthem.",
+          "chrF2": 0.4621
+        },
+        {
+          "id": "p02",
+          "source": "সুন্দরবন বিশ্বের বৃহত্তম ম্যানগ্রোভ বন।",
+          "reference": "The Sundarbans is the largest mangrove forest in the world.",
+          "hypothesis": "The Sundarbans is the largest mangrove forest in the world.",
+          "chrF2": 1.0
+        },
+        {
+          "id": "f01",
+          "source": "কৃত্রিম বুদ্ধিমত্তা পরিবর্তন করছে",
+          "reference": "Artificial intelligence is changing the way",
+          "hypothesis": "The artificial intelligence is changing.",
+          "chrF2": 0.817
+        },
+        {
+          "id": "f02",
+          "source": "শিক্ষার্থীরা যেভাবে শেখে",
+          "reference": "students learn",
+          "hypothesis": "How Students Can Learn",
+          "chrF2": 0.5248
+        },
+        {
+          "id": "f03",
+          "source": "যে প্রক্রিয়ার মাধ্যমে সবুজ উদ্ভিদ",
+          "reference": "the process by which green plants",
+          "hypothesis": "The green plant of that process",
+          "chrF2": 0.5454
+        },
+        {
+          "id": "f04",
+          "source": "সূর্যালোক ব্যবহার করে খাদ্য তৈরি করে",
+          "reference": "make food using sunlight",
+          "hypothesis": "By using sunlight to make food",
+          "chrF2": 0.8304
+        }
+      ]
+    }
+  },
+  "tts": {
+    "en": {
+      "voice": "/home/faraz/project/offline_guru/models/piper/en_US-lessac-medium.onnx",
+      "available": true,
+      "load_ms": 8123.7,
+      "warmup_runs_per_entry": 1,
+      "repeat_runs_per_entry": 1,
+      "latency_ms": {
+        "p50": 622.33,
+        "p95": 1569.74,
+        "n": 26
+      },
+      "rtf": {
+        "mean": 0.247,
+        "p50": 0.21,
+        "p95": 0.43
+      },
+      "resources": [
+        {
+          "rss_mb": 346.6,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 392.3,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 398.3,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 399.0,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 399.0,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 402.2,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 90.0
+        },
+        {
+          "rss_mb": 402.2,
+          "swap_used_mb": 2093.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 402.2,
+          "swap_used_mb": 2093.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 436.2,
+          "swap_used_mb": 2093.3,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 440.4,
+          "swap_used_mb": 2093.3,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 440.5,
+          "swap_used_mb": 2093.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 441.6,
+          "swap_used_mb": 2093.2,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 448.5,
+          "swap_used_mb": 2093.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 448.5,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 448.5,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 451.1,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 468.0,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 468.0,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 468.0,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 469.0,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 470.6,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 470.6,
+          "swap_used_mb": 2092.9,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 470.6,
+          "swap_used_mb": 2092.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 470.6,
+          "swap_used_mb": 2091.8,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 473.5,
+          "swap_used_mb": 2091.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 473.5,
+          "swap_used_mb": 2091.0,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 473.5,
+          "swap_used_mb": 2091.0,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 473.5,
+          "swap_used_mb": 2090.9,
+          "cpu_pct": 71.4
+        },
+        {
+          "rss_mb": 473.5,
+          "swap_used_mb": 2090.7,
+          "cpu_pct": 90.0
+        },
+        {
+          "rss_mb": 518.0,
+          "swap_used_mb": 2090.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 567.4,
+          "swap_used_mb": 2090.2,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 573.7,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.0,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.1,
+          "cpu_pct": 90.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.0,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2090.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2089.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2089.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2089.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2089.8,
+          "cpu_pct": 91.7
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2089.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 576.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        }
+      ]
+    },
+    "bn": {
+      "voice": "/home/faraz/project/offline_guru/models/piper/bn_BD-google-medium.onnx",
+      "available": true,
+      "load_ms": 4419.7,
+      "warmup_runs_per_entry": 1,
+      "repeat_runs_per_entry": 1,
+      "latency_ms": {
+        "p50": 980.58,
+        "p95": 1902.78,
+        "n": 26
+      },
+      "rtf": {
+        "mean": 0.29,
+        "p50": 0.27,
+        "p95": 0.48
+      },
+      "resources": [
+        {
+          "rss_mb": 654.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 732.4,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 739.4,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 748.4,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 762.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 762.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 762.3,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 763.0,
+          "swap_used_mb": 2081.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 763.0,
+          "swap_used_mb": 2080.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 771.1,
+          "swap_used_mb": 2080.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 789.9,
+          "swap_used_mb": 2080.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 809.3,
+          "swap_used_mb": 2076.8,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.4,
+          "swap_used_mb": 2086.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.4,
+          "swap_used_mb": 2086.5,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 857.4,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 77.8
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2086.4,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 85.7
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 75.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 88.9
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 71.4
+        },
+        {
+          "rss_mb": 857.8,
+          "swap_used_mb": 2083.6,
+          "cpu_pct": 87.5
+        },
+        {
+          "rss_mb": 903.8,
+          "swap_used_mb": 2083.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.5,
+          "swap_used_mb": 2088.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2141.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2141.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2147.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2146.6,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2146.5,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2146.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2146.3,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2146.2,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.6,
+          "swap_used_mb": 2144.2,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2144.2,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2168.7,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2173.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2181.4,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.2,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.1,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2199.0,
+          "cpu_pct": 100.0
+        },
+        {
+          "rss_mb": 905.8,
+          "swap_used_mb": 2195.8,
+          "cpu_pct": 100.0
+        }
+      ]
+    }
+  },
+  "asr": "See separate report. A Bengali-human ASR reference dataset is unavailable; synthetic Bengali Piper ASR must be identified as a proxy.",
+  "acceptance": {
+    "WER_max": 0.2,
+    "translation_human_rating_min": 4,
+    "first_audio_p50_ms": 2000,
+    "first_audio_p95_ms": 4000,
+    "all_goals": "NOT ASSESSED from MT/TTS microbench; end-to-end streaming evaluation on target hardware and human speech unavailable."
+  }
+}

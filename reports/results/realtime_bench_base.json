@@ -1,0 +1,368 @@
+{
+  "generated_at": "2026-11-08T19:49:21",
+  "wav": "/home/faraz/project/offline_guru/data/demo/lecture.wav",
+  "audio_s": 45.0,
+  "asr_model": "models/whisper-base",
+  "compute_type": "int8",
+  "cpu_threads": 3,
+  "translate_backend": "marian",
+  "tts_enabled": true,
+  "tts_cache": "cold (wiped before each config)",
+  "results": [
+    {
+      "chunk_s": 0.5,
+      "audio_s": 45.0,
+      "wall_s": 46.2,
+      "segments": 11,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 4531.3,
+      "first_audio_ms": 5036.3,
+      "caption_latency_ms": {
+        "n": 11,
+        "mean": 3283.2,
+        "p50": 3493.8,
+        "p95": 4526.7,
+        "max": 4526.7
+      },
+      "audio_latency_ms": {
+        "n": 11,
+        "mean": 3603.4,
+        "p50": 3873.8,
+        "p95": 4599.6,
+        "max": 4599.6
+      },
+      "caption_latency_note": "ms from phrase end in the audio to caption delivery",
+      "e2e_note": "e2e_ms = phrase finalised -> caption emitted (translate + emit); audio_e2e_ms = phrase finalised -> Bangla audio ready (translate + TTS)",
+      "asr_ms": {
+        "n": 22,
+        "p50": 1795.8,
+        "p95": 2062.5,
+        "max": 2209.2
+      },
+      "asr_rtf": {
+        "n": 22,
+        "p50": 0.7,
+        "p95": 2.1,
+        "max": 5.9
+      },
+      "translate_ms": {
+        "n": 11,
+        "p50": 170.9,
+        "p95": 332.5,
+        "max": 332.5
+      },
+      "tts_ms": {
+        "n": 11,
+        "p50": 262.8,
+        "p95": 552.9,
+        "max": 552.9
+      },
+      "e2e_ms": {
+        "n": 11,
+        "p50": 3172.3,
+        "p95": 4069.7,
+        "max": 4069.7
+      },
+      "audio_e2e_ms": {
+        "n": 11,
+        "p50": 3593.1,
+        "p95": 4318.3,
+        "max": 4318.3
+      },
+      "stream_decodes": 22,
+      "stream_backlog": 4,
+      "stream_phrases": 11,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 730.4,
+      "audio_ready": 11
+    },
+    {
+      "chunk_s": 0.75,
+      "audio_s": 45.0,
+      "wall_s": 47.6,
+      "segments": 13,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 4518.8,
+      "first_audio_ms": 4518.8,
+      "caption_latency_ms": {
+        "n": 13,
+        "mean": 3255.8,
+        "p50": 3083.9,
+        "p95": 4330.8,
+        "max": 5901.9
+      },
+      "audio_latency_ms": {
+        "n": 13,
+        "mean": 3487.8,
+        "p50": 3286.5,
+        "p95": 5010.9,
+        "max": 5901.9
+      },
+      "caption_latency_note": "ms from phrase end in the audio to caption delivery",
+      "e2e_note": "e2e_ms = phrase finalised -> caption emitted (translate + emit); audio_e2e_ms = phrase finalised -> Bangla audio ready (translate + TTS)",
+      "asr_ms": {
+        "n": 19,
+        "p50": 1813.2,
+        "p95": 3010.7,
+        "max": 6272.8
+      },
+      "asr_rtf": {
+        "n": 19,
+        "p50": 0.9,
+        "p95": 3.6,
+        "max": 5.7
+      },
+      "translate_ms": {
+        "n": 13,
+        "p50": 149.1,
+        "p95": 278.1,
+        "max": 492.1
+      },
+      "tts_ms": {
+        "n": 13,
+        "p50": 265.9,
+        "p95": 406.2,
+        "max": 833.1
+      },
+      "e2e_ms": {
+        "n": 13,
+        "p50": 3109.4,
+        "p95": 4463.5,
+        "max": 5866.5
+      },
+      "audio_e2e_ms": {
+        "n": 13,
+        "p50": 3446.6,
+        "p95": 4735.3,
+        "max": 6078.8
+      },
+      "stream_decodes": 19,
+      "stream_backlog": 7,
+      "stream_phrases": 13,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 761.2,
+      "audio_ready": 13
+    },
+    {
+      "chunk_s": 1.0,
+      "audio_s": 45.0,
+      "wall_s": 47.9,
+      "segments": 13,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 3009.1,
+      "first_audio_ms": 3009.1,
+      "caption_latency_ms": {
+        "n": 13,
+        "mean": 2470.9,
+        "p50": 2429.4,
+        "p95": 3601.0,
+        "max": 4261.7
+      },
+      "audio_latency_ms": {
+        "n": 13,
+        "mean": 2780.0,
+        "p50": 2921.7,
+        "p95": 4537.0,
+        "max": 4604.1
+      },
+      "caption_latency_note": "ms from phrase end in the audio to caption delivery",
+      "e2e_note": "e2e_ms = phrase finalised -> caption emitted (translate + emit); audio_e2e_ms = phrase finalised -> Bangla audio ready (translate + TTS)",
+      "asr_ms": {
+        "n": 23,
+        "p50": 1826.9,
+        "p95": 2626.9,
+        "max": 3343.1
+      },
+      "asr_rtf": {
+        "n": 23,
+        "p50": 1.0,
+        "p95": 3.0,
+        "max": 3.6
+      },
+      "translate_ms": {
+        "n": 13,
+        "p50": 116.8,
+        "p95": 368.0,
+        "max": 956.2
+      },
+      "tts_ms": {
+        "n": 13,
+        "p50": 242.5,
+        "p95": 463.2,
+        "max": 904.8
+      },
+      "e2e_ms": {
+        "n": 13,
+        "p50": 2316.4,
+        "p95": 3439.0,
+        "max": 4448.2
+      },
+      "audio_e2e_ms": {
+        "n": 13,
+        "p50": 2564.4,
+        "p95": 4184.7,
+        "max": 4855.2
+      },
+      "stream_decodes": 23,
+      "stream_backlog": 12,
+      "stream_phrases": 13,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 766.8,
+      "audio_ready": 13
+    },
+    {
+      "chunk_s": 1.5,
+      "audio_s": 45.0,
+      "wall_s": 45.2,
+      "segments": 9,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 3010.0,
+      "first_audio_ms": 3010.0,
+      "caption_latency_ms": {
+        "n": 9,
+        "mean": 2934.0,
+        "p50": 3156.1,
+        "p95": 5950.9,
+        "max": 5950.9
+      },
+      "audio_latency_ms": {
+        "n": 9,
+        "mean": 3267.9,
+        "p50": 3156.1,
+        "p95": 5950.9,
+        "max": 5950.9
+      },
+      "caption_latency_note": "ms from phrase end in the audio to caption delivery",
+      "e2e_note": "e2e_ms = phrase finalised -> caption emitted (translate + emit); audio_e2e_ms = phrase finalised -> Bangla audio ready (translate + TTS)",
+      "asr_ms": {
+        "n": 16,
+        "p50": 1831.7,
+        "p95": 3117.6,
+        "max": 7700.6
+      },
+      "asr_rtf": {
+        "n": 16,
+        "p50": 0.8,
+        "p95": 3.2,
+        "max": 4.3
+      },
+      "translate_ms": {
+        "n": 9,
+        "p50": 144.5,
+        "p95": 493.8,
+        "max": 493.8
+      },
+      "tts_ms": {
+        "n": 9,
+        "p50": 236.4,
+        "p95": 581.4,
+        "max": 581.4
+      },
+      "e2e_ms": {
+        "n": 9,
+        "p50": 3096.1,
+        "p95": 4814.1,
+        "max": 4814.1
+      },
+      "audio_e2e_ms": {
+        "n": 9,
+        "p50": 3300.5,
+        "p95": 5396.3,
+        "max": 5396.3
+      },
+      "stream_decodes": 16,
+      "stream_backlog": 3,
+      "stream_phrases": 9,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 765.7,
+      "audio_ready": 9
+    },
+    {
+      "chunk_s": 2.0,
+      "audio_s": 45.0,
+      "wall_s": 48.4,
+      "segments": 12,
+      "duplicate_seqs": 0,
+      "first_caption_ms": 4008.0,
+      "first_audio_ms": 4008.0,
+      "caption_latency_ms": {
+        "n": 12,
+        "mean": 2063.9,
+        "p50": 2279.5,
+        "p95": 3391.5,
+        "max": 5073.5
+      },
+      "audio_latency_ms": {
+        "n": 12,
+        "mean": 2231.1,
+        "p50": 2279.5,
+        "p95": 3391.5,
+        "max": 5073.5
+      },
+      "caption_latency_note": "ms from phrase end in the audio to caption delivery",
+      "e2e_note": "e2e_ms = phrase finalised -> caption emitted (translate + emit); audio_e2e_ms = phrase finalised -> Bangla audio ready (translate + TTS)",
+      "asr_ms": {
+        "n": 18,
+        "p50": 1821.7,
+        "p95": 2660.9,
+        "max": 2800.0
+      },
+      "asr_rtf": {
+        "n": 18,
+        "p50": 0.8,
+        "p95": 2.0,
+        "max": 3.5
+      },
+      "translate_ms": {
+        "n": 12,
+        "p50": 106.1,
+        "p95": 464.4,
+        "max": 482.8
+      },
+      "tts_ms": {
+        "n": 12,
+        "p50": 168.6,
+        "p95": 425.0,
+        "max": 464.0
+      },
+      "e2e_ms": {
+        "n": 12,
+        "p50": 2159.6,
+        "p95": 3373.9,
+        "max": 5180.5
+      },
+      "audio_e2e_ms": {
+        "n": 12,
+        "p50": 2296.9,
+        "p95": 3730.4,
+        "max": 5474.3
+      },
+      "stream_decodes": 18,
+      "stream_backlog": 5,
+      "stream_phrases": 12,
+      "asr_queue_drops": 0,
+      "enrichment_drops": 0,
+      "tts_drops": 0,
+      "tts_failures": 0,
+      "translate_failures": 0,
+      "peak_rss_mb": 780.5,
+      "audio_ready": 12
+    }
+  ]
+}

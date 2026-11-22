@@ -1,0 +1,370 @@
+================================================================================
+OFFLINE GURU - COMPLETE START GUIDE
+================================================================================
+Everything on one laptop. No Internet needed during class, no external router,
+no student app, no account.
+
+Written: 2026-11-02
+Verified on this machine: adapter supports AP mode, server reachable on the LAN,
+211 tests pass, offline verification passes with zero external connections.
+
+Line width is kept narrow so this file reads well in any terminal.
+
+
+--------------------------------------------------------------------------------
+0. IN ONE MINUTE
+--------------------------------------------------------------------------------
+  cd offline_guru
+  ./scripts/serve.sh
+  open http://127.0.0.1:8000/teacher in a browser on the laptop
+  press the CREATE button, note the class code
+  students: same Wi-Fi -> open the printed URL -> enter code + name
+
+That is the whole cycle. Everything below is detail, safety and troubleshooting.
+
+
+--------------------------------------------------------------------------------
+1. WHAT YOU NEED
+--------------------------------------------------------------------------------
+Hardware
+  - Any Linux laptop (Ubuntu 22.04+). Tested on a 4-thread i5, 7 GB RAM, no GPU.
+  - 4 GB free RAM at runtime (the three models take about 800 MB).
+  - 3 GB free disk for models and data.
+  - A microphone (built-in is fine).
+  - A Wi-Fi adapter that supports AP mode, only if you want the laptop to BE the
+    network. Check it:
+        iw list | grep -A6 "Supported interface modes"
+    You need to see " * AP" in that list. On this machine it is there.
+  - Student phones or laptops with any modern browser.
+
+Software (already installed in this repository)
+  - Python virtualenv at .venv/
+  - Models in models/: whisper-base, marian-en-bn-ct2, piper bn_BD voice
+  - NetworkManager (nmcli) for the hotspot
+
+
+--------------------------------------------------------------------------------
+2. ONE-TIME INSTALL (needs Internet once)
+--------------------------------------------------------------------------------
+Skip this section if .venv/bin/python exists and models/ is populated.
+
+  python3 -m venv .venv
+  .venv/bin/pip install -r requirements.txt
+  .venv/bin/pip install -r requirements-prep.txt \
+      --extra-index-url https://download.pytorch.org/whl/cpu
+
+  # Download the speech, translation and voice models, plus a demo lecture WAV
+  .venv/bin/python scripts/prepare_models.py --with-en-demo-voice
+  .venv/bin/python scripts/make_demo_lecture.py
+
+After this you can disconnect the Internet permanently.
+
+
+--------------------------------------------------------------------------------
+3. PRE-FLIGHT CHECKS (30 seconds, run before every class)
+--------------------------------------------------------------------------------
+  # 1. Does the code still pass?
+  .venv/bin/python -m pytest -q
+  #    expect the last line to show 211 passed
+
+  # 2. Do the models load with the network blocked?
+  .venv/bin/python scripts/verify_offline.py --seconds 15
+  #    expect: PASS: models loaded and pipeline ran with zero external connections
+
+  # 3. Is the microphone alive?
+  arecord -d 2 -f S16_LE -r 16000 -c 1 /tmp/mic.wav && aplay /tmp/mic.wav
+  #    you should hear yourself
+
+  # 4. Is the Wi-Fi adapter there (hotspot mode only)?
+  ./scripts/hotspot.sh status
+
+
+--------------------------------------------------------------------------------
+4A. START A CLASS - DRY RUN ON EXISTING WI-FI (no hotspot)
+--------------------------------------------------------------------------------
+Use this first, or whenever a router is available. Nothing about the laptop's
+Wi-Fi settings changes.
+
+  # Terminal 1 - the classroom server. Binds 0.0.0.0:8000 (all interfaces).
+  ./scripts/serve.sh
+
+  # Terminal 2 - confirm it is reachable from the network, not just localhost
+  ./scripts/hotspot.sh verify
+  hostname -I          # this is the address phones must use
+
+  # Example: if hostname -I prints 192.168.0.114 then phones open
+  #   http://192.168.0.114:8000/
+
+On the laptop browser:   http://127.0.0.1:8000/teacher
+On each phone:           connect to the SAME Wi-Fi as the laptop,
+                         open http://<laptop-ip>:8000/ ,
+                         type the class code and your name, press JOIN.
+
+Use the file-replay button to test without speaking:
+  - press the FILE button (the second button in the classroom header)
+  - it replays data/demo/lecture_45s.wav in real time
+  - captions should appear on every phone, one per sentence
+
+If phones cannot reach the page, it is the firewall, not the app:
+  sudo ufw allow 8000/tcp          # only if ufw is enabled
+
+
+--------------------------------------------------------------------------------
+4B. START A CLASS - LAPTOP IS THE HOTSPOT (no router at all)
+--------------------------------------------------------------------------------
+Order matters: hotspot first, then the server, so the console prints the right
+address.
+
+  # 1. Check your current Wi-Fi channel so the hotspot does not collide with it
+  iw dev wlp1s0 info | grep channel
+  #    (on this machine the router is on channel 6, so use channel 1 or 11 below)
+
+  # 2. Start the hotspot (needs root; reversible with 'stop')
+  sudo ./scripts/hotspot.sh start \
+      --ssid OfflineGuru \
+      --password 'guru-class-2026' \
+      --band bg --channel 1
+
+  # 3. Confirm it is up and see the laptop address on the new network
+  ./scripts/hotspot.sh verify
+  #    NetworkManager "shared" mode gives the laptop 10.42.0.1
+  #    students will use  http://10.42.0.1:8000/
+
+  # 4. Start the server
+  ./scripts/serve.sh
+
+  # 5. On the laptop: open http://127.0.0.1:8000/teacher
+  #    Create the class. The console shows the join URL and a QR code.
+
+Students: Wi-Fi -> OfflineGuru -> open the printed URL (or scan the QR) ->
+enter the class code + name.
+
+WARNING: this adapter is your only Wi-Fi. Starting the hotspot disconnects it
+from the router, so the laptop loses Internet. That is expected and reversible.
+
+WARNING: use --channel 1 or 11. The script default is 6, which is the channel
+the nearby router is already using; sharing it degrades both.
+
+
+--------------------------------------------------------------------------------
+5. RUNNING THE CLASS (teacher console)
+--------------------------------------------------------------------------------
+Create the class
+  Press CREATE. Note the 6-character code and the QR. Write the code on the board.
+
+Start talking
+  Press the MIC button. Captions appear in your transcript panel and on every
+  student screen. Speak naturally; pause briefly between sentences, because the
+  system splits sentences on silence.
+
+Today's words (do this, it is worth it)
+  Type the lesson's key terms in the "today's key words" field, e.g.
+      photosynthesis, chlorophyll, stomata, glucose
+  This measurably improves recognition of subject vocabulary.
+
+Fix a bad sentence
+  Edit the sentence in the transcript panel. The correction is pushed to
+  students immediately, no restart.
+
+Upload slides (optional, before or between lectures)
+  PDF / PPTX / TXT / MD. Summaries and quizzes will cite the exact page.
+  Uploads are refused while a lecture is running (409). Pause first.
+  First upload of a large deck takes a while: about 0.6 s per page, because the
+  Bangla side of each page is prepared for search.
+
+Summary and quiz
+  Generate, then READ and press APPROVE. Students see nothing until you approve.
+  This gate is deliberate: the system is deterministic but can still pick a weak
+  sentence.
+
+Answers
+  The answers panel shows submissions. Answers the grader could not judge are
+  marked for review, not marked wrong. Override a grade with one click; your
+  decision is recorded.
+
+Pause / Resume / Stop
+  Pause keeps the session and the join code. Stop ends capture but keeps drafts
+  so you can review before closing the class. END CLASS closes the join code.
+  DELETE ALL DATA removes the class and its cached audio (asks to confirm).
+
+Practical classroom notes
+  - Ask for headphones. 30 phones out loud is unusable.
+  - Keep the laptop on power; expect fans and 45-80% CPU.
+  - Keep phones within a few metres; 2.4 GHz and cheap phones are the limit.
+  - Disable battery optimisation for the browser on Android if captions stall.
+
+
+--------------------------------------------------------------------------------
+6. JOINING AS A STUDENT
+--------------------------------------------------------------------------------
+  1. Connect to the Wi-Fi named by the teacher.
+  2. Open the address (e.g. http://10.42.0.1:8000/). No app, no account.
+  3. Enter the class code and a name, press JOIN.
+  4. LIVE tab: Bangla captions, English underneath.
+     Press the AUDIO button once to allow sound; it plays in headphones.
+  5. SUMMARY tab: the approved summary. Empty until the teacher approves.
+  6. QUIZ tab: practice questions with instant feedback and a lecture timestamp.
+  7. PROGRESS tab: your answers; topic hints appear only after 3 answers.
+  If the phone locks or leaves range, reopen the page. Missed captions are
+  backfilled automatically.
+
+
+--------------------------------------------------------------------------------
+7. WATCHING THE NUMBERS DURING CLASS
+--------------------------------------------------------------------------------
+Before a session exists, loopback health works without a token:
+  curl -s http://127.0.0.1:8000/api/health | python3 -m json.tool
+
+After creating a class, the teacher token lives in the console's localStorage
+under the key "guru.teacher.token" (visible in browser devtools). Then:
+
+  TOKEN='paste-token-here'
+  SID='paste-session-id-here'        # also in localStorage: guru.teacher.session
+
+  curl -s "http://127.0.0.1:8000/api/health?token=$TOKEN" | python3 -m json.tool
+  curl -s -H "X-Teacher-Token: $TOKEN" \
+      "http://127.0.0.1:8000/api/teacher/session/$SID" | python3 -m json.tool
+
+What to look at
+  resources.cpu_percent            below ~90% sustained
+  resources.ram_available_mb       keep above ~400 MB
+  metrics.e2e_ms.p50 / p95         caption latency; ~1.5 s / ~2-4 s is normal
+  session.stats.asr_queue_drops    must stay 0; if it climbs the CPU is starving
+  clients.subscribers[].dropped    must stay 0; if it climbs a phone is too slow
+  session.stats.last_error         must be null
+
+Laptop temperature:
+  sensors | grep -i -E "core|temp" | head
+
+
+--------------------------------------------------------------------------------
+8. STOP AND CLEAN UP
+--------------------------------------------------------------------------------
+  Ctrl+C in the server terminal            (stops the app)
+  sudo ./scripts/hotspot.sh stop           (only if you started the hotspot)
+                                           it reconnects to your normal network
+  sudo ./scripts/hotspot.sh status         (confirm the state)
+
+Data is kept on the laptop after shutdown so you can review or export:
+  data/guru.db     sessions, transcript, materials, answers, documents
+  data/audio/      cached Bangla WAV per sentence
+  data/guru.log    rotated log, tokens redacted
+
+Delete one class from the teacher console (DELETE ALL DATA).
+Retention deletes ended sessions automatically after 90 days by default, checked
+hourly while the server runs.
+
+
+--------------------------------------------------------------------------------
+9. TROUBLESHOOTING
+--------------------------------------------------------------------------------
+Symptom: phones join the Wi-Fi but the page never loads
+  - firewall:            sudo ufw allow 8000/tcp
+  - wrong address:       use hostname -I, not 127.0.0.1
+  - stale cached IP:     the console caches network state for 30 s; reload it,
+                         or start the hotspot before serve.sh
+
+Symptom: "asr unavailable" warning in the health panel
+  - models/whisper-base/model.bin must exist
+  - run: .venv/bin/python scripts/verify_offline.py --seconds 15
+
+Symptom: no captions although the MIC button is pressed
+  - arecord -d 2 -f S16_LE -r 16000 -c 1 /tmp/mic.wav && aplay /tmp/mic.wav
+  - check the ALSA device in config/default.toml ([audio] device = "default")
+
+Symptom: upload refused with 409
+  - a lecture is running; stop or pause it (live captions keep CPU priority)
+  - or set education.allow_upload_while_live = true to allow it
+
+Symptom: upload refused with 429
+  - a previous upload is still being processed; wait a few seconds
+
+Symptom: first caption is slow
+  - the first segment includes model warm-up; the second is representative
+
+Symptom: captions stutter at 20-30 phones
+  - that is the radio, not the app (30 clients were measured with 0 drops on
+    loopback). Move to channel 1/11, keep phones close, or split into two APs.
+
+Symptom: no audio until the second tap
+  - browser autoplay policy; the AUDIO button is the required gesture
+
+Symptom: hotspot script says "needs root" or "no Wi-Fi device"
+  - run with sudo; ensure network-manager is installed and nmcli works
+
+Symptom: laptop lost Internet after the hotspot
+  - expected in AP mode; sudo ./scripts/hotspot.sh stop restores the router
+
+
+--------------------------------------------------------------------------------
+10. WHAT IS VERIFIED AND WHAT IS NOT
+--------------------------------------------------------------------------------
+Verified on this machine (evidence in reports/):
+  - 211 automated tests pass; lint, compile and JS syntax clean
+  - offline run with a socket guard: zero external connections
+  - browser QA in real Firefox: 22 checks, 24 h layout at 1366/768/390/360 px
+  - caption latency: 1.53 s median, 3.90 s p95 on a file replay
+  - CPU 44.8% mean (peak 82%), RAM peak 878 MB
+  - document upload during transcription: no measurable slowdown (-3.6%)
+  - 30 simulated clients: 0 dropped captions, 0 socket errors
+  - background retention: expired class removed without a restart
+
+NOT verified, and cannot be from this laptop alone:
+  - a real phone joining the hotspot (no phones here)
+  - 30 physical devices over the radio
+  - a human teacher speaking into this microphone for a full lesson
+  - a 45-minute lesson for thermal throttling
+  - a screen reader session
+
+Do not describe the loopback numbers as classroom results. Record real runs in
+reports/PHYSICAL_DEVICE_TEST_PLAN.md, which contains the data template and the
+pass thresholds.
+
+
+--------------------------------------------------------------------------------
+11. COMMAND REFERENCE
+--------------------------------------------------------------------------------
+  ./scripts/serve.sh                        start the server (0.0.0.0:8000)
+  PORT=8080 ./scripts/serve.sh              start on another port
+  ./scripts/hotspot.sh status|start|stop|verify
+  sudo ./scripts/hotspot.sh start --ssid X --password 'at-least-8-chars' \
+       --band bg --channel 1
+  make test                                 run the test suite
+  make verify-offline                       socket-guarded offline proof
+  make loadtest                             30 simulated students
+  .venv/bin/python scripts/bench_latency.py real-model latency benchmark
+  .venv/bin/python scripts/bench_asr_upload.py
+                                            ASR while a deck is extracted
+  .venv/bin/python scripts/browser_qa.py --server http://127.0.0.1:8011
+                                            Firefox browser QA + screenshots
+  .venv/bin/python scripts/eval_retrieval.py
+                                            retrieval relevance benchmark
+
+Configuration: config/default.toml, overridable by environment variables
+  GURU_SERVER__PORT=8080
+  GURU_ASR__MODEL_DIR=models/whisper-small
+  GURU_EDUCATION__BILINGUAL_INDEX=false
+  GURU_STORAGE__RETENTION_INTERVAL_S=1800
+  GURU_STORAGE__RETENTION_DAYS=30
+Pattern: GURU_<SECTION>__<KEY>
+  (single underscore after GURU, double underscore before the key name)
+
+
+--------------------------------------------------------------------------------
+12. WHERE TO READ MORE
+--------------------------------------------------------------------------------
+  INSTALLATION_GUIDE.md        install/upgrade/config detail
+  TEACHER_GUIDE.md             classroom workflow in depth
+  STUDENT_GUIDE.md             what students see and do
+  START_GUIDE.txt              this file
+  reports/FINAL_VERIFICATION_REPORT.md
+                               what was measured, what is still blocked
+  reports/PHYSICAL_DEVICE_TEST_PLAN.md
+                               the real-device test procedure + data template
+  docs/OFFLINE_SETUP.md        deployment detail
+  docs/NETWORKING.md           hotspot modes and OS quirks
+  docs/TROUBLESHOOTING.md      longer troubleshooting notes
+
+================================================================================
+END OF GUIDE
+================================================================================

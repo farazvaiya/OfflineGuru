@@ -1,0 +1,240 @@
+{
+  "phase": "phase1",
+  "name": "RESEARCH_AND_ROOT_CAUSE_DIAGNOSIS",
+  "evaluated_at": "2026-11-09T22:25:41+00:00",
+  "source_digest": "431a054bc78d8dc9",
+  "status": "PASS",
+  "criteria": [
+    {
+      "id": "P1G1",
+      "check": "p1_architecture_inspected",
+      "description": "Repository, pipeline and dependency map inspected and written down.",
+      "status": "PASS",
+      "measured": {
+        "lines": {
+          "PHASE1_REPOSITORY_AUDIT.md": 135,
+          "ARCHITECTURE_MAP.md": 135
+        },
+        "unmentioned_modules": []
+      },
+      "threshold": {
+        "min_lines": 40,
+        "modules_documented": [
+          "guru/pipeline.py",
+          "guru/realtime.py",
+          "guru/audio.py",
+          "guru/server/app.py",
+          "guru/translate.py",
+          "guru/tts.py",
+          "guru/storage.py",
+          "guru/bus.py"
+        ]
+      },
+      "evidence": [
+        "reports/PHASE1_REPOSITORY_AUDIT.md",
+        "reports/ARCHITECTURE_MAP.md"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G2",
+      "check": "p1_baselines_recorded",
+      "description": "Existing tests and benchmarks reproduced and stored as baselines.",
+      "status": "PASS",
+      "measured": {
+        "pytest": {
+          "exit_code": 0,
+          "tests": 239
+        },
+        "asr": {
+          "wer": 0.0564,
+          "segments": 37,
+          "model": "models/whisper-base"
+        },
+        "latency": {
+          "p50": 2169.0,
+          "p95": 4725.3
+        }
+      },
+      "threshold": {
+        "min_tests": 150,
+        "wer_range": [
+          0.0,
+          0.5
+        ]
+      },
+      "evidence": [
+        "baselines/pytest_baseline.json",
+        "baselines/asr_wer_baseline.json",
+        "baselines/latency_baseline.json"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G3",
+      "check": "p1_findings_evidenced",
+      "description": "Every major observed problem carries observation/evidence/hypothesis/experiment/result.",
+      "status": "PASS",
+      "measured": {
+        "findings": 9,
+        "by_severity": {
+          "P0": 4,
+          "P1": 2,
+          "P2": 3
+        },
+        "by_stage": {
+          "audio_capture": 2,
+          "streaming_asr": 2,
+          "vad_segmentation": 2,
+          "evaluation_methodology": 1,
+          "metrics": 1,
+          "performance": 1
+        }
+      },
+      "threshold": {
+        "min_findings": 4,
+        "required_fields": [
+          "id",
+          "stage",
+          "severity",
+          "observation",
+          "evidence",
+          "hypothesis",
+          "experiment",
+          "result",
+          "conclusion",
+          "confidence",
+          "recommended_action"
+        ]
+      },
+      "evidence": [
+        "state/findings.json"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G4",
+      "check": "p1_root_causes",
+      "description": "Each finding has a root cause, or is explicitly marked unresolved with a next experiment.",
+      "status": "PASS",
+      "measured": {
+        "findings": 9,
+        "unresolved": []
+      },
+      "threshold": {
+        "root_cause_or_unresolved": true
+      },
+      "evidence": [
+        "state/findings.json"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G5",
+      "check": "p1_hypotheses_tested",
+      "description": "Competing hypotheses were actually tested, not just listed.",
+      "status": "PASS",
+      "measured": {
+        "findings_with_multiple_hypotheses": 9,
+        "findings_with_two_tested": 9,
+        "rejected_hypotheses": 13,
+        "untestable_but_documented": 1,
+        "hypothesis_total": 23
+      },
+      "threshold": {
+        "min_multi_hypothesis_findings": 2,
+        "min_tested_per_finding": 2,
+        "min_rejected": 1
+      },
+      "evidence": [
+        "state/findings.json",
+        "experiments/"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G6",
+      "check": "p1_repair_plan",
+      "description": "Prioritised P0/P1/P2 repair plan derived from findings.",
+      "status": "PASS",
+      "measured": {
+        "findings_referenced": 9,
+        "findings": 9
+      },
+      "threshold": {
+        "sections": [
+          "P0",
+          "P1",
+          "P2"
+        ]
+      },
+      "evidence": [
+        "reports/PHASE1_FINAL_REPORT.md"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G7",
+      "check": "p1_qa_signoff",
+      "description": "QA agent independently re-ran the key evidence.",
+      "status": "PASS",
+      "measured": {
+        "report_lines": 79,
+        "signed_at": "2026-11-09T22:25:21+00:00",
+        "signoff_digest": "431a054bc78d8dc9",
+        "current_digest": "431a054bc78d8dc9",
+        "substantive_criteria": 6,
+        "substantive_not_pass": []
+      },
+      "threshold": {
+        "min_report_lines": 25,
+        "signoff_matches_current_tree": true
+      },
+      "evidence": [
+        "reports/QA_PHASE1.md",
+        "state/signoffs.json"
+      ],
+      "notes": []
+    },
+    {
+      "id": "P1G8",
+      "check": "p1_evaluator_approval",
+      "description": "Evaluator approved the phase against the criteria above.",
+      "status": "PASS",
+      "measured": {
+        "report_lines": 50,
+        "signed_at": "2026-11-09T22:25:21+00:00",
+        "signoff_digest": "431a054bc78d8dc9",
+        "current_digest": "431a054bc78d8dc9",
+        "substantive_criteria": 6,
+        "substantive_not_pass": []
+      },
+      "threshold": {
+        "min_report_lines": 25,
+        "signoff_matches_current_tree": true
+      },
+      "evidence": [
+        "reports/EVALUATOR_PHASE1.md",
+        "state/signoffs.json"
+      ],
+      "notes": []
+    }
+  ],
+  "not_testable_locally": [
+    {
+      "id": "N1",
+      "item": "physical_30_phone_classroom_over_hotspot",
+      "reason": "Requires 30 physical devices and an RF environment; loopback clients only simulate sockets."
+    },
+    {
+      "id": "N2",
+      "item": "thermal_sustained_45min_on_target_laptop",
+      "reason": "Target i5-7300U hardware is not this host; long runs here do not reproduce its thermals."
+    },
+    {
+      "id": "N3",
+      "item": "live_microphone_acoustic_accuracy",
+      "reason": "No microphone in this container; capture path is exercised with a shimmed arecord and file replay."
+    }
+  ]
+}

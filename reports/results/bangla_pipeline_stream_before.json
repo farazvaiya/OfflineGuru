@@ -1,0 +1,73 @@
+{
+  "mode": "stream",
+  "language": "bn",
+  "asr_model": "/home/faraz/project/offline_guru/models/whisper-base",
+  "bn_model_dir": "",
+  "clips_in": 6,
+  "audio_s": 34.5,
+  "transcripts": 9,
+  "stored_segments": 6,
+  "captions": 6,
+  "bengali_script_ratio": 0.0,
+  "captions_with_english": 4,
+  "untranslated_echoes": 2,
+  "first_caption_ms": 6562.8,
+  "stats": {
+    "segments_finalized": 6,
+    "segments_translated": 6,
+    "segments_empty": 0,
+    "asr_queue_drops": 0,
+    "enrichment_queue_drops": 0,
+    "tts_queue_drops": 0,
+    "partials_emitted": 0,
+    "stream_decodes": 16,
+    "stream_commits": 3,
+    "stream_phrases": 6,
+    "stream_partials": 13,
+    "stream_backlog": 5,
+    "audio_carried_s": 15.04,
+    "tts_failures": 6,
+    "language_turn_switches": 0,
+    "finalized_segment_drops": 0,
+    "playback_order_errors": 0,
+    "queue_backlog_peak": 0,
+    "translate_failures": 0,
+    "first_caption_ms": 6562.8,
+    "first_audio_ms": null,
+    "last_error": null
+  },
+  "samples": [
+    {
+      "source": "Shabai Aalokshonkanti",
+      "bn": "Shabai Aalokshonkanti",
+      "en": "Shabi Aalsanki"
+    },
+    {
+      "source": "ھنو بھر گھر گھرے ایشان بی",
+      "bn": "ھنو بھر گھر گھرے ایشان بی",
+      "en": "ھنو بھر گھر گھرے ایشان بی"
+    },
+    {
+      "source": "Chobhi Chob",
+      "bn": "Chobhi Chob",
+      "en": "Cheb Cheb"
+    },
+    {
+      "source": "بی جر اطوحا که ابنشن رشش جر اطو اقتی تو کرا This is the last.",
+      "bn": "بی جر اطوحا که ابنشن رشش جر اطو اقتی تو کرا This is the last.",
+      "en": "The last."
+    },
+    {
+      "source": "پروڑو فیر چھوٹ کتھ مول بیت ریت پاو جائے جاکے",
+      "bn": "پروڑو فیر چھوٹ کتھ مول بیت ریت پاو جائے جاکے",
+      "en": "پروڑو فیر چھوٹ کتھ مول بیت ریت پاو جائے جاکے"
+    },
+    {
+      "source": "Kuro Palastra Balakhaya.",
+      "bn": "Kuro Palastra Balakhaya.",
+      "en": "Kuro Paulstra Batakia."
+    }
+  ],
+  "wall_s": 48.7,
+  "db": "/home/faraz/project/offline_guru/reports/results/_bench/bench_stream_bn_1794857169.db"
+}

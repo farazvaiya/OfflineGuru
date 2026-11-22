@@ -1,0 +1,7 @@
+# Preparation-only dependencies (Internet required, used once).
+#   pip install -r requirements-prep.txt
+# Torch is used only to convert the Marian checkpoint to CTranslate2 int8.
+# Install the CPU wheel to keep the download small:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+huggingface_hub>=0.30

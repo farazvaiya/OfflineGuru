@@ -1,0 +1,29 @@
+# Bidirectional speech translation: repository and license research
+
+**Research date:** 2026-11-11/12. **Scope:** source, licenses, dependencies, streaming/audio paths and published benchmarks in the three repositories requested. No upstream source was copied for this work.
+
+## Findings
+
+| Repository | Source and license checked | Dependencies / audio / streaming | Language support and benchmark interpretation |
+|---|---|---|---|
+| [`gebrilfradj/realtime-speech-translator`](https://github.com/gebrilfradj/realtime-speech-translator) | README, `pyproject.toml`, `speech_translate/{pipeline.py,realtime.py,asr.py,mt.py,segmentation.py,tts/__init__.py}`, and MIT `LICENSE` (Copyright Gebril Fradj, 2025). MIT code can be reused with copyright/license notice; this integration did not copy its code. | Python >=3.10. faster-whisper, Transformers, Torch, sentencepiece, NumPy, soundfile; optional sounddevice, Piper, pyttsx3, Gradio. `RealtimeSession` uses a microphone capture thread/VAD, bounded utterance queue, worker cascade and a separate playback worker. The cascade method itself consumes utterance waveforms; the streaming session waits for utterance segmentation, not stable token streaming. Queue policy drops the oldest utterance when full. Models download on first use unless cached. | README advertises 97 input languages / 200 NLLB targets and 48 Piper languages but does not establish Bengali→English ASR/translation/TTS quality or a usable paired Bengali voice by generic claims. Published CPU comparison is on one 4.5 s English→Spanish clip, 5 warm runs, and an RTF table; it is not comparable to the target laptop/pairs. README states NLLB, whose model license must be evaluated separately (CC-BY-NC-4.0). |
+| [`QuentinFuxa/WhisperLiveKit`](https://github.com/QuentinFuxa/WhisperLiveKit) | README, `pyproject.toml`, `whisperlivekit/audio_input.py`, `processing_queue.py`, `local_agreement/online_asr.py`, `simul_whisper/` inventory, and Apache-2.0 `LICENSE` checked. Existing Offline Guru `LocalAgreement` already has an attribution header to this source. No code copied in this change. | Dependencies include FastAPI, librosa, soundfile, faster-whisper, Torch/torchaudio, HF Hub and websocket stack; optional backends add more heavy dependencies. Its audio input/queue path supports streamed client audio and VAD, shared server processing; LocalAgreement reconciles consecutive hypotheses; SimulWhisper has separate AlignAtt/token buffer/backend implementation. Main project requires Python >=3.11,<3.14 and is not a drop-in dependency for this Python 3.14 deployment. | This is streaming STT, not a complete Bengali↔English spoken translation product. README describes language/model options; the user brief's SimulStreaming candidate is technically present, but adds model/runtime complexity and does not establish target CPU performance. Published upstream benchmark claims are not target-machine evidence. |
+| [`SYSTRAN/faster-whisper`](https://github.com/SYSTRAN/faster-whisper) | README, `faster_whisper/transcribe.py`, `audio.py`, and MIT `LICENSE` checked. No code copied. | CTranslate2 runtime, NumPy, tokenizers, PyAV and tqdm. Audio decode uses PyAV resampling to mono/16 kHz; microphone capture and incremental transcript policy are caller responsibilities. `transcribe()` exposes language, word timestamps, VAD and generators; ordinary Whisper transcription is not by itself simultaneous streaming. CPU int8 is supported. | Multilingual Whisper task support includes Bengali and English; no per-direction accuracy promise. README CPU benchmark uses a 13-minute English clip, Intel i7-12700K, 8 threads, Small int8 1m42s/1477 MB. It is explicitly not an i5-7300U benchmark and not a Bengali WER benchmark. |
+
+## Integration decision
+
+Keep Offline Guru's existing audio capture, VAD, LocalAgreement, bounded worker queues, FastAPI auth/WebSocket and student delivery. Extend the existing path rather than install WhisperLiveKit/Torch into the classroom runtime. Language state is pinned per classroom; auto mode only changes after stable script evidence, then holds that route for the VAD turn. Direction-specific OPUS/Marian and Piper files load from local disk.
+
+## License and attribution conclusions
+
+- faster-whisper code: MIT; upstream Whisper converted weights are separately licensed/documented in project asset records.
+- WhisperLiveKit code: Apache-2.0. Existing LocalAgreement attribution remains in `guru/realtime.py`; this work adds no copied upstream code.
+- speech-translator repository: MIT. No source copied.
+- NLLB-200 distilled 600M model card: CC-BY-NC-4.0. Non-commercial only; not suitable for commercial deployment. It remains an optional comparison backend and is not a default.
+- OPUS models in the existing cache have repository provenance and revisions in `guru_meta.json`; the Helsinki-NLP BN→EN model card states Apache-2.0. The community EN→BN model card states Apache-2.0. CTranslate2 conversion does not erase model-card terms.
+- Bengali Piper `bn_BD-google-medium` exists locally as paired ONNX/config assets, has Bengali (Bangladesh) model card, 16 speakers and 22,050 Hz. Its training data identifies OpenSLR-37 CC-BY-SA-4.0 plus CMU Indic terms; redistribution requires preserving notices/obligations. English Piper `en_US-lessac-medium` also exists locally as paired ONNX/config. Its voice-specific upstream license was not located in this checkout; do not assume a generic Piper license applies to voice data.
+- Piper runtime is GPL-3.0-or-later; Offline Guru already documents this in `LICENSES.md`.
+
+## Evidence boundaries
+
+Actual upstream source and local metadata were inspected; published numbers were recorded as upstream-only. No upstream speed/language claim is substituted for project benchmark evidence. The requested independent human Bengali/English audio set was absent locally; this report does not call the current evaluation corpus human-verified.

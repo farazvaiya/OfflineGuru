@@ -1,0 +1,101 @@
+{
+  "clients": 5,
+  "wav": "data/demo/lecture_45s.wav",
+  "segments_published": 10,
+  "received_min": 10,
+  "received_median": 10,
+  "join_ms": {
+    "p50": 25.5,
+    "p95": 46.9
+  },
+  "ws_connect_ms": {
+    "p50": 5.4,
+    "p95": 15.7
+  },
+  "fanout_spread_ms": {
+    "p50": 0.7,
+    "p95": 18.8
+  },
+  "socket_errors": 0,
+  "ram_available_mb": [
+    3134,
+    2887
+  ],
+  "bus_drops": 0,
+  "pipeline": {
+    "status": "idle",
+    "session_id": "c5035844eb47",
+    "stats": {
+      "segments_finalized": 10,
+      "segments_translated": 10,
+      "segments_empty": 0,
+      "asr_queue_drops": 0,
+      "enrichment_queue_drops": 0,
+      "tts_queue_drops": 0,
+      "partials_emitted": 0,
+      "last_error": null
+    },
+    "queues": {
+      "asr": 0,
+      "enrichment": 0,
+      "tts": 0
+    }
+  },
+  "metrics": {
+    "asr_ms": {
+      "count": 10,
+      "mean": 1248.6,
+      "p50": 1255.8,
+      "p95": 1318.7,
+      "max": 1318.7
+    },
+    "translate_ms": {
+      "count": 10,
+      "mean": 201.7,
+      "p50": 177.4,
+      "p95": 408.6,
+      "max": 408.6
+    },
+    "tts_ms": {
+      "count": 10,
+      "mean": 27.1,
+      "p50": 0.0,
+      "p95": 271.3,
+      "max": 271.3
+    },
+    "e2e_ms": {
+      "count": 10,
+      "mean": 1451.0,
+      "p50": 1434.2,
+      "p95": 1692.1,
+      "max": 1692.1
+    }
+  },
+  "network": {
+    "interfaces": [
+      {
+        "name": "wlp1s0",
+        "ip": "192.168.0.131",
+        "is_wireless": true
+      },
+      {
+        "name": "br-da7e67bc9f2b",
+        "ip": "172.18.0.1",
+        "is_wireless": false
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "is_wireless": false
+      }
+    ],
+    "primary_ip": "192.168.0.131",
+    "hotspot_active": false,
+    "hotspot_interface": null,
+    "online": true,
+    "warnings": [
+      "No hotspot detected \u2014 students on the same LAN can still join, but the offline-classroom hotspot is not active. See docs/NETWORKING.md.",
+      "Internet is reachable. The classroom runtime does not use it; this is informational only."
+    ]
+  }
+}

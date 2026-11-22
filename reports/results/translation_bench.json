@@ -1,0 +1,3641 @@
+{
+  "benchmark": "translation_model_comparison",
+  "hardware": {
+    "cpu": "Intel Core i5-7300U (2 physical / 4 logical cores)",
+    "ram": "7 GB",
+    "device": "CPU only",
+    "os": "Ubuntu",
+    "deployment": "offline classroom"
+  },
+  "software": {
+    "python": "3.14.7",
+    "ctranslate2": "4.8.3",
+    "transformers": "5.20.2",
+    "torch": "2.14.1 (prep-time only)",
+    "sentencepiece": "0.2.2",
+    "tokenizers": "0.23.3",
+    "psutil": "7.2.2"
+  },
+  "candidates": {
+    "en_to_bn": [
+      {
+        "name": "A",
+        "label": "Existing production Marian (CTranslate2 int8)"
+      },
+      {
+        "name": "B",
+        "label": "OPUS-MT via Transformers CPU"
+      },
+      {
+        "name": "C",
+        "label": "OPUS-MT via CTranslate2 INT8"
+      }
+    ],
+    "bn_to_en": [
+      {
+        "name": "A",
+        "label": "Production (BLOCKED — no BN->EN model)"
+      },
+      {
+        "name": "B",
+        "label": "OPUS-MT via Transformers CPU"
+      },
+      {
+        "name": "C",
+        "label": "OPUS-MT via CTranslate2 INT8"
+      }
+    ]
+  },
+  "directions": {
+    "en_to_bn": {
+      "direction": "en_to_bn",
+      "test_sentences_total": 50,
+      "test_sentences_translatable": 49,
+      "test_data": {
+        "sources": [
+          "classroom lecture (photosynthesis)",
+          "physics/chemistry",
+          "everyday classroom",
+          "mixed-language (Japanese, Bengali numerals)",
+          "long sentences",
+          "short/edge cases"
+        ],
+        "note": "See script source for full sentence list."
+      },
+      "candidates": {
+        "A_existing_marian_ct2": {
+          "name": "A_existing_marian_ct2",
+          "description": "Existing production Marian EN->BN, CTranslate2 int8",
+          "model_id": "shhossain/opus-mt-en-to-bn (original Marian, already converted)",
+          "revision": "c746a1500332b7964cbcd0b6f363b8ab2d8b1186",
+          "license": "Apache-2.0",
+          "load_time_ms": 2335.5,
+          "warmup_latencies_ms": [
+            159.0,
+            313.0,
+            256.8,
+            180.1,
+            303.7,
+            283.7,
+            184.8,
+            548.9,
+            301.3
+          ],
+          "warmup_p50_ms": 283.7,
+          "warmup_mean_ms": 281.3,
+          "latencies_ms": {
+            "n": 49,
+            "mean": 310.4,
+            "min": 0.0,
+            "p50": 239.0,
+            "p95": 696.5,
+            "p99": 1582.7,
+            "max": 1582.7
+          },
+          "per_sentence_latency_ms": [
+            199.4,
+            323.8,
+            273.8,
+            420.6,
+            445.3,
+            147.8,
+            379.2,
+            142.8,
+            316.3,
+            215.6,
+            258.5,
+            509.9,
+            213.1,
+            244.3,
+            239.0,
+            294.2,
+            152.3,
+            280.5,
+            280.0,
+            138.5,
+            603.5,
+            332.9,
+            377.3,
+            356.3,
+            308.5,
+            190.4,
+            302.2,
+            130.5,
+            227.0,
+            179.6,
+            151.0,
+            167.6,
+            198.1,
+            0.0,
+            594.9,
+            234.9,
+            151.9,
+            194.6,
+            129.3,
+            190.4,
+            258.7,
+            1168.2,
+            684.8,
+            696.5,
+            1582.7,
+            57.3,
+            139.3,
+            66.3,
+            61.6,
+            0.0
+          ],
+          "sentences_per_second": 3.22,
+          "cpu_pct_samples": [
+            183.0,
+            195.8,
+            194.1,
+            193.6,
+            187.6,
+            185.1,
+            199.0,
+            196.8,
+            187.2,
+            199.4,
+            195.0,
+            195.4,
+            178.1
+          ],
+          "cpu_pct_mean": 191.5,
+          "rss_mb_start": 38.3,
+          "rss_mb_end": 242.5,
+          "rss_mb_peak": 243.1,
+          "n_translatable": 49,
+          "n_skipped": 1,
+          "outputs": [
+            "সবাই শুভ সকাল, আজকে আমরা ফটোশ্যান্ডিস সম্পর্কে জানতে যাচ্ছি।",
+            "ফটোসিনথেসিস হচ্ছে এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যাস্তের মাধ্যমে নিজেদের খাদ্য তৈরি করে।",
+            "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য ক্লোরোফিল নামে একটি সবুজ রঞ্জক ব্যবহার করে।",
+            "ক্লোরোফিল (Clorophyl) ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+            "শোভাযাত্রার সময়, উদ্ভিদগুলো আকাশ থেকে কার্বান ডাই অক্সাইডে ধারণ করে, যা স্টোমাটা নামক ছোট পোর দিয়ে।",
+            "মৃত্তিকা থেকে পানি খনন করা হয় মূল থেকে।",
+            "জ্বালানি জ্বালানি হাইড্রোজেন এবং অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+            "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+            "উদ্ভিদটি গ্লুকোজের জন্য কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে।",
+            "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+            "অক্সিজেনকে বাতাসে স্থানান্তরিত করা হয়।",
+            "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয়টি অণু উৎপন্ন করে।",
+            "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+            "এই হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+            "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+            "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+            "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+            "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতাপূর্ণ কারণ।",
+            "দয়া করে বোর্ড থেকে চিত্র কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+            "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+            "পিথাগোরিয়ান থিওরম (Pythagoran otorm) জানায় যে, একটি স্কোয়ার এবং b বর্গের সমান সমান।",
+            "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রি।",
+            "নিউটনের দ্বিতীয় আইনে বলা হয়েছে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+            "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+            "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+            "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+            "এসিড বৃষ্টির ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+            "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+            "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+            "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+            "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+            "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল সংখ্যা লিখুন।",
+            "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+            "グループワークは20分間です",
+            "dublicage searche que jectue",
+            "ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+            "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য প্রসারিত করুন।",
+            "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+            "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+            "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+            "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+            "যদিও ফটোজেন্থেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন সজ্জার দক্ষতা এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খায়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+            "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ তারা এডেনোসিন ট্রাইপোসফেট এর বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+            "পরীক্ষায় আমরা একাডেমিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে পরবর্তীতে আমরা একটি গ্রাফ প্লট করতে পারি এবং নির্ধারণ করতে পারি যে সম্পর্কটি রৈখিক বা সূচক।",
+            "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে হ্রাস দেখাবে যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোধ করে।",
+            "হ্যালো.",
+            "ফটোসীনথেসিস.",
+            "১০০ ডিগ্রী.",
+            "."
+          ],
+          "per_sentence": [
+            {
+              "source": "Good morning everyone. Today we are going to learn about photosynthesis.",
+              "text": "সবাই শুভ সকাল, আজকে আমরা ফটোশ্যান্ডিস সম্পর্কে জানতে যাচ্ছি।",
+              "latency_ms": 199.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis is the process by which green plants make their own food using sunlight.",
+              "text": "ফটোসিনথেসিস হচ্ছে এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যাস্তের মাধ্যমে নিজেদের খাদ্য তৈরি করে।",
+              "latency_ms": 323.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Plants use a green pigment called chlorophyll to capture light energy.",
+              "text": "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য ক্লোরোফিল নামে একটি সবুজ রঞ্জক ব্যবহার করে।",
+              "latency_ms": 273.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Chlorophyll is found inside small structures called chloroplasts.",
+              "text": "ক্লোরোফিল (Clorophyl) ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+              "latency_ms": 420.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "During photosynthesis, plants take in carbon dioxide from the air through tiny pores called stomata.",
+              "text": "শোভাযাত্রার সময়, উদ্ভিদগুলো আকাশ থেকে কার্বান ডাই অক্সাইডে ধারণ করে, যা স্টোমাটা নামক ছোট পোর দিয়ে।",
+              "latency_ms": 445.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is absorbed from the soil by the roots.",
+              "text": "মৃত্তিকা থেকে পানি খনন করা হয় মূল থেকে।",
+              "latency_ms": 147.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Light energy splits water molecules into hydrogen and oxygen.",
+              "text": "জ্বালানি জ্বালানি হাইড্রোজেন এবং অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+              "latency_ms": 379.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "This process is called photolysis.",
+              "text": "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+              "latency_ms": 142.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The plant uses carbon dioxide and hydrogen to make glucose.",
+              "text": "উদ্ভিদটি গ্লুকোজের জন্য কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে।",
+              "latency_ms": 316.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Glucose is a simple sugar that stores chemical energy.",
+              "text": "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "latency_ms": 215.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Oxygen is released into the air as a byproduct.",
+              "text": "অক্সিজেনকে বাতাসে স্থানান্তরিত করা হয়।",
+              "latency_ms": 258.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Six molecules of carbon dioxide and six molecules of water produce one molecule of glucose and six molecules of oxygen.",
+              "text": "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয়টি অণু উৎপন্ন করে।",
+              "latency_ms": 509.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Temperature also affects the rate of photosynthesis.",
+              "text": "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+              "latency_ms": 213.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The rate is fastest at around 25 to 35 degrees Celsius.",
+              "text": "এই হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+              "latency_ms": 244.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Above 40 degrees Celsius, the enzymes stop working properly.",
+              "text": "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "latency_ms": 239.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "An enzyme is a protein that speeds up a chemical reaction.",
+              "text": "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+              "latency_ms": 294.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is a limiting factor when the soil is dry.",
+              "text": "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+              "latency_ms": 152.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Carbon dioxide is often the limiting factor in open air.",
+              "text": "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতাপূর্ণ কারণ।",
+              "latency_ms": 280.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please copy the diagram from the board and label the stomata and chloroplasts.",
+              "text": "দয়া করে বোর্ড থেকে চিত্র কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+              "latency_ms": 280.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Are there any questions before we move to the next topic?",
+              "text": "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+              "latency_ms": 138.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The Pythagorean theorem states that a squared plus b squared equals c squared.",
+              "text": "পিথাগোরিয়ান থিওরম (Pythagoran otorm) জানায় যে, একটি স্কোয়ার এবং b বর্গের সমান সমান।",
+              "latency_ms": 603.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "A triangle has three sides and the sum of its angles is 180 degrees.",
+              "text": "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রি।",
+              "latency_ms": 332.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Newton's second law states that force equals mass times acceleration.",
+              "text": "নিউটনের দ্বিতীয় আইনে বলা হয়েছে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+              "latency_ms": 377.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The speed of light in vacuum is approximately 300,000 kilometers per second.",
+              "text": "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+              "latency_ms": 356.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "300,000"
+              ]
+            },
+            {
+              "source": "Water boils at 100 degrees Celsius at standard atmospheric pressure.",
+              "text": "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+              "latency_ms": 308.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The pH scale measures how acidic or basic a solution is.",
+              "text": "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+              "latency_ms": 190.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Acid rain is caused by emissions of sulfur dioxide and nitrogen oxides.",
+              "text": "এসিড বৃষ্টির ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+              "latency_ms": 302.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please open your textbooks to page 42.",
+              "text": "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+              "latency_ms": 130.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The homework is due next Monday at 9 AM.",
+              "text": "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+              "latency_ms": 227.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Remember to bring your calculator for the exam.",
+              "text": "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+              "latency_ms": 179.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The library is closed on Sundays.",
+              "text": "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+              "latency_ms": 151.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please write your name and roll number at the top of the page.",
+              "text": "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল সংখ্যা লিখুন।",
+              "latency_ms": 167.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "We will have a short quiz at the end of today's class.",
+              "text": "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+              "latency_ms": 198.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "グループワークは20分間です",
+              "text": "グループワークは20分間です",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "১০০ ডিগ্রি সেলসিয়াসে পানি ফুটে যায়",
+              "text": "dublicage searche que jectue",
+              "latency_ms": 594.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১০০"
+              ]
+            },
+            {
+              "source": "The result is 42.5% which is above the passing threshold of 33%.",
+              "text": "ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+              "latency_ms": 234.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please stand up and stretch for a minute.",
+              "text": "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য প্রসারিত করুন।",
+              "latency_ms": 151.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Today's lecture will run for about 45 minutes.",
+              "text": "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+              "latency_ms": 194.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The exam will cover chapters 1 through 5.",
+              "text": "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+              "latency_ms": 129.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "You may use a scientific calculator during the test.",
+              "text": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "latency_ms": 190.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The answer should be rounded to two decimal places.",
+              "text": "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+              "latency_ms": 258.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Although the basic mechanism of photosynthesis is well understood, ongoing research continues to reveal new details about the role of specialized pigments, the efficiency of electron transport chains, and the ways in which plants adapt to different light conditions across seasons and latitudes.",
+              "text": "যদিও ফটোজেন্থেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন সজ্জার দক্ষতা এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খায়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+              "latency_ms": 1168.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The teacher explained that the mitochondria are often referred to as the powerhouse of the cell because they generate most of the cell's supply of adenosine triphosphate, which is then used as a source of chemical energy.",
+              "text": "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ তারা এডেনোসিন ট্রাইপোসফেট এর বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "latency_ms": 684.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "In the experiment we will measure the rate of oxygen production by the aquatic plant Elodea under different light intensities and record the data in a table so that we can later plot a graph and determine whether the relationship is linear or exponential.",
+              "text": "পরীক্ষায় আমরা একাডেমিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে পরবর্তীতে আমরা একটি গ্রাফ প্লট করতে পারি এবং নির্ধারণ করতে পারি যে সম্পর্কটি রৈখিক বা সূচক।",
+              "latency_ms": 696.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "If you look carefully at the slide you will notice that the x-axis represents time in seconds while the y-axis represents the concentration of carbon dioxide in parts per million, and the curve shows a steady decline as the plant absorbs the gas during photosynthesis.",
+              "text": "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে হ্রাস দেখাবে যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোধ করে।",
+              "latency_ms": 1582.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Hello.",
+              "text": "হ্যালো.",
+              "latency_ms": 57.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis.",
+              "text": "ফটোসীনথেসিস.",
+              "latency_ms": 139.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "100 degrees.",
+              "text": "১০০ ডিগ্রী.",
+              "latency_ms": 66.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The.",
+              "text": ".",
+              "latency_ms": 61.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        },
+        "B_opus_transformers_cpu": {
+          "name": "B_opus_transformers_cpu",
+          "description": "OPUS-MT EN->BN via HuggingFace Transformers on CPU",
+          "model_id": "shhossain/opus-mt-en-to-bn",
+          "revision": "c746a1500332b7964cbcd0b6f363b8ab2d8b1186",
+          "license": "Apache-2.0",
+          "load_time_ms": 6613.3,
+          "warmup_latencies_ms": [
+            1667.7,
+            1803.6,
+            1783.7,
+            986.0,
+            1779.1,
+            1710.3,
+            873.0,
+            1362.9,
+            1172.3
+          ],
+          "warmup_p50_ms": 1667.7,
+          "warmup_mean_ms": 1459.8,
+          "latencies_ms": {
+            "n": 49,
+            "mean": 1091.0,
+            "min": 0.0,
+            "p50": 836.8,
+            "p95": 2743.4,
+            "p99": 4228.1,
+            "max": 4228.1
+          },
+          "per_sentence_latency_ms": [
+            747.3,
+            1222.9,
+            1144.4,
+            1469.8,
+            2368.5,
+            752.8,
+            1192.8,
+            574.0,
+            1251.9,
+            803.1,
+            869.4,
+            1979.0,
+            769.7,
+            836.8,
+            1058.4,
+            1030.0,
+            640.5,
+            1159.5,
+            1097.5,
+            466.0,
+            1282.9,
+            925.3,
+            974.9,
+            988.5,
+            1023.3,
+            798.2,
+            1381.5,
+            659.7,
+            745.2,
+            709.3,
+            650.0,
+            720.1,
+            584.2,
+            0.0,
+            1692.5,
+            966.9,
+            722.9,
+            693.0,
+            449.0,
+            669.6,
+            695.6,
+            3939.9,
+            2743.4,
+            2736.1,
+            4228.1,
+            175.7,
+            366.3,
+            297.6,
+            206.5,
+            0.0
+          ],
+          "sentences_per_second": 0.92,
+          "cpu_pct_samples": [
+            195.9,
+            200.3,
+            198.1,
+            198.0,
+            199.5,
+            196.2,
+            195.5,
+            198.5,
+            193.4,
+            200.1,
+            198.8,
+            198.1,
+            198.4
+          ],
+          "cpu_pct_mean": 197.8,
+          "rss_mb_start": 159.3,
+          "rss_mb_end": 790.5,
+          "rss_mb_peak": 790.5,
+          "n_translatable": 49,
+          "n_skipped": 1,
+          "outputs": [
+            "সবাই শুভ সকাল, আজকে আমরা ছবি সিনেথিস সম্পর্কে জানতে যাচ্ছি।",
+            "ফটোসিনথেসিস হল এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যালোকের সাহায্যে নিজেদের খাদ্য তৈরি করে।",
+            "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য গ্লোরোফিল নামে একটি সবুজ রগ ব্যবহার করে।",
+            "ক্লোরোফিল (Clorophyl) ছোট ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+            "আলোক-সংক্রান্তির সময়, উদ্ভিদ বায়ু থেকে আকাশ থেকে কার্বান ডাইঅক্সাইডের মধ্যে দিয়ে স্টোমাটা (stomata) নামে ছোট পোড়ার মধ্য দিয়ে থাকে।",
+            "জলাশয় মৃত্তিকা থেকে পানি খনন করা হয়।",
+            "আলো জ্বালানি হাইড্রোজেন ও অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+            "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+            "উদ্ভিদটি গ্লুকোজ তৈরির জন্য কার্বন ডাইঅক্সাইড ও হাইড্রোজেন ব্যবহার করে।",
+            "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+            "অক্সিজেন বাতাসে প্রবেশ করে।",
+            "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয় অণু উৎপন্ন করে।",
+            "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+            "হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+            "৪০ ডিগ্রী সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+            "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+            "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+            "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতার কারণ।",
+            "দয়া করে বোর্ড থেকে চিত্রটি কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+            "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+            "পিথাগোরিয়ান থিওরম উল্লেখ করে যে, একটি স্কোয়ার এবং b সমকোণ c বর্গ সমান।",
+            "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রী।",
+            "নিউটনের দ্বিতীয় আইন বলে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+            "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+            "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+            "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+            "এসিড বৃষ্টিপাতের ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+            "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+            "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+            "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+            "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+            "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল নম্বর লিখুন।",
+            "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+            "グループワークは20分間です",
+            "dublicage searche que",
+            "এর ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+            "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য বিস্তৃত হোন।",
+            "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+            "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+            "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+            "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+            "যদিও ফটোসিনথেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন বাঁধের দক্ষতা, এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খাইয়ে নেয়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+            "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ এডেনোসিন ট্রাইপোসফেট কোষের বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+            "পরীক্ষায় আমরা অ্যাকুয়াটিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে আমরা পরবর্তীতে একটি গ্রাফ প্লট করতে পারি এবং এই সম্পর্কটি রৈখিক বা সূচকীয় কিনা তা নির্ধারণ করতে পারি।",
+            "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে, যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে অবনতি দেখায়, যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোষণ করে।",
+            "হ্যালো.",
+            "ফটোসিনথেসিস.",
+            "১০০ ডিগ্রী.",
+            "."
+          ],
+          "per_sentence": [
+            {
+              "source": "Good morning everyone. Today we are going to learn about photosynthesis.",
+              "text": "সবাই শুভ সকাল, আজকে আমরা ছবি সিনেথিস সম্পর্কে জানতে যাচ্ছি।",
+              "latency_ms": 747.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis is the process by which green plants make their own food using sunlight.",
+              "text": "ফটোসিনথেসিস হল এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যালোকের সাহায্যে নিজেদের খাদ্য তৈরি করে।",
+              "latency_ms": 1222.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Plants use a green pigment called chlorophyll to capture light energy.",
+              "text": "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য গ্লোরোফিল নামে একটি সবুজ রগ ব্যবহার করে।",
+              "latency_ms": 1144.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Chlorophyll is found inside small structures called chloroplasts.",
+              "text": "ক্লোরোফিল (Clorophyl) ছোট ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+              "latency_ms": 1469.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "During photosynthesis, plants take in carbon dioxide from the air through tiny pores called stomata.",
+              "text": "আলোক-সংক্রান্তির সময়, উদ্ভিদ বায়ু থেকে আকাশ থেকে কার্বান ডাইঅক্সাইডের মধ্যে দিয়ে স্টোমাটা (stomata) নামে ছোট পোড়ার মধ্য দিয়ে থাকে।",
+              "latency_ms": 2368.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is absorbed from the soil by the roots.",
+              "text": "জলাশয় মৃত্তিকা থেকে পানি খনন করা হয়।",
+              "latency_ms": 752.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Light energy splits water molecules into hydrogen and oxygen.",
+              "text": "আলো জ্বালানি হাইড্রোজেন ও অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+              "latency_ms": 1192.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "This process is called photolysis.",
+              "text": "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+              "latency_ms": 574.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The plant uses carbon dioxide and hydrogen to make glucose.",
+              "text": "উদ্ভিদটি গ্লুকোজ তৈরির জন্য কার্বন ডাইঅক্সাইড ও হাইড্রোজেন ব্যবহার করে।",
+              "latency_ms": 1251.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Glucose is a simple sugar that stores chemical energy.",
+              "text": "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "latency_ms": 803.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Oxygen is released into the air as a byproduct.",
+              "text": "অক্সিজেন বাতাসে প্রবেশ করে।",
+              "latency_ms": 869.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Six molecules of carbon dioxide and six molecules of water produce one molecule of glucose and six molecules of oxygen.",
+              "text": "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয় অণু উৎপন্ন করে।",
+              "latency_ms": 1979.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Temperature also affects the rate of photosynthesis.",
+              "text": "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+              "latency_ms": 769.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The rate is fastest at around 25 to 35 degrees Celsius.",
+              "text": "হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+              "latency_ms": 836.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Above 40 degrees Celsius, the enzymes stop working properly.",
+              "text": "৪০ ডিগ্রী সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "latency_ms": 1058.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "An enzyme is a protein that speeds up a chemical reaction.",
+              "text": "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+              "latency_ms": 1030.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is a limiting factor when the soil is dry.",
+              "text": "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+              "latency_ms": 640.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Carbon dioxide is often the limiting factor in open air.",
+              "text": "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতার কারণ।",
+              "latency_ms": 1159.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please copy the diagram from the board and label the stomata and chloroplasts.",
+              "text": "দয়া করে বোর্ড থেকে চিত্রটি কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+              "latency_ms": 1097.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Are there any questions before we move to the next topic?",
+              "text": "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+              "latency_ms": 466.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The Pythagorean theorem states that a squared plus b squared equals c squared.",
+              "text": "পিথাগোরিয়ান থিওরম উল্লেখ করে যে, একটি স্কোয়ার এবং b সমকোণ c বর্গ সমান।",
+              "latency_ms": 1282.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "A triangle has three sides and the sum of its angles is 180 degrees.",
+              "text": "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রী।",
+              "latency_ms": 925.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Newton's second law states that force equals mass times acceleration.",
+              "text": "নিউটনের দ্বিতীয় আইন বলে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+              "latency_ms": 974.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The speed of light in vacuum is approximately 300,000 kilometers per second.",
+              "text": "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+              "latency_ms": 988.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "300,000"
+              ]
+            },
+            {
+              "source": "Water boils at 100 degrees Celsius at standard atmospheric pressure.",
+              "text": "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+              "latency_ms": 1023.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The pH scale measures how acidic or basic a solution is.",
+              "text": "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+              "latency_ms": 798.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Acid rain is caused by emissions of sulfur dioxide and nitrogen oxides.",
+              "text": "এসিড বৃষ্টিপাতের ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+              "latency_ms": 1381.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please open your textbooks to page 42.",
+              "text": "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+              "latency_ms": 659.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The homework is due next Monday at 9 AM.",
+              "text": "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+              "latency_ms": 745.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Remember to bring your calculator for the exam.",
+              "text": "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+              "latency_ms": 709.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The library is closed on Sundays.",
+              "text": "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+              "latency_ms": 650.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please write your name and roll number at the top of the page.",
+              "text": "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল নম্বর লিখুন।",
+              "latency_ms": 720.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "We will have a short quiz at the end of today's class.",
+              "text": "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+              "latency_ms": 584.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "グループワークは20分間です",
+              "text": "グループワークは20分間です",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "১০০ ডিগ্রি সেলসিয়াসে পানি ফুটে যায়",
+              "text": "dublicage searche que",
+              "latency_ms": 1692.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১০০"
+              ]
+            },
+            {
+              "source": "The result is 42.5% which is above the passing threshold of 33%.",
+              "text": "এর ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+              "latency_ms": 966.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please stand up and stretch for a minute.",
+              "text": "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য বিস্তৃত হোন।",
+              "latency_ms": 722.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Today's lecture will run for about 45 minutes.",
+              "text": "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+              "latency_ms": 693.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The exam will cover chapters 1 through 5.",
+              "text": "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+              "latency_ms": 449.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "You may use a scientific calculator during the test.",
+              "text": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "latency_ms": 669.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The answer should be rounded to two decimal places.",
+              "text": "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+              "latency_ms": 695.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Although the basic mechanism of photosynthesis is well understood, ongoing research continues to reveal new details about the role of specialized pigments, the efficiency of electron transport chains, and the ways in which plants adapt to different light conditions across seasons and latitudes.",
+              "text": "যদিও ফটোসিনথেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন বাঁধের দক্ষতা, এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খাইয়ে নেয়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+              "latency_ms": 3939.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The teacher explained that the mitochondria are often referred to as the powerhouse of the cell because they generate most of the cell's supply of adenosine triphosphate, which is then used as a source of chemical energy.",
+              "text": "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ এডেনোসিন ট্রাইপোসফেট কোষের বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "latency_ms": 2743.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "In the experiment we will measure the rate of oxygen production by the aquatic plant Elodea under different light intensities and record the data in a table so that we can later plot a graph and determine whether the relationship is linear or exponential.",
+              "text": "পরীক্ষায় আমরা অ্যাকুয়াটিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে আমরা পরবর্তীতে একটি গ্রাফ প্লট করতে পারি এবং এই সম্পর্কটি রৈখিক বা সূচকীয় কিনা তা নির্ধারণ করতে পারি।",
+              "latency_ms": 2736.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "If you look carefully at the slide you will notice that the x-axis represents time in seconds while the y-axis represents the concentration of carbon dioxide in parts per million, and the curve shows a steady decline as the plant absorbs the gas during photosynthesis.",
+              "text": "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে, যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে অবনতি দেখায়, যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোষণ করে।",
+              "latency_ms": 4228.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Hello.",
+              "text": "হ্যালো.",
+              "latency_ms": 175.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis.",
+              "text": "ফটোসিনথেসিস.",
+              "latency_ms": 366.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "100 degrees.",
+              "text": "১০০ ডিগ্রী.",
+              "latency_ms": 297.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The.",
+              "text": ".",
+              "latency_ms": 206.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        },
+        "C_opus_ct2_int8": {
+          "name": "C_opus_ct2_int8",
+          "description": "OPUS-MT EN->BN via CTranslate2 INT8",
+          "model_id": "shhossain/opus-mt-en-to-bn",
+          "revision": "c746a1500332b7964cbcd0b6f363b8ab2d8b1186",
+          "license": "Apache-2.0",
+          "load_time_ms": 406.9,
+          "warmup_latencies_ms": [
+            196.5,
+            336.0,
+            292.4,
+            197.1,
+            339.2,
+            290.1,
+            202.7,
+            321.8,
+            277.1
+          ],
+          "warmup_p50_ms": 290.1,
+          "warmup_mean_ms": 272.6,
+          "latencies_ms": {
+            "n": 49,
+            "mean": 292.2,
+            "min": 0.0,
+            "p50": 237.0,
+            "p95": 732.3,
+            "p99": 1151.7,
+            "max": 1151.7
+          },
+          "per_sentence_latency_ms": [
+            208.0,
+            333.7,
+            275.1,
+            370.7,
+            477.2,
+            160.4,
+            359.9,
+            173.1,
+            370.5,
+            212.1,
+            268.6,
+            571.3,
+            237.0,
+            242.2,
+            244.4,
+            274.0,
+            163.2,
+            302.2,
+            298.6,
+            116.8,
+            547.4,
+            246.5,
+            263.2,
+            240.2,
+            288.5,
+            211.1,
+            332.6,
+            156.6,
+            211.9,
+            192.9,
+            175.6,
+            189.1,
+            162.6,
+            0.0,
+            571.7,
+            219.0,
+            156.4,
+            192.3,
+            125.5,
+            196.3,
+            189.5,
+            931.3,
+            707.2,
+            732.3,
+            1151.7,
+            49.9,
+            103.9,
+            66.0,
+            45.2,
+            0.0
+          ],
+          "sentences_per_second": 3.42,
+          "cpu_pct_samples": [
+            199.5,
+            196.2,
+            196.0,
+            196.9,
+            196.7,
+            195.5,
+            204.1,
+            195.6,
+            196.2,
+            198.5,
+            199.3,
+            196.4,
+            220.6
+          ],
+          "cpu_pct_mean": 199.3,
+          "rss_mb_start": 483.0,
+          "rss_mb_end": 593.1,
+          "rss_mb_peak": 593.1,
+          "n_translatable": 49,
+          "n_skipped": 1,
+          "outputs": [
+            "সবাই শুভ সকাল, আজকে আমরা ফটোশ্যান্ডিস সম্পর্কে জানতে যাচ্ছি।",
+            "ফটোসিনথেসিস হচ্ছে এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যাস্তের মাধ্যমে নিজেদের খাদ্য তৈরি করে।",
+            "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য ক্লোরোফিল নামে একটি সবুজ রঞ্জক ব্যবহার করে।",
+            "ক্লোরোফিল (Clorophyl) ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+            "শোভাযাত্রার সময়, উদ্ভিদগুলো আকাশ থেকে কার্বান ডাই অক্সাইডে ধারণ করে, যা স্টোমাটা নামক ছোট পোর দিয়ে।",
+            "মৃত্তিকা থেকে পানি খনন করা হয় মূল থেকে।",
+            "জ্বালানি জ্বালানি হাইড্রোজেন এবং অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+            "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+            "উদ্ভিদটি গ্লুকোজের জন্য কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে।",
+            "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+            "অক্সিজেনকে বাতাসে স্থানান্তরিত করা হয়।",
+            "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয়টি অণু উৎপন্ন করে।",
+            "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+            "এই হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+            "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+            "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+            "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+            "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতাপূর্ণ কারণ।",
+            "দয়া করে বোর্ড থেকে চিত্র কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+            "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+            "পিথাগোরিয়ান থিওরম (Pythagoran otorm) জানায় যে, একটি স্কোয়ার এবং b বর্গের সমান সমান।",
+            "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রি।",
+            "নিউটনের দ্বিতীয় আইনে বলা হয়েছে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+            "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+            "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+            "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+            "এসিড বৃষ্টির ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+            "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+            "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+            "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+            "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+            "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল সংখ্যা লিখুন।",
+            "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+            "グループワークは20分間です",
+            "dublicage searche que jectue",
+            "ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+            "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য প্রসারিত করুন।",
+            "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+            "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+            "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+            "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+            "যদিও ফটোজেন্থেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন সজ্জার দক্ষতা এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খায়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+            "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ তারা এডেনোসিন ট্রাইপোসফেট এর বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+            "পরীক্ষায় আমরা একাডেমিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে পরবর্তীতে আমরা একটি গ্রাফ প্লট করতে পারি এবং নির্ধারণ করতে পারি যে সম্পর্কটি রৈখিক বা সূচক।",
+            "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে হ্রাস দেখাবে যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোধ করে।",
+            "হ্যালো.",
+            "ফটোসীনথেসিস.",
+            "১০০ ডিগ্রী.",
+            "."
+          ],
+          "per_sentence": [
+            {
+              "source": "Good morning everyone. Today we are going to learn about photosynthesis.",
+              "text": "সবাই শুভ সকাল, আজকে আমরা ফটোশ্যান্ডিস সম্পর্কে জানতে যাচ্ছি।",
+              "latency_ms": 208.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis is the process by which green plants make their own food using sunlight.",
+              "text": "ফটোসিনথেসিস হচ্ছে এই প্রক্রিয়া যার মাধ্যমে সবুজ উদ্ভিদ সূর্যাস্তের মাধ্যমে নিজেদের খাদ্য তৈরি করে।",
+              "latency_ms": 333.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Plants use a green pigment called chlorophyll to capture light energy.",
+              "text": "উদ্ভিদগুলি হালকা শক্তি অর্জনের জন্য ক্লোরোফিল নামে একটি সবুজ রঞ্জক ব্যবহার করে।",
+              "latency_ms": 275.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Chlorophyll is found inside small structures called chloroplasts.",
+              "text": "ক্লোরোফিল (Clorophyl) ছোট কাঠামোর ভিতরে পাওয়া যায়, যাকে ক্লোরপলাস্ট বলা হয়।",
+              "latency_ms": 370.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "During photosynthesis, plants take in carbon dioxide from the air through tiny pores called stomata.",
+              "text": "শোভাযাত্রার সময়, উদ্ভিদগুলো আকাশ থেকে কার্বান ডাই অক্সাইডে ধারণ করে, যা স্টোমাটা নামক ছোট পোর দিয়ে।",
+              "latency_ms": 477.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is absorbed from the soil by the roots.",
+              "text": "মৃত্তিকা থেকে পানি খনন করা হয় মূল থেকে।",
+              "latency_ms": 160.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Light energy splits water molecules into hydrogen and oxygen.",
+              "text": "জ্বালানি জ্বালানি হাইড্রোজেন এবং অক্সিজেনে পানির অণুকে বিভক্ত করে।",
+              "latency_ms": 359.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "This process is called photolysis.",
+              "text": "এই প্রক্রিয়াকে ফটোলিসিস বলা হয়।",
+              "latency_ms": 173.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The plant uses carbon dioxide and hydrogen to make glucose.",
+              "text": "উদ্ভিদটি গ্লুকোজের জন্য কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে।",
+              "latency_ms": 370.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Glucose is a simple sugar that stores chemical energy.",
+              "text": "গ্লুকোজ একটি সাধারণ চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "latency_ms": 212.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Oxygen is released into the air as a byproduct.",
+              "text": "অক্সিজেনকে বাতাসে স্থানান্তরিত করা হয়।",
+              "latency_ms": 268.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Six molecules of carbon dioxide and six molecules of water produce one molecule of glucose and six molecules of oxygen.",
+              "text": "কার্বন ডাই অক্সাইডের ছয় অণু এবং জলের ছয়টি অণু গ্লুকোজের একটি অণু এবং অক্সিজেনের ছয়টি অণু উৎপন্ন করে।",
+              "latency_ms": 571.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Temperature also affects the rate of photosynthesis.",
+              "text": "তাপমাত্রা ফটোসিনথেসিসের হারকেও প্রভাবিত করে।",
+              "latency_ms": 237.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The rate is fastest at around 25 to 35 degrees Celsius.",
+              "text": "এই হার প্রায় ২৫ থেকে ৩৫ ডিগ্রী সেলসিয়াস পর্যন্ত দ্রুততর।",
+              "latency_ms": 242.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Above 40 degrees Celsius, the enzymes stop working properly.",
+              "text": "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইম সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "latency_ms": 244.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "An enzyme is a protein that speeds up a chemical reaction.",
+              "text": "একটি এনজাইম একটি প্রোটিন যা রাসায়নিক প্রতিক্রিয়ার গতি বৃদ্ধি করে।",
+              "latency_ms": 274.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Water is a limiting factor when the soil is dry.",
+              "text": "মৃত্তিকা শুকানোর সময় পানির সীমাবদ্ধতা রয়েছে।",
+              "latency_ms": 163.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Carbon dioxide is often the limiting factor in open air.",
+              "text": "কার্বন ডাইঅক্সাইড প্রায়ই উন্মুক্ত বাতাসে সীমাবদ্ধতাপূর্ণ কারণ।",
+              "latency_ms": 302.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please copy the diagram from the board and label the stomata and chloroplasts.",
+              "text": "দয়া করে বোর্ড থেকে চিত্র কপি করুন এবং স্টোমাটা এবং ক্লোরপলাস্ট লেবেল করুন।",
+              "latency_ms": 298.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Are there any questions before we move to the next topic?",
+              "text": "পরবর্তী বিষয়ে যাওয়ার আগে কি কোন প্রশ্ন আছে?",
+              "latency_ms": 116.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The Pythagorean theorem states that a squared plus b squared equals c squared.",
+              "text": "পিথাগোরিয়ান থিওরম (Pythagoran otorm) জানায় যে, একটি স্কোয়ার এবং b বর্গের সমান সমান।",
+              "latency_ms": 547.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "A triangle has three sides and the sum of its angles is 180 degrees.",
+              "text": "একটি ত্রিভুজের তিনটি দিক এবং এর কোণের সমষ্টি ১৮০ ডিগ্রি।",
+              "latency_ms": 246.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Newton's second law states that force equals mass times acceleration.",
+              "text": "নিউটনের দ্বিতীয় আইনে বলা হয়েছে যে, জোর করে জোর করে গণতার গতি গতির সমান।",
+              "latency_ms": 263.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The speed of light in vacuum is approximately 300,000 kilometers per second.",
+              "text": "শূন্যস্থানে আলোর গতি প্রায় ৩,০০,০০০ কিলোমিটার প্রতি সেকেন্ডে।",
+              "latency_ms": 240.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "300,000"
+              ]
+            },
+            {
+              "source": "Water boils at 100 degrees Celsius at standard atmospheric pressure.",
+              "text": "বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসের পানির ঝলকা পড়ে।",
+              "latency_ms": 288.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The pH scale measures how acidic or basic a solution is.",
+              "text": "পিএইচ স্কেল কিভাবে অ্যাসিডিক বা মৌলিক সমাধান হয় তা পরিমাপ করে।",
+              "latency_ms": 211.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Acid rain is caused by emissions of sulfur dioxide and nitrogen oxides.",
+              "text": "এসিড বৃষ্টির ফলে সালফার ডাই অক্সাইড ও নাইট্রোজেন অক্সাইড নির্গমন হয়।",
+              "latency_ms": 332.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please open your textbooks to page 42.",
+              "text": "দয়া করে ৪২ পৃষ্ঠায় আপনার পাঠ্যপুস্তকটি খুলুন।",
+              "latency_ms": 156.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The homework is due next Monday at 9 AM.",
+              "text": "আগামী সোমবার সকাল ৯টায় হোমওয়ার্ক হয়।",
+              "latency_ms": 211.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Remember to bring your calculator for the exam.",
+              "text": "পরীক্ষার জন্য আপনার ক্যালকুলেটর আনার কথা মনে রাখবেন।",
+              "latency_ms": 192.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The library is closed on Sundays.",
+              "text": "রোববারে লাইব্রেরি বন্ধ হয়ে গেছে।",
+              "latency_ms": 175.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please write your name and roll number at the top of the page.",
+              "text": "অনুগ্রহ করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল সংখ্যা লিখুন।",
+              "latency_ms": 189.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "We will have a short quiz at the end of today's class.",
+              "text": "আজকের ক্লাসের শেষে আমাদের একটি সংক্ষিপ্ত কুইজ থাকবে।",
+              "latency_ms": 162.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "グループワークは20分間です",
+              "text": "グループワークは20分間です",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "১০০ ডিগ্রি সেলসিয়াসে পানি ফুটে যায়",
+              "text": "dublicage searche que jectue",
+              "latency_ms": 571.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১০০"
+              ]
+            },
+            {
+              "source": "The result is 42.5% which is above the passing threshold of 33%.",
+              "text": "ফলাফল হল ৪২.৫% যা ৩৩% বরাবর অতিক্রম করে।",
+              "latency_ms": 219.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Please stand up and stretch for a minute.",
+              "text": "দয়া করে দাঁড়ান এবং এক মিনিটের জন্য প্রসারিত করুন।",
+              "latency_ms": 156.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Today's lecture will run for about 45 minutes.",
+              "text": "আজকের বক্তৃতা প্রায় ৪৫ মিনিটের জন্য চলবে।",
+              "latency_ms": 192.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The exam will cover chapters 1 through 5.",
+              "text": "পরীক্ষা ১ থেকে ৫ অধ্যায় কভার করবে।",
+              "latency_ms": 125.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "You may use a scientific calculator during the test.",
+              "text": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "latency_ms": 196.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The answer should be rounded to two decimal places.",
+              "text": "উত্তরটি দুই দশমিক স্থান পর্যন্ত বৃত্তান্ত করা উচিত।",
+              "latency_ms": 189.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Although the basic mechanism of photosynthesis is well understood, ongoing research continues to reveal new details about the role of specialized pigments, the efficiency of electron transport chains, and the ways in which plants adapt to different light conditions across seasons and latitudes.",
+              "text": "যদিও ফটোজেন্থেসিসের মৌলিক পদ্ধতি ভালভাবে বোঝা যায়, চলমান গবেষণায় বিশেষ রঞ্জন, ইলেকট্রন পরিবহন সজ্জার দক্ষতা এবং ঋতু ও অক্ষাংশের বিভিন্ন ক্ষেত্রে উদ্ভিদগুলি যেভাবে বিভিন্ন আলোর সাথে খাপ খায়, সেই বিষয়ে নতুন তথ্য প্রকাশ করা হয়।",
+              "latency_ms": 931.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The teacher explained that the mitochondria are often referred to as the powerhouse of the cell because they generate most of the cell's supply of adenosine triphosphate, which is then used as a source of chemical energy.",
+              "text": "শিক্ষক ব্যাখ্যা করেন যে, মাইটোকোন্ড্রিয়াকে প্রায়ই কোষের বিদ্যুৎহাউজ হিসাবে উল্লেখ করা হয় কারণ তারা এডেনোসিন ট্রাইপোসফেট এর বেশিরভাগ সরবরাহ করে, যা তখন রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "latency_ms": 707.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "In the experiment we will measure the rate of oxygen production by the aquatic plant Elodea under different light intensities and record the data in a table so that we can later plot a graph and determine whether the relationship is linear or exponential.",
+              "text": "পরীক্ষায় আমরা একাডেমিক উদ্ভিদ এলোডার অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং টেবিলে তথ্য রেকর্ড করব যাতে পরবর্তীতে আমরা একটি গ্রাফ প্লট করতে পারি এবং নির্ধারণ করতে পারি যে সম্পর্কটি রৈখিক বা সূচক।",
+              "latency_ms": 732.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "If you look carefully at the slide you will notice that the x-axis represents time in seconds while the y-axis represents the concentration of carbon dioxide in parts per million, and the curve shows a steady decline as the plant absorbs the gas during photosynthesis.",
+              "text": "যদি আপনি স্লাইডের দিকে মনোযোগ দিয়ে তাকান তাহলে আপনি লক্ষ্য করবেন যে x-অক্ষ সময়কে সেকেন্ডে প্রতিনিধিত্ব করে যখন y-অক্ষ প্রতি মিলিয়ন অংশে কার্বন ডাই অক্সাইডের ঘনত্বকে প্রতিনিধিত্ব করে, এবং বৃত্তাকারটি স্থিরভাবে হ্রাস দেখাবে যখন এই প্ল্যান্টটি ফটোসেনথেসিসের সময় গ্যাসকে শোধ করে।",
+              "latency_ms": 1151.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Hello.",
+              "text": "হ্যালো.",
+              "latency_ms": 49.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "Photosynthesis.",
+              "text": "ফটোসীনথেসিস.",
+              "latency_ms": 103.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "100 degrees.",
+              "text": "১০০ ডিগ্রী.",
+              "latency_ms": 66.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The.",
+              "text": ".",
+              "latency_ms": 45.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        }
+      },
+      "quality": {
+        "chrF": {
+          "status": "NOT_TESTED",
+          "note": "No gold reference translations available; supply references via --references to test."
+        },
+        "comet": {
+          "status": "NOT_TESTED",
+          "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+        }
+      }
+    },
+    "bn_to_en": {
+      "direction": "bn_to_en",
+      "test_sentences_total": 44,
+      "test_sentences_translatable": 43,
+      "test_data": {
+        "sources": [
+          "classroom lecture (photosynthesis)",
+          "physics/chemistry",
+          "everyday classroom",
+          "mixed-language (Japanese, Bengali numerals)",
+          "long sentences",
+          "short/edge cases"
+        ],
+        "note": "See script source for full sentence list."
+      },
+      "candidates": {
+        "A_existing_production": {
+          "name": "A_existing_production",
+          "description": "Production Marian translator (EN->BN only; BN->EN not available)",
+          "model_id": "(none — production is EN->BN only)",
+          "revision": "n/a",
+          "license": "n/a",
+          "load_time_ms": 353.9,
+          "warmup_latencies_ms": [
+            130.4,
+            138.9,
+            139.0,
+            140.0,
+            151.2,
+            135.4,
+            131.3,
+            135.8,
+            130.6
+          ],
+          "warmup_p50_ms": 135.8,
+          "warmup_mean_ms": 137.0,
+          "latencies_ms": {
+            "n": 43,
+            "mean": 254.1,
+            "min": 0.0,
+            "p50": 146.6,
+            "p95": 711.5,
+            "p99": 1632.8,
+            "max": 1632.8
+          },
+          "per_sentence_latency_ms": [
+            141.7,
+            147.3,
+            135.1,
+            157.2,
+            191.7,
+            128.5,
+            1632.8,
+            71.9,
+            124.9,
+            218.7,
+            242.0,
+            146.6,
+            99.4,
+            436.9,
+            1515.0,
+            101.0,
+            384.0,
+            152.8,
+            141.8,
+            198.6,
+            711.5,
+            220.7,
+            661.4,
+            153.0,
+            161.9,
+            93.4,
+            671.6,
+            126.1,
+            93.1,
+            93.0,
+            112.4,
+            125.5,
+            106.4,
+            125.1,
+            152.3,
+            0.0,
+            102.8,
+            129.1,
+            73.8,
+            191.3,
+            0.0,
+            155.4,
+            152.0,
+            146.2
+          ],
+          "sentences_per_second": 3.94,
+          "cpu_pct_samples": [
+            203.4,
+            222.0,
+            190.7,
+            197.6,
+            196.2,
+            195.8,
+            190.0,
+            191.1,
+            0.0,
+            198.4,
+            198.1,
+            0.0
+          ],
+          "cpu_pct_mean": 165.3,
+          "rss_mb_start": 546.7,
+          "rss_mb_end": 604.4,
+          "rss_mb_peak": 604.4,
+          "n_translatable": 43,
+          "n_skipped": 1,
+          "outputs": [
+            "স্প্যানিশ উন্মাদনা",
+            "উন্মাদনা",
+            "উন্মাদনা",
+            "\\~ \\~ \\ \\~",
+            "পীড়ার পাশাপাশি উন্মাদনা",
+            "উন্মাদনা",
+            "উন্মাদ",
+            "উন্মাদ",
+            "উন্মাদনা",
+            "উন্মাদনামূলক উন্মাদনা",
+            "• • • ▪ (w-BE)",
+            "পাতলা পাতলা বাঁধা",
+            "উন্মাদনা",
+            "↑ থ dublicing parseculae search version that that",
+            "dublicage special search que que jection search que que jection as case search as search asse search asse asse asse secures",
+            "উন্মাদনা",
+            "• • • • • • • • (w-BE) ▪ (w-BE)",
+            "উন্মাদনা",
+            "পাতলা বাঁধা বাঁধা",
+            "স্প্যানিশ উন্মাদ",
+            "Pipajucus just just pawical parse a parson plus b b b b b pargon just que c probrancion",
+            "• • • ▪ (w-BE)",
+            "\\~Chat you just you see search que que see searchams as que",
+            "বীজগাহিনী উন্মোচন",
+            "স্প্যানিশ উন্মাদ",
+            "খেয়াল করা",
+            "Khow ject sectures problicam just your ject your justam",
+            "স্প্যানিশ স্প্যানিশ",
+            "উন্মত্ততা",
+            "খেয়াল করা",
+            "বাঁকা বাঁধা",
+            "বাঁকা বাঁধা",
+            "স্প্যানিশ স্পন্দন",
+            "উন্মাদনা",
+            "উন্মাদ",
+            "混合言語のテストです",
+            "ফলাফল হল ৪২.৫%।",
+            "মিলিটারি",
+            "তৃপ্তি",
+            "স্প্যানিশ সেক্সিথ্যান্সিথ্‌",
+            "উনিশ শতক",
+            "উন্মাদনা করা",
+            "উন্মত্ততা"
+          ],
+          "per_sentence": [
+            {
+              "source": "শুভ সকাল সবাইকে। আজ আমরা প্রকাশসংশ্লেষণ নিয়ে শিখব।",
+              "text": "স্প্যানিশ উন্মাদনা",
+              "latency_ms": 141.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ হলো এমন এক প্রক্রিয়া যার মাধ্যমে সবুজ গাছ সূর্যের আলো ব্যবহার করে তাদের নিজের খাদ্য তৈরি করে।",
+              "text": "উন্মাদনা",
+              "latency_ms": 147.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছেরা ক্লোরোফিল নামক একটি সবুজ রঙের পিগমেন্ট ব্যবহার করে আলোর শক্তি ধরে রাখে।",
+              "text": "উন্মাদনা",
+              "latency_ms": 135.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ক্লোরোফিল ক্লোরোপ্লাস্ট নামক ছোট গঠনের ভেতরে পাওয়া যায়।",
+              "text": "\\~ \\~ \\ \\~",
+              "latency_ms": 157.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণের সময় গাছগুলো বাতায় থাকা কার্বন ডাই অক্সাইড আকাশের ছোট ছোট রন্ধ্র দিয়ে শোষণ করে, যাদের স্টোমাটা বলে।",
+              "text": "পীড়ার পাশাপাশি উন্মাদনা",
+              "latency_ms": 191.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "জল মাটি থেকে শিকড় দ্বারা শোষিত হয়।",
+              "text": "উন্মাদনা",
+              "latency_ms": 128.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আলোর শক্তি জল অণুকে হাইড্রোজেন ও অক্সিজেনে ভাগ করে।",
+              "text": "উন্মাদ",
+              "latency_ms": 1632.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "এই প্রক্রিয়াকে ফটোলাইসিস বলা হয়।",
+              "text": "উন্মাদ",
+              "latency_ms": 71.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছ কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে গ্লুকোজ তৈরি করে।",
+              "text": "উন্মাদনা",
+              "latency_ms": 124.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গ্লুকোজ একটি সরল চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "text": "উন্মাদনামূলক উন্মাদনা",
+              "latency_ms": 218.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "অক্সিজেন বায়ু থেকে একটি উপজাত হিসেবে নির্গত হয়।",
+              "text": "• • • ▪ (w-BE)",
+              "latency_ms": 242.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ছয়টি কার্বন ডাই অক্সাইড অণু এবং ছয়টি জল অণু একটি গ্লুকোজ অণু এবং ছয়টি অক্সিজেন অণু উৎপন্ন করে।",
+              "text": "পাতলা পাতলা বাঁধা",
+              "latency_ms": 146.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "তাপমাত্রাও প্রকাশসংশ্লেষণের হারকে প্রভাবিত করে।",
+              "text": "উন্মাদনা",
+              "latency_ms": 99.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "হার ২৫ থেকে ৩৫ ডিগ্রি সেলসিয়াসের আশেপাশে সর্বোচ্চ হয়।",
+              "text": "↑ থ dublicing parseculae search version that that",
+              "latency_ms": 436.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "২৫",
+                "৩৫"
+              ]
+            },
+            {
+              "source": "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইমগুলো সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "text": "dublicage special search que que jection search que que jection as case search as search asse search asse asse asse secures",
+              "latency_ms": 1515.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৪০"
+              ]
+            },
+            {
+              "source": "এনজাইম হলো একটি প্রোটিন যা একটি রাসায়নিক বিক্রিয়াকে দ্রুতগতি করে।",
+              "text": "উন্মাদনা",
+              "latency_ms": 101.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "মাটি শুকনো থাকলে জল একটি সীমিত উপাদান হয়ে পড়ে।",
+              "text": "• • • • • • • • (w-BE) ▪ (w-BE)",
+              "latency_ms": 384.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "খোলা বাতায় কার্বন ডাই অক্সাইড প্রায়ই সীমিত উপাদান হয়।",
+              "text": "উন্মাদনা",
+              "latency_ms": 152.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে বোর্ড থেকে চিত্রটি অনুলেপন করুন এবং স্টোমাটা ও ক্লোরোপ্লাস্ট লেবেল দিন।",
+              "text": "পাতলা বাঁধা বাঁধা",
+              "latency_ms": 141.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরবর্তী বিষয়ে অগ্রসর হওয়ার আগে কোনো প্রশ্ন আছে কি?",
+              "text": "স্প্যানিশ উন্মাদ",
+              "latency_ms": 198.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পাইথাগোরীয় উপপাদ্য বলে যে a বর্গ plus b বর্গ equals c বর্গ।",
+              "text": "Pipajucus just just pawical parse a parson plus b b b b b pargon just que c probrancion",
+              "latency_ms": 711.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "একটি ত্রিভুজের তিনটি বাহু রয়েছে এবং এর কোণগুলোর সমষ্টি ১৮০ ডিগ্রি।",
+              "text": "• • • ▪ (w-BE)",
+              "latency_ms": 220.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১৮০"
+              ]
+            },
+            {
+              "source": "নিউটনের দ্বিতীয় সূত্র বলে যে বল equals ভর times ত্বরণ।",
+              "text": "\\~Chat you just you see search que que see searchams as que",
+              "latency_ms": 661.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শূন্যে আলোর গতিবেগ প্রায় ৩০০,০০০ কিলোমিটার প্রতি সেকেন্ড।",
+              "text": "বীজগাহিনী উন্মোচন",
+              "latency_ms": 153.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৩০০,০০০"
+              ]
+            },
+            {
+              "source": "পানি স্ট্যান্ডার্ড বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসে ফুটে যায়।",
+              "text": "স্প্যানিশ উন্মাদ",
+              "latency_ms": 161.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১০০"
+              ]
+            },
+            {
+              "source": "দয়া করে আপনার টেক্সটবুক খুলুন ৪২ পৃষ্ঠায়।",
+              "text": "খেয়াল করা",
+              "latency_ms": 93.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৪২"
+              ]
+            },
+            {
+              "source": "গृহকাজ আগামী সোমবার নবয় ঘণ্টায় নিতে হবে।",
+              "text": "Khow ject sectures problicam just your ject your justam",
+              "latency_ms": 671.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষার সময় আপনার ক্যালকুলেটর নিয়ে আসতে � remembering করুন।",
+              "text": "স্প্যানিশ স্প্যানিশ",
+              "latency_ms": 126.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "লাইব্রেরি রবিবার বন্ধ থাকে।",
+              "text": "উন্মত্ততা",
+              "latency_ms": 93.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল নম্বর লিখুন।",
+              "text": "খেয়াল করা",
+              "latency_ms": 93.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের ক্লাসের শেষে আমরা একটি স্বল্প কুইজ দেব।",
+              "text": "বাঁকা বাঁধা",
+              "latency_ms": 112.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের বক্তৃতা প্রায় ৪৫ মিনিট চলবে।",
+              "text": "বাঁকা বাঁধা",
+              "latency_ms": 125.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৪৫"
+              ]
+            },
+            {
+              "source": "পরীক্ষায় অধ্যায় ১ থেকে ৫ পর্যন্ত কভার করা হবে।",
+              "text": "স্প্যানিশ স্পন্দন",
+              "latency_ms": 106.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১",
+                "৫"
+              ]
+            },
+            {
+              "source": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "text": "উন্মাদনা",
+              "latency_ms": 125.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "উত্তরটি দুটি দশমিক স্থান পর্যন্ত রাউন্ড করতে হবে।",
+              "text": "উন্মাদ",
+              "latency_ms": 152.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "混合言語のテストです",
+              "text": "混合言語のテストです",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The result is 42.5%.",
+              "text": "ফলাফল হল ৪২.৫%।",
+              "latency_ms": 102.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "১০০ ডিগ্রি।",
+              "text": "মিলিটারি",
+              "latency_ms": 129.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "১০০"
+              ]
+            },
+            {
+              "source": "হ্যালো।",
+              "text": "তৃপ্তি",
+              "latency_ms": 73.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ।",
+              "text": "স্প্যানিশ সেক্সিথ্যান্সিথ্‌",
+              "latency_ms": 191.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            },
+            {
+              "source": "যদিও প্রকাশসংশ্লেষণের মৌলিক প্রক্রিয়াটি ভালোভাবে বোঝা যায়, চলমান গবেষণা নির্দিষ্ট পিগমেন্টের ভূমিকা, ইলেকট্রন পরিবহন শৃঙ্খলের দক্ষতা এবং গাছগুলো যেভাবে ঋতু ও অক্ষাংশ জুড়ে বিভিন্ন আলোর অবস্থার সাথে খাপ খাওয়ায় তার নতুন বিবরণ উদঘাটন করতে থাকে।",
+              "text": "উনিশ শতক",
+              "latency_ms": 155.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শিক্ষক ব্যাখ্যা করেন যে মাইটোকন্ড্রিয়াকে প্রায়শই কোষের বিদ্যুৎকেন্দ্র বলা হয় কারণ তারা কোষের অধিকাংশ অ্যাডেনোসিন ট্রাইফসফেট সরবরাহ তৈরি করে, যা তারপর রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "text": "উন্মাদনা করা",
+              "latency_ms": 152.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষায় আমরা পানিজন্য গাছ Elodea দ্বারা বিভিন্ন আলোর তীব্রতার অধীনে অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং ডেটা একটি সারণিতে রেকর্ড করব যাতে পরে আমরা লেখচিত্র অঙ্কন করতে পারি এবং সম্পর্ক রৈখিক না এক্সপোনেনশিয়াল তা নির্ধারণ করতে পারি।",
+              "text": "উন্মত্ততা",
+              "latency_ms": 146.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        },
+        "B_opus_transformers_cpu": {
+          "name": "B_opus_transformers_cpu",
+          "description": "OPUS-MT BN->EN via HuggingFace Transformers on CPU",
+          "model_id": "Helsinki-NLP/opus-mt-bn-en",
+          "revision": "098d427088fba65d683639e91742c783cc7c1434",
+          "license": "Apache-2.0",
+          "load_time_ms": 1602.6,
+          "warmup_latencies_ms": [
+            629.1,
+            937.3,
+            958.5,
+            605.1,
+            875.4,
+            1077.9,
+            703.1,
+            964.6,
+            973.9
+          ],
+          "warmup_p50_ms": 937.3,
+          "warmup_mean_ms": 858.3,
+          "latencies_ms": {
+            "n": 43,
+            "mean": 974.1,
+            "min": 0.1,
+            "p50": 797.9,
+            "p95": 2540.9,
+            "p99": 2783.7,
+            "max": 2783.7
+          },
+          "per_sentence_latency_ms": [
+            732.7,
+            1093.6,
+            1245.9,
+            920.5,
+            1576.7,
+            720.1,
+            797.9,
+            494.5,
+            1605.4,
+            638.3,
+            1286.6,
+            1860.2,
+            889.1,
+            1325.2,
+            805.4,
+            1015.8,
+            1347.4,
+            1054.2,
+            1428.4,
+            799.4,
+            1209.7,
+            786.4,
+            931.7,
+            754.9,
+            728.9,
+            502.6,
+            740.9,
+            658.0,
+            407.9,
+            633.3,
+            992.3,
+            589.9,
+            468.9,
+            603.3,
+            764.2,
+            0.1,
+            599.6,
+            282.7,
+            173.4,
+            357.5,
+            0.0,
+            2783.7,
+            2737.9,
+            2540.9
+          ],
+          "sentences_per_second": 1.03,
+          "cpu_pct_samples": [
+            195.5,
+            190.0,
+            178.5,
+            185.0,
+            196.4,
+            193.4,
+            194.5,
+            198.2,
+            0.0,
+            190.2,
+            195.6,
+            0.0
+          ],
+          "cpu_pct_mean": 159.8,
+          "rss_mb_start": 557.6,
+          "rss_mb_end": 819.0,
+          "rss_mb_peak": 819.0,
+          "n_translatable": 43,
+          "n_skipped": 1,
+          "outputs": [
+            "Good morning, let's talk about our coverage today.",
+            "Public analysis is a process that allows green trees to use the sun to create their own food.",
+            "The tree holds the power of the light using a green reptile called Chlorofill.",
+            "Found inside the small structure called Clodol Chloro Plust.",
+            "Trees in the publication put on a small scale the CO2 emissions in the sky, which they call the Stomata.",
+            "The water is harvested from the ground with roots.",
+            "The power of light divides the molecule into gravity and oxygen.",
+            "The process was called Photolaisis.",
+            "Trees use carbon diabetics and hydrogens.",
+            "A simple sugar that preserves chemical energy.",
+            "Oxygen flows from the air as a subsidiary.",
+            "Six carbon molecules and six water molecules produce an molecule of molecules, and six produce oxygen molecules.",
+            "The temperature also affects the level of expression.",
+            "The rate is highest around 25 to 35 degrees Celsius.",
+            "On 40 degrees Celsius, the Nejam stopped working properly.",
+            "Enjaym is a protein that speeds up a chemical product.",
+            "When the ground drys, the water becomes a restricted substance.",
+            "Using a carbon Diet is often limited in open space.",
+            "Please move the image from the board, and select the Stomata and the Clost Label.",
+            "Do you have any questions before they move on to the next one?",
+            "The Pythagorian vice says that a square square plus b squares c squared.",
+            "There are three sides of a triangle and 180 degrees of its angle.",
+            "The second source of Newton says that the ball is full of time.",
+            "The speed of light in zero is about 300 kilometers per second.",
+            "The water blooms at 100 degrees Celsius under standard weather pressure.",
+            "Please open your textbooks on page 42.",
+            "We need to take a new hour on Monday.",
+            "Remember bringing your calculator to the test.",
+            "The library is closed on Sunday.",
+            "Please enter your name and roll number on the page.",
+            "At the end of today's class, we'll give a littleQuiz.",
+            "Today's speech is about 45 minutes.",
+            "Chapter 1 to 5.",
+            "You can use a scientific calculator when testing.",
+            "We need to round the answer up to two decimal places.",
+            "混合言語のテストです",
+            "The result is 4.5%.",
+            "100 degrees.",
+            "Hello.",
+            "Expression analysis.",
+            "Although the basic process of publishing analysis is quite well understood, the role of the ongoing research is the role of specific awareness, the electoral transport skills, and the way plants adapt to the situation of various lights across seasons and darkness.",
+            "The teacher explains that Mytokondoria is often called the cell's electricity plant because they supply most of the cell's Adnosin Triphate, which is then used as a source of chemical energy.",
+            "In the test, we will measure oxygen production under the intensity of different lights and record data on a table that we can draw and determine the nature of the relationship or the archipelago of collinear."
+          ],
+          "per_sentence": [
+            {
+              "source": "শুভ সকাল সবাইকে। আজ আমরা প্রকাশসংশ্লেষণ নিয়ে শিখব।",
+              "text": "Good morning, let's talk about our coverage today.",
+              "latency_ms": 732.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ হলো এমন এক প্রক্রিয়া যার মাধ্যমে সবুজ গাছ সূর্যের আলো ব্যবহার করে তাদের নিজের খাদ্য তৈরি করে।",
+              "text": "Public analysis is a process that allows green trees to use the sun to create their own food.",
+              "latency_ms": 1093.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছেরা ক্লোরোফিল নামক একটি সবুজ রঙের পিগমেন্ট ব্যবহার করে আলোর শক্তি ধরে রাখে।",
+              "text": "The tree holds the power of the light using a green reptile called Chlorofill.",
+              "latency_ms": 1245.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ক্লোরোফিল ক্লোরোপ্লাস্ট নামক ছোট গঠনের ভেতরে পাওয়া যায়।",
+              "text": "Found inside the small structure called Clodol Chloro Plust.",
+              "latency_ms": 920.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণের সময় গাছগুলো বাতায় থাকা কার্বন ডাই অক্সাইড আকাশের ছোট ছোট রন্ধ্র দিয়ে শোষণ করে, যাদের স্টোমাটা বলে।",
+              "text": "Trees in the publication put on a small scale the CO2 emissions in the sky, which they call the Stomata.",
+              "latency_ms": 1576.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "জল মাটি থেকে শিকড় দ্বারা শোষিত হয়।",
+              "text": "The water is harvested from the ground with roots.",
+              "latency_ms": 720.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আলোর শক্তি জল অণুকে হাইড্রোজেন ও অক্সিজেনে ভাগ করে।",
+              "text": "The power of light divides the molecule into gravity and oxygen.",
+              "latency_ms": 797.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "এই প্রক্রিয়াকে ফটোলাইসিস বলা হয়।",
+              "text": "The process was called Photolaisis.",
+              "latency_ms": 494.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছ কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে গ্লুকোজ তৈরি করে।",
+              "text": "Trees use carbon diabetics and hydrogens.",
+              "latency_ms": 1605.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গ্লুকোজ একটি সরল চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "text": "A simple sugar that preserves chemical energy.",
+              "latency_ms": 638.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "অক্সিজেন বায়ু থেকে একটি উপজাত হিসেবে নির্গত হয়।",
+              "text": "Oxygen flows from the air as a subsidiary.",
+              "latency_ms": 1286.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ছয়টি কার্বন ডাই অক্সাইড অণু এবং ছয়টি জল অণু একটি গ্লুকোজ অণু এবং ছয়টি অক্সিজেন অণু উৎপন্ন করে।",
+              "text": "Six carbon molecules and six water molecules produce an molecule of molecules, and six produce oxygen molecules.",
+              "latency_ms": 1860.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "তাপমাত্রাও প্রকাশসংশ্লেষণের হারকে প্রভাবিত করে।",
+              "text": "The temperature also affects the level of expression.",
+              "latency_ms": 889.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "হার ২৫ থেকে ৩৫ ডিগ্রি সেলসিয়াসের আশেপাশে সর্বোচ্চ হয়।",
+              "text": "The rate is highest around 25 to 35 degrees Celsius.",
+              "latency_ms": 1325.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইমগুলো সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "text": "On 40 degrees Celsius, the Nejam stopped working properly.",
+              "latency_ms": 805.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "এনজাইম হলো একটি প্রোটিন যা একটি রাসায়নিক বিক্রিয়াকে দ্রুতগতি করে।",
+              "text": "Enjaym is a protein that speeds up a chemical product.",
+              "latency_ms": 1015.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "মাটি শুকনো থাকলে জল একটি সীমিত উপাদান হয়ে পড়ে।",
+              "text": "When the ground drys, the water becomes a restricted substance.",
+              "latency_ms": 1347.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "খোলা বাতায় কার্বন ডাই অক্সাইড প্রায়ই সীমিত উপাদান হয়।",
+              "text": "Using a carbon Diet is often limited in open space.",
+              "latency_ms": 1054.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে বোর্ড থেকে চিত্রটি অনুলেপন করুন এবং স্টোমাটা ও ক্লোরোপ্লাস্ট লেবেল দিন।",
+              "text": "Please move the image from the board, and select the Stomata and the Clost Label.",
+              "latency_ms": 1428.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরবর্তী বিষয়ে অগ্রসর হওয়ার আগে কোনো প্রশ্ন আছে কি?",
+              "text": "Do you have any questions before they move on to the next one?",
+              "latency_ms": 799.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পাইথাগোরীয় উপপাদ্য বলে যে a বর্গ plus b বর্গ equals c বর্গ।",
+              "text": "The Pythagorian vice says that a square square plus b squares c squared.",
+              "latency_ms": 1209.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "একটি ত্রিভুজের তিনটি বাহু রয়েছে এবং এর কোণগুলোর সমষ্টি ১৮০ ডিগ্রি।",
+              "text": "There are three sides of a triangle and 180 degrees of its angle.",
+              "latency_ms": 786.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "নিউটনের দ্বিতীয় সূত্র বলে যে বল equals ভর times ত্বরণ।",
+              "text": "The second source of Newton says that the ball is full of time.",
+              "latency_ms": 931.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শূন্যে আলোর গতিবেগ প্রায় ৩০০,০০০ কিলোমিটার প্রতি সেকেন্ড।",
+              "text": "The speed of light in zero is about 300 kilometers per second.",
+              "latency_ms": 754.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৩০০,০০০"
+              ]
+            },
+            {
+              "source": "পানি স্ট্যান্ডার্ড বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসে ফুটে যায়।",
+              "text": "The water blooms at 100 degrees Celsius under standard weather pressure.",
+              "latency_ms": 728.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে আপনার টেক্সটবুক খুলুন ৪২ পৃষ্ঠায়।",
+              "text": "Please open your textbooks on page 42.",
+              "latency_ms": 502.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গृহকাজ আগামী সোমবার নবয় ঘণ্টায় নিতে হবে।",
+              "text": "We need to take a new hour on Monday.",
+              "latency_ms": 740.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষার সময় আপনার ক্যালকুলেটর নিয়ে আসতে � remembering করুন।",
+              "text": "Remember bringing your calculator to the test.",
+              "latency_ms": 658.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "লাইব্রেরি রবিবার বন্ধ থাকে।",
+              "text": "The library is closed on Sunday.",
+              "latency_ms": 407.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল নম্বর লিখুন।",
+              "text": "Please enter your name and roll number on the page.",
+              "latency_ms": 633.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের ক্লাসের শেষে আমরা একটি স্বল্প কুইজ দেব।",
+              "text": "At the end of today's class, we'll give a littleQuiz.",
+              "latency_ms": 992.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের বক্তৃতা প্রায় ৪৫ মিনিট চলবে।",
+              "text": "Today's speech is about 45 minutes.",
+              "latency_ms": 589.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষায় অধ্যায় ১ থেকে ৫ পর্যন্ত কভার করা হবে।",
+              "text": "Chapter 1 to 5.",
+              "latency_ms": 468.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "text": "You can use a scientific calculator when testing.",
+              "latency_ms": 603.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "উত্তরটি দুটি দশমিক স্থান পর্যন্ত রাউন্ড করতে হবে।",
+              "text": "We need to round the answer up to two decimal places.",
+              "latency_ms": 764.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "混合言語のテストです",
+              "text": "混合言語のテストです",
+              "latency_ms": 0.1,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The result is 42.5%.",
+              "text": "The result is 4.5%.",
+              "latency_ms": 599.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "42.5"
+              ]
+            },
+            {
+              "source": "১০০ ডিগ্রি।",
+              "text": "100 degrees.",
+              "latency_ms": 282.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "হ্যালো।",
+              "text": "Hello.",
+              "latency_ms": 173.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ।",
+              "text": "Expression analysis.",
+              "latency_ms": 357.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            },
+            {
+              "source": "যদিও প্রকাশসংশ্লেষণের মৌলিক প্রক্রিয়াটি ভালোভাবে বোঝা যায়, চলমান গবেষণা নির্দিষ্ট পিগমেন্টের ভূমিকা, ইলেকট্রন পরিবহন শৃঙ্খলের দক্ষতা এবং গাছগুলো যেভাবে ঋতু ও অক্ষাংশ জুড়ে বিভিন্ন আলোর অবস্থার সাথে খাপ খাওয়ায় তার নতুন বিবরণ উদঘাটন করতে থাকে।",
+              "text": "Although the basic process of publishing analysis is quite well understood, the role of the ongoing research is the role of specific awareness, the electoral transport skills, and the way plants adapt to the situation of various lights across seasons and darkness.",
+              "latency_ms": 2783.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শিক্ষক ব্যাখ্যা করেন যে মাইটোকন্ড্রিয়াকে প্রায়শই কোষের বিদ্যুৎকেন্দ্র বলা হয় কারণ তারা কোষের অধিকাংশ অ্যাডেনোসিন ট্রাইফসফেট সরবরাহ তৈরি করে, যা তারপর রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "text": "The teacher explains that Mytokondoria is often called the cell's electricity plant because they supply most of the cell's Adnosin Triphate, which is then used as a source of chemical energy.",
+              "latency_ms": 2737.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষায় আমরা পানিজন্য গাছ Elodea দ্বারা বিভিন্ন আলোর তীব্রতার অধীনে অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং ডেটা একটি সারণিতে রেকর্ড করব যাতে পরে আমরা লেখচিত্র অঙ্কন করতে পারি এবং সম্পর্ক রৈখিক না এক্সপোনেনশিয়াল তা নির্ধারণ করতে পারি।",
+              "text": "In the test, we will measure oxygen production under the intensity of different lights and record data on a table that we can draw and determine the nature of the relationship or the archipelago of collinear.",
+              "latency_ms": 2540.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        },
+        "C_opus_ct2_int8": {
+          "name": "C_opus_ct2_int8",
+          "description": "OPUS-MT BN->EN via CTranslate2 INT8",
+          "model_id": "Helsinki-NLP/opus-mt-bn-en",
+          "revision": "098d427088fba65d683639e91742c783cc7c1434",
+          "license": "Apache-2.0",
+          "load_time_ms": 309.6,
+          "warmup_latencies_ms": [
+            168.5,
+            265.8,
+            299.3,
+            192.3,
+            261.7,
+            293.3,
+            176.4,
+            246.5,
+            293.9
+          ],
+          "warmup_p50_ms": 261.7,
+          "warmup_mean_ms": 244.2,
+          "latencies_ms": {
+            "n": 43,
+            "mean": 242.0,
+            "min": 0.0,
+            "p50": 200.0,
+            "p95": 699.6,
+            "p99": 868.9,
+            "max": 868.9
+          },
+          "per_sentence_latency_ms": [
+            190.7,
+            245.5,
+            289.6,
+            235.7,
+            373.1,
+            175.6,
+            200.0,
+            133.9,
+            183.8,
+            135.4,
+            189.9,
+            365.6,
+            152.3,
+            249.8,
+            292.4,
+            243.9,
+            215.2,
+            323.7,
+            309.6,
+            210.9,
+            310.3,
+            227.7,
+            253.3,
+            196.9,
+            222.4,
+            145.1,
+            187.5,
+            140.9,
+            134.5,
+            179.9,
+            317.1,
+            159.3,
+            149.3,
+            140.4,
+            204.1,
+            0.0,
+            152.0,
+            61.7,
+            45.4,
+            78.3,
+            0.0,
+            868.9,
+            699.6,
+            815.8
+          ],
+          "sentences_per_second": 4.13,
+          "cpu_pct_samples": [
+            190.8,
+            193.7,
+            196.8,
+            184.3,
+            194.3,
+            192.8,
+            191.4,
+            188.1,
+            0.0,
+            203.8,
+            197.3,
+            0.0
+          ],
+          "cpu_pct_mean": 161.1,
+          "rss_mb_start": 561.1,
+          "rss_mb_end": 621.6,
+          "rss_mb_peak": 621.6,
+          "n_translatable": 43,
+          "n_skipped": 1,
+          "outputs": [
+            "Good morning, let's talk about our coverage.",
+            "Public analysis is a process that allows green trees to use sunlight to produce their own food.",
+            "The tree holds the power of the light using a green reptile called Chlorofill.",
+            "Found inside the small structure called Clodol Chloro Plust.",
+            "Trees in the publication put on a small amount of carbon emissions in the sky, which they call the Stomata.",
+            "The water is harvested from the ground with roots.",
+            "The power of light divides the molecule into gravity and oxygen.",
+            "The process is called Photolaisis.",
+            "Trees use carbon diabetics and hydrogens.",
+            "A simple sugar that preserves chemical energy.",
+            "Oxygen flows from the air as a subjugation.",
+            "Six carbon molecules and six water molecules produce an molecule of molecules, and six produce oxygen molecules.",
+            "The temperature also affects the level of expression.",
+            "The rate is highest around 25 to 35 degrees Celsius.",
+            "At 40 degrees Celsius, the Nejam stopped working properly.",
+            "Enjaym is a protein that speeds up a chemical product.",
+            "When the ground drys, the water becomes a restricted substance.",
+            "Using an illustration, you can see that carbon emissions are often limited in the open.",
+            "Please move the image from the board and select the Stomata and the Clost Label.",
+            "Do you have any questions before they move on to next one?",
+            "The Pythagorian vice says that a square plus b squareds c squared.",
+            "There are three sides of a triangle and 180 degrees of its angle.",
+            "The second source of Newton says that the ball is full of time.",
+            "The light speed in zero is about 300 kilometers per second.",
+            "The water blooms at 100 degrees Celsius by standard weather pressure.",
+            "Please open your textbooks on page 42.",
+            "We need to take a new hour on Monday.",
+            "Remember bringing your calculator to the test.",
+            "The library is closed on Sunday.",
+            "Please enter your name and roll number on the page.",
+            "At the end of today's class, we'll give you a littleQuiz.",
+            "Today's speech is about 45 minutes.",
+            "Chapter 1 to 5.",
+            "You can use a scientific calculator when testing.",
+            "We need to round the answer up to two decimal places.",
+            "混合言語のテストです",
+            "The result is 4.5%.",
+            "100 degrees.",
+            "Hello.",
+            "Expression analysis.",
+            "Although the basic process of publishing analysis is quite well understood, the role of the ongoing research is the role of specific departments, the electrons of transportation skills, and the way trees adapt to the different appearances of seasons and darkness.",
+            "The teacher explains that Mytokondor is often called the cell’s electricity plant because they supply most of the cell's unstructures, then used as a source of chemical energy.",
+            "In the test, we will measure oxygen production under the intensity of different lights and record data on a table that we can draw and determine the nature of the relationship or the archipelago of the Coliner."
+          ],
+          "per_sentence": [
+            {
+              "source": "শুভ সকাল সবাইকে। আজ আমরা প্রকাশসংশ্লেষণ নিয়ে শিখব।",
+              "text": "Good morning, let's talk about our coverage.",
+              "latency_ms": 190.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ হলো এমন এক প্রক্রিয়া যার মাধ্যমে সবুজ গাছ সূর্যের আলো ব্যবহার করে তাদের নিজের খাদ্য তৈরি করে।",
+              "text": "Public analysis is a process that allows green trees to use sunlight to produce their own food.",
+              "latency_ms": 245.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছেরা ক্লোরোফিল নামক একটি সবুজ রঙের পিগমেন্ট ব্যবহার করে আলোর শক্তি ধরে রাখে।",
+              "text": "The tree holds the power of the light using a green reptile called Chlorofill.",
+              "latency_ms": 289.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ক্লোরোফিল ক্লোরোপ্লাস্ট নামক ছোট গঠনের ভেতরে পাওয়া যায়।",
+              "text": "Found inside the small structure called Clodol Chloro Plust.",
+              "latency_ms": 235.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণের সময় গাছগুলো বাতায় থাকা কার্বন ডাই অক্সাইড আকাশের ছোট ছোট রন্ধ্র দিয়ে শোষণ করে, যাদের স্টোমাটা বলে।",
+              "text": "Trees in the publication put on a small amount of carbon emissions in the sky, which they call the Stomata.",
+              "latency_ms": 373.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "জল মাটি থেকে শিকড় দ্বারা শোষিত হয়।",
+              "text": "The water is harvested from the ground with roots.",
+              "latency_ms": 175.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আলোর শক্তি জল অণুকে হাইড্রোজেন ও অক্সিজেনে ভাগ করে।",
+              "text": "The power of light divides the molecule into gravity and oxygen.",
+              "latency_ms": 200.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "এই প্রক্রিয়াকে ফটোলাইসিস বলা হয়।",
+              "text": "The process is called Photolaisis.",
+              "latency_ms": 133.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গাছ কার্বন ডাই অক্সাইড এবং হাইড্রোজেন ব্যবহার করে গ্লুকোজ তৈরি করে।",
+              "text": "Trees use carbon diabetics and hydrogens.",
+              "latency_ms": 183.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গ্লুকোজ একটি সরল চিনি যা রাসায়নিক শক্তি সংরক্ষণ করে।",
+              "text": "A simple sugar that preserves chemical energy.",
+              "latency_ms": 135.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "অক্সিজেন বায়ু থেকে একটি উপজাত হিসেবে নির্গত হয়।",
+              "text": "Oxygen flows from the air as a subjugation.",
+              "latency_ms": 189.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "ছয়টি কার্বন ডাই অক্সাইড অণু এবং ছয়টি জল অণু একটি গ্লুকোজ অণু এবং ছয়টি অক্সিজেন অণু উৎপন্ন করে।",
+              "text": "Six carbon molecules and six water molecules produce an molecule of molecules, and six produce oxygen molecules.",
+              "latency_ms": 365.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "তাপমাত্রাও প্রকাশসংশ্লেষণের হারকে প্রভাবিত করে।",
+              "text": "The temperature also affects the level of expression.",
+              "latency_ms": 152.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "হার ২৫ থেকে ৩৫ ডিগ্রি সেলসিয়াসের আশেপাশে সর্বোচ্চ হয়।",
+              "text": "The rate is highest around 25 to 35 degrees Celsius.",
+              "latency_ms": 249.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "৪০ ডিগ্রি সেলসিয়াসের উপরে এনজাইমগুলো সঠিকভাবে কাজ করা বন্ধ করে দেয়।",
+              "text": "At 40 degrees Celsius, the Nejam stopped working properly.",
+              "latency_ms": 292.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "এনজাইম হলো একটি প্রোটিন যা একটি রাসায়নিক বিক্রিয়াকে দ্রুতগতি করে।",
+              "text": "Enjaym is a protein that speeds up a chemical product.",
+              "latency_ms": 243.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "মাটি শুকনো থাকলে জল একটি সীমিত উপাদান হয়ে পড়ে।",
+              "text": "When the ground drys, the water becomes a restricted substance.",
+              "latency_ms": 215.2,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "খোলা বাতায় কার্বন ডাই অক্সাইড প্রায়ই সীমিত উপাদান হয়।",
+              "text": "Using an illustration, you can see that carbon emissions are often limited in the open.",
+              "latency_ms": 323.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে বোর্ড থেকে চিত্রটি অনুলেপন করুন এবং স্টোমাটা ও ক্লোরোপ্লাস্ট লেবেল দিন।",
+              "text": "Please move the image from the board and select the Stomata and the Clost Label.",
+              "latency_ms": 309.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরবর্তী বিষয়ে অগ্রসর হওয়ার আগে কোনো প্রশ্ন আছে কি?",
+              "text": "Do you have any questions before they move on to next one?",
+              "latency_ms": 210.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পাইথাগোরীয় উপপাদ্য বলে যে a বর্গ plus b বর্গ equals c বর্গ।",
+              "text": "The Pythagorian vice says that a square plus b squareds c squared.",
+              "latency_ms": 310.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "একটি ত্রিভুজের তিনটি বাহু রয়েছে এবং এর কোণগুলোর সমষ্টি ১৮০ ডিগ্রি।",
+              "text": "There are three sides of a triangle and 180 degrees of its angle.",
+              "latency_ms": 227.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "নিউটনের দ্বিতীয় সূত্র বলে যে বল equals ভর times ত্বরণ।",
+              "text": "The second source of Newton says that the ball is full of time.",
+              "latency_ms": 253.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শূন্যে আলোর গতিবেগ প্রায় ৩০০,০০০ কিলোমিটার প্রতি সেকেন্ড।",
+              "text": "The light speed in zero is about 300 kilometers per second.",
+              "latency_ms": 196.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "৩০০,০০০"
+              ]
+            },
+            {
+              "source": "পানি স্ট্যান্ডার্ড বায়ুমণ্ডলীয় চাপে ১০০ ডিগ্রি সেলসিয়াসে ফুটে যায়।",
+              "text": "The water blooms at 100 degrees Celsius by standard weather pressure.",
+              "latency_ms": 222.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে আপনার টেক্সটবুক খুলুন ৪২ পৃষ্ঠায়।",
+              "text": "Please open your textbooks on page 42.",
+              "latency_ms": 145.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "গृহকাজ আগামী সোমবার নবয় ঘণ্টায় নিতে হবে।",
+              "text": "We need to take a new hour on Monday.",
+              "latency_ms": 187.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষার সময় আপনার ক্যালকুলেটর নিয়ে আসতে � remembering করুন।",
+              "text": "Remember bringing your calculator to the test.",
+              "latency_ms": 140.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "লাইব্রেরি রবিবার বন্ধ থাকে।",
+              "text": "The library is closed on Sunday.",
+              "latency_ms": 134.5,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "দয়া করে পৃষ্ঠার শীর্ষে আপনার নাম ও রোল নম্বর লিখুন।",
+              "text": "Please enter your name and roll number on the page.",
+              "latency_ms": 179.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের ক্লাসের শেষে আমরা একটি স্বল্প কুইজ দেব।",
+              "text": "At the end of today's class, we'll give you a littleQuiz.",
+              "latency_ms": 317.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "আজকের বক্তৃতা প্রায় ৪৫ মিনিট চলবে।",
+              "text": "Today's speech is about 45 minutes.",
+              "latency_ms": 159.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষায় অধ্যায় ১ থেকে ৫ পর্যন্ত কভার করা হবে।",
+              "text": "Chapter 1 to 5.",
+              "latency_ms": 149.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষার সময় আপনি একটি বৈজ্ঞানিক ক্যালকুলেটর ব্যবহার করতে পারেন।",
+              "text": "You can use a scientific calculator when testing.",
+              "latency_ms": 140.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "উত্তরটি দুটি দশমিক স্থান পর্যন্ত রাউন্ড করতে হবে।",
+              "text": "We need to round the answer up to two decimal places.",
+              "latency_ms": 204.1,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "混合言語のテストです",
+              "text": "混合言語のテストです",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "no translatable text",
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "The result is 42.5%.",
+              "text": "The result is 4.5%.",
+              "latency_ms": 152.0,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": false,
+              "missing_numbers": [
+                "42.5"
+              ]
+            },
+            {
+              "source": "১০০ ডিগ্রি।",
+              "text": "100 degrees.",
+              "latency_ms": 61.7,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "হ্যালো।",
+              "text": "Hello.",
+              "latency_ms": 45.4,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "প্রকাশসংশ্লেষণ।",
+              "text": "Expression analysis.",
+              "latency_ms": 78.3,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "",
+              "text": "",
+              "latency_ms": 0.0,
+              "skipped": true,
+              "reason": "empty"
+            },
+            {
+              "source": "যদিও প্রকাশসংশ্লেষণের মৌলিক প্রক্রিয়াটি ভালোভাবে বোঝা যায়, চলমান গবেষণা নির্দিষ্ট পিগমেন্টের ভূমিকা, ইলেকট্রন পরিবহন শৃঙ্খলের দক্ষতা এবং গাছগুলো যেভাবে ঋতু ও অক্ষাংশ জুড়ে বিভিন্ন আলোর অবস্থার সাথে খাপ খাওয়ায় তার নতুন বিবরণ উদঘাটন করতে থাকে।",
+              "text": "Although the basic process of publishing analysis is quite well understood, the role of the ongoing research is the role of specific departments, the electrons of transportation skills, and the way trees adapt to the different appearances of seasons and darkness.",
+              "latency_ms": 868.9,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "শিক্ষক ব্যাখ্যা করেন যে মাইটোকন্ড্রিয়াকে প্রায়শই কোষের বিদ্যুৎকেন্দ্র বলা হয় কারণ তারা কোষের অধিকাংশ অ্যাডেনোসিন ট্রাইফসফেট সরবরাহ তৈরি করে, যা তারপর রাসায়নিক শক্তির উৎস হিসেবে ব্যবহৃত হয়।",
+              "text": "The teacher explains that Mytokondor is often called the cell’s electricity plant because they supply most of the cell's unstructures, then used as a source of chemical energy.",
+              "latency_ms": 699.6,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            },
+            {
+              "source": "পরীক্ষায় আমরা পানিজন্য গাছ Elodea দ্বারা বিভিন্ন আলোর তীব্রতার অধীনে অক্সিজেন উৎপাদনের হার পরিমাপ করব এবং ডেটা একটি সারণিতে রেকর্ড করব যাতে পরে আমরা লেখচিত্র অঙ্কন করতে পারি এবং সম্পর্ক রৈখিক না এক্সপোনেনশিয়াল তা নির্ধারণ করতে পারি।",
+              "text": "In the test, we will measure oxygen production under the intensity of different lights and record data on a table that we can draw and determine the nature of the relationship or the archipelago of the Coliner.",
+              "latency_ms": 815.8,
+              "skipped": false,
+              "reason": null,
+              "numbers_preserved": true,
+              "missing_numbers": []
+            }
+          ],
+          "quality": {
+            "chrF": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations available; supply references via --references to test."
+            },
+            "comet": {
+              "status": "NOT_TESTED",
+              "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+            }
+          }
+        }
+      },
+      "quality": {
+        "chrF": {
+          "status": "NOT_TESTED",
+          "note": "No gold reference translations available; supply references via --references to test."
+        },
+        "comet": {
+          "status": "NOT_TESTED",
+          "note": "No gold reference translations and COMET model download not attempted in offline classroom context."
+        }
+      }
+    }
+  },
+  "human_review_sample": {
+    "status": "NOT_DONE",
+    "note": "A representative sample (10 sentences per direction per candidate) should be reviewed by a Bangla-speaking human before integration. Outputs are in per_sentence for each candidate.",
+    "sample_size_per_candidate": 10
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>Offline Guru — শিক্ষার্থী</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">Offline <span>Guru</span></div>
+  <div class="spacer"></div>
+  <span class="pill" id="connPill"><span class="dot" id="connDot"></span><span id="connText">সংযোগ নেই</span></span>
+</header>
+
+<!-- Join -->
+<section class="login" id="joinView">
+  <div class="card">
+    <h1>শ্রেণিতে যোগ দিন</h1>
+    <p class="muted">শিক্ষকের ল্যাপটপে চলা ক্লাসরুমে সংযুক্ত হোন। ইন্টারনেট লাগবে না।</p>
+    <label for="codeInput">ক্লাস কোড</label>
+    <input id="codeInput" autocomplete="off" autocapitalize="characters" placeholder="যেমন: K7M2PQ" maxlength="10">
+    <label for="nameInput">আপনার নাম</label>
+    <input id="nameInput" autocomplete="name" placeholder="নাম লিখুন" maxlength="40">
+    <div style="margin-top:1rem">
+      <button class="primary" id="joinBtn" style="width:100%">যোগ দিন</button>
+    </div>
+    <p class="muted" id="joinErr" style="color:#ff9492; margin-top:.6rem"></p>
+  </div>
+</section>
+
+<!-- Classroom -->
+<main class="wrap hidden" id="classView">
+  <div class="row" style="justify-content:space-between">
+    <div>
+      <h1 id="classTitle" style="font-size:1.15rem;margin:0">শ্রেণি</h1>
+      <small class="muted" id="classMeta"></small>
+    </div>
+    <div class="row">
+      <button class="ghost small" id="audioBtn" aria-pressed="false">🔊 শুনতে শুরু করুন</button>
+      <button class="ghost small" id="leaveBtn">বের হন</button>
+    </div>
+  </div>
+  <p id="audioStatus" class="muted" role="status" aria-live="polite" data-state="disabled">অডিও চালু করতে একবার “শুনতে শুরু করুন” চাপুন</p>
+
+  <div class="tabs" style="margin-top:.8rem">
+    <button data-tab="live" class="active">লাইভ</button>
+    <button data-tab="summary">সারসংক্ষেপ</button>
+    <button data-tab="quiz">কুইজ</button>
+    <button data-tab="progress">আমার অগ্রগতি</button>
+  </div>
+
+  <section id="tab-live" style="margin-top:.8rem">
+    <div class="card" id="partialCard" style="display:none;border-left:3px solid #d29922">
+      <small class="muted">শিক্ষক বলছেন…</small>
+      <div id="partialText" style="font-size:1.02rem"></div>
+    </div>
+    <div class="transcript" id="transcript" role="log" aria-live="polite"
+         aria-label="লাইভ বাংলা ক্যাপশন"></div>
+    <p class="muted" id="emptyLive" role="status" style="text-align:center;padding:2rem 0">
+      শিক্ষক কথা শুরু করলে এখানে বাংলা ক্যাপশন দেখা যাবে।
+    </p>
+  </section>
+
+  <section id="tab-summary" class="hidden"></section>
+  <section id="tab-quiz" class="hidden"></section>
+  <section id="tab-progress" class="hidden"></section>
+</main>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<script src="/static/student.js"></script>
+</body>
+</html>

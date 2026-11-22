@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-11-10T04:03:20",
+  "backend": "marian",
+  "model_dir": "models/marian-en-bn-ct2",
+  "dataset": "data/eval/en_bn_quality.json",
+  "entries": 26,
+  "chrf_mean": 0.5923,
+  "chrf_by_category": {
+    "academic_lecture": 0.5873,
+    "long_sentence": 0.7401,
+    "normal_speech": 0.4848,
+    "numbers": 0.6386,
+    "proper_nouns": 0.7501,
+    "streaming_fragment": 0.6379,
+    "technical_terms": 0.4628
+  },
+  "numbers_preserved": 26,
+  "latency_ms": {
+    "p50": 135.3,
+    "max": 401.1
+  },
+  "human_review": "not performed - see reports/TRANSLATION_QUALITY.md",
+  "exit_code": 0,
+  "label": "baseline"
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d1117">
+<title>Offline Guru — শিক্ষক কনসোল</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">Offline <span>Guru</span> · শিক্ষক</div>
+  <div class="spacer"></div>
+  <span class="pill" id="connPill"><span class="dot" id="connDot"></span><span id="connText">নিষ্ক্রিয়</span></span>
+</header>
+
+<main class="wrap">
+  <!-- Setup -->
+  <section id="setupView" class="card">
+    <h1>নতুন ক্লাস শুরু করুন</h1>
+    <p class="muted">ইন্টারনেট ছাড়াই আপনার ল্যাপটপই ক্লাসরুম সার্ভার। শিক্ষার্থীরা ওয়াই-ফাই হটস্পটে যুক্ত হয়ে ব্রাউজার দিয়ে যোগ দেবে।</p>
+    <div class="grid two">
+      <div>
+        <label for="titleInput">ক্লাসের শিরোনাম</label>
+        <input id="titleInput" value="আজকের ক্লাস" maxlength="120">
+        <div class="row" style="margin-top:.4rem">
+          <div style="flex:1">
+            <label for="srcLang">শিক্ষকের ভাষা</label>
+            <select id="srcLang"><option value="en">English → বাংলা</option><option value="bn">বাংলা → English</option><option value="auto">Auto (turn-level)</option></select>
+          </div>
+          <div style="flex:1">
+            <label for="tgtLang">শিক্ষার্থীর ভাষা</label>
+            <select id="tgtLang"><option value="auto">Automatic opposite language</option></select>
+          </div>
+        </div>
+        <div style="margin-top:1rem"><button class="primary" id="createBtn">ক্লাস তৈরি করুন</button></div>
+        <p class="muted" id="setupErr" style="color:#ff9492"></p>
+      </div>
+      <div>
+        <h3>শুরুর আগে</h3>
+        <ul class="muted" style="padding-left:1.1rem;font-size:.92rem">
+          <li>মাইকে কথা বলুন স্বাভাবিক গতিতে, বাক্যের মাঝে ছোট বিরতি দিন।</li>
+          <li>হটস্পট চালু আছে কি না নিশ্চিত করুন (নিচে অবস্থা দেখা যাবে)।</li>
+          <li>শিক্ষার্থীদের হেডফোন ব্যবহার করতে বলুন।</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classroom -->
+  <section id="roomView" class="hidden">
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <h1 id="roomTitle" style="font-size:1.15rem;margin:0">ক্লাস</h1>
+          <small class="muted" id="roomMeta"></small>
+        </div>
+        <div class="row" id="controls">
+          <button class="primary" id="startMicBtn">🎤 শুরু করুন</button>
+          <button class="ghost" id="startWavBtn" title="ডেমো/পরীক্ষার জন্য রেকর্ড করা লেকচার">▶ ফাইল চালান</button>
+          <button class="ghost hidden" id="pauseBtn">⏸ বিরতি</button>
+          <button class="ghost hidden" id="resumeBtn">▶ চালিয়ে যান</button>
+          <button class="danger" id="stopBtn">⏹ থামান</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top:.8rem;align-items:flex-end">
+        <div style="flex:1;min-width:240px">
+          <label for="hotwordsInput">আজকের মূল শব্দ (ঐচ্ছিক — শোনার নির্ভুলতা বাড়ায়)</label>
+          <input id="hotwordsInput" placeholder="যেমন: photosynthesis, glucose, stomata, chlorophyll" maxlength="300">
+        </div>
+      </div>
+      <div class="metrics" style="margin-top:.8rem" id="liveMetrics"></div>
+    </div>
+
+    <div class="grid two">
+      <div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <h2 style="margin:0">লাইভ ট্রান্সক্রিপ্ট</h2>
+            <span class="pill" id="segCount">0 অংশ</span>
+          </div>
+          <div class="card" id="partialCard" style="display:none;margin-top:.7rem;border-left:3px solid #d29922">
+            <small class="muted">শোনা হচ্ছে…</small>
+            <div id="partialText"></div>
+          </div>
+          <div class="transcript" id="transcript" role="log" aria-live="polite"
+               aria-label="লাইভ ট্রান্সক্রিপ্ট" style="margin-top:.8rem;max-height:62vh;overflow:auto"></div>
+          <p class="muted" id="emptyTranscript" role="status">এখনো কোনো ট্রান্সক্রিপ্ট নেই।</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h2 style="margin:0 0 .4rem">শিক্ষার্থী যুক্ত হোন</h2>
+          <div class="row" style="align-items:flex-start;gap:1rem">
+            <img class="qr" id="qrImg" alt="ক্লাস QR কোড">
+            <div>
+              <div><small class="muted">ক্লাস কোড</small><div style="font-size:1.5rem;font-weight:700;letter-spacing:.12em" id="classCode">—</div></div>
+              <div style="margin-top:.4rem"><small class="muted">ঠিকানা</small><div id="joinUrl" style="word-break:break-all">—</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>সিস্টেম স্বাস্থ্য</h3>
+          <div id="healthBox" aria-live="polite"></div>
+          <div id="warnBox" class="muted" style="font-size:.85rem;margin-top:.5rem"></div>
+        </div>
+
+        <div class="card">
+          <h3>যুক্ত শিক্ষার্থী (<span id="studentCount">0</span>)</h3>
+          <table><thead><tr><th>নাম</th><th>অবস্থা</th></tr></thead><tbody id="studentRows"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2 style="margin:0">সারসংক্ষেপ</h2>
+          <div class="row">
+            <button class="ghost small" id="genSummaryBtn">নতুন করে তৈরি করুন</button>
+            <button class="primary small" id="approveSummaryBtn" disabled>অনুমোদন দিন</button>
+          </div>
+        </div>
+        <div id="summaryBox" class="muted" style="margin-top:.6rem">এখনো তৈরি হয়নি।</div>
+      </div>
+
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2 style="margin:0">কুইজ</h2>
+          <div class="row">
+            <select id="quizCount" style="width:auto"><option>3</option><option selected>5</option><option>8</option></select>
+            <button class="ghost small" id="genQuizBtn">তৈরি করুন</button>
+            <button class="primary small" id="approveQuizBtn" disabled>অনুমোদন দিন</button>
+          </div>
+        </div>
+        <div id="quizBox" class="muted" style="margin-top:.6rem">এখনো তৈরি হয়নি।</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <h2 style="margin:0">শিক্ষার উপকরণ (PDF / PPTX / TXT)</h2>
+        <span class="pill" id="docCount">0 ফাইল</span>
+      </div>
+      <p class="muted" style="font-size:.85rem;margin:.3rem 0 .6rem">
+        স্লাইড বা নোট আপলোড করুন। সারসংক্ষেপ ও কুইজ এই পৃষ্ঠাগুলো থেকে প্রমাণ ও পৃষ্ঠা-নম্বরসহ তৈরি হবে।
+        ফাইল শুধু আপনার ল্যাপটপে থাকে — কোনো ইন্টারনেট বা ক্লাউডে যায় না।
+      </p>
+      <div class="row">
+        <input type="file" id="docInput" accept=".pdf,.pptx,.txt,.md" style="max-width:300px">
+        <button class="ghost small" id="docUploadBtn">আপলোড করুন</button>
+      </div>
+      <div id="docBox" class="muted" style="margin-top:.6rem">এখনো কোনো উপকরণ নেই।</div>
+      <div class="row" style="margin-top:.6rem">
+        <input id="docSearchInput" placeholder="উপকরণে খুঁজুন (যেমন: chlorophyll)" style="max-width:320px">
+        <button class="ghost small" id="docSearchBtn">খুঁজুন</button>
+      </div>
+      <div id="docSearchBox" class="muted" style="margin-top:.4rem;font-size:.85rem"></div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 .4rem">উত্তর ও মূল্যায়ন</h2>
+      <div class="row"><button class="ghost small" id="refreshAnswersBtn">রিফ্রেশ</button>
+        <button class="ghost small" id="exportBtn">এক্সপোর্ট (JSON)</button>
+        <button class="ghost small" id="endBtn">ক্লাস শেষ করুন</button>
+        <button class="danger small" id="deleteBtn">সব ডেটা মুছুন</button>
+      </div>
+      <div id="answersBox" style="margin-top:.6rem"></div>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<script src="/static/teacher.js"></script>
+</body>
+</html>

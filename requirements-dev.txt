@@ -1,0 +1,6 @@
+# Development-only dependencies. Not needed on the classroom laptop:
+#   pip install -r requirements-dev.txt
+-r requirements.txt
+# Used by scripts/loadtest.py and scripts/compare_translators.py.
+httpx==0.28.1
+pytest>=8.3
